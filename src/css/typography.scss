@@ -1,0 +1,23 @@
+@font-face {
+  font-family: $fontRegular;
+  src: url(../fonts/ProximaNova-Regular.otf);
+}
+
+@font-face {
+  font-family: $fontBold;
+  src: url(../fonts/ProximaNova-Bold.otf);
+}
+
+@font-face {
+  font-family: $fontHeadline;
+  src: url(../fonts/Gotham-Bold.otf);
+}
+
+body {
+  font-size: 16px;
+  font-family: $fontRegular, serif;
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.1vw;
+  }
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "OkrugSifra": "00",
+    "OkrugNazivCir": "Град Београд",
+    "OkrugNazivLat": "Grad Beograd"
+  },
+  {
+    "OkrugSifra": "01",
+    "OkrugNazivCir": "Северно-бачки округ",
+    "OkrugNazivLat": "Severno-bački okrug"
+  },
+  {
+    "OkrugSifra": "02",
+    "OkrugNazivCir": "Средње-банатски округ",
+    "OkrugNazivLat": "Srednje-banatski okrug"
+  },
+  {
+    "OkrugSifra": "03",
+    "OkrugNazivCir": "Северно-банатски округ",
+    "OkrugNazivLat": "Severno-banatski okrug"
+  },
+  {
+    "OkrugSifra": "04",
+    "OkrugNazivCir": "Јужно-банатски округ",
+    "OkrugNazivLat": "Južno-banatski okrug"
+  },
+  {
+    "OkrugSifra": "05",
+    "OkrugNazivCir": "Западно-бачки округ",
+    "OkrugNazivLat": "Zapadno-bački okrug"
+  },
+  {
+    "OkrugSifra": "06",
+    "OkrugNazivCir": "Јужно-бачки округ",
+    "OkrugNazivLat": "Južno-bački okrug"
+  },
+  {
+    "OkrugSifra": "07",
+    "OkrugNazivCir": "Сремски округ",
+    "OkrugNazivLat": "Sremski okrug"
+  },
+  {
+    "OkrugSifra": "08",
+    "OkrugNazivCir": "Мачвански округ",
+    "OkrugNazivLat": "Mačvanski okrug"
+  },
+  {
+    "OkrugSifra": "09",
+    "OkrugNazivCir": "Колубарски округ",
+    "OkrugNazivLat": "Kolubarski okrug"
+  },
+  {
+    "OkrugSifra": 10,
+    "OkrugNazivCir": "Подунавски округ",
+    "OkrugNazivLat": "Podunavski okrug"
+  },
+  {
+    "OkrugSifra": 11,
+    "OkrugNazivCir": "Браничевски округ",
+    "OkrugNazivLat": "Braničevski okrug"
+  },
+  {
+    "OkrugSifra": 12,
+    "OkrugNazivCir": "Шумадијски округ",
+    "OkrugNazivLat": "Šumadijski okrug"
+  },
+  {
+    "OkrugSifra": 13,
+    "OkrugNazivCir": "Поморавски округ",
+    "OkrugNazivLat": "Pomoravski okrug"
+  },
+  {
+    "OkrugSifra": 14,
+    "OkrugNazivCir": "Борски округ",
+    "OkrugNazivLat": "Borski okrug"
+  },
+  {
+    "OkrugSifra": 15,
+    "OkrugNazivCir": "Зајечарски округ",
+    "OkrugNazivLat": "Zaječarski okrug"
+  },
+  {
+    "OkrugSifra": 16,
+    "OkrugNazivCir": "Златиборски округ",
+    "OkrugNazivLat": "Zlatiborski okrug"
+  },
+  {
+    "OkrugSifra": 17,
+    "OkrugNazivCir": "Моравички округ",
+    "OkrugNazivLat": "Moravički okrug"
+  },
+  {
+    "OkrugSifra": 18,
+    "OkrugNazivCir": "Рашки округ",
+    "OkrugNazivLat": "Raški okrug"
+  },
+  {
+    "OkrugSifra": 19,
+    "OkrugNazivCir": "Расински округ",
+    "OkrugNazivLat": "Rasinski okrug"
+  },
+  {
+    "OkrugSifra": 20,
+    "OkrugNazivCir": "Нишавски округ",
+    "OkrugNazivLat": "Nišavski okrug"
+  },
+  {
+    "OkrugSifra": 21,
+    "OkrugNazivCir": "Топлички округ",
+    "OkrugNazivLat": "Toplički okrug"
+  },
+  {
+    "OkrugSifra": 22,
+    "OkrugNazivCir": "Пиротски округ",
+    "OkrugNazivLat": "Pirotski okrug"
+  },
+  {
+    "OkrugSifra": 23,
+    "OkrugNazivCir": "Јабланички округ",
+    "OkrugNazivLat": "Jablanički okrug"
+  },
+  {
+    "OkrugSifra": 24,
+    "OkrugNazivCir": "Пчињски округ",
+    "OkrugNazivLat": "Pčinjski okrug"
+  },
+  {
+    "OkrugSifra": 25,
+    "OkrugNazivCir": "Косовски округ",
+    "OkrugNazivLat": "Kosovski okrug"
+  },
+  {
+    "OkrugSifra": 26,
+    "OkrugNazivCir": "Пећки округ",
+    "OkrugNazivLat": "Pećki okrug"
+  },
+  {
+    "OkrugSifra": 27,
+    "OkrugNazivCir": "Призренски округ",
+    "OkrugNazivLat": "Prizrenski okrug"
+  },
+  {
+    "OkrugSifra": 28,
+    "OkrugNazivCir": "Косовско-митровачки округ",
+    "OkrugNazivLat": "Kosovsko-mitrovački okrug"
+  },
+  {
+    "OkrugSifra": 29,
+    "OkrugNazivCir": "Косовско-поморавски округ",
+    "OkrugNazivLat": "Kosovsko-pomoravski okrug"
+  }
+]

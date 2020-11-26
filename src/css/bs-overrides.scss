@@ -1,0 +1,33 @@
+$spacer: 1rem;
+
+$spacers: ();
+$s1: $spacer * 0.5;
+$s2: $spacer * 1;
+$s3: $spacer * 1.5;
+$s4: $spacer * 2;
+$s5: $spacer * 3;
+
+$spacers: map-merge(
+  (
+    0: 0,
+    small: (
+      $spacer * 0.5,
+    ),
+    1: (
+      $s1,
+    ),
+    2: (
+      $s2,
+    ),
+    3: (
+      $s3,
+    ),
+    4: (
+      $s4,
+    ),
+    5: (
+      $s5,
+    ),
+  ),
+  $spacers
+);

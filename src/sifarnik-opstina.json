@@ -1,0 +1,1178 @@
+[
+  {
+    "OpstinaSifra": 70017,
+    "OpstinaNazivCir": "Александровац",
+    "OpstinaNazivLat": "Aleksandrovac",
+    "OkrugSifra": 19
+  },
+  {
+    "OpstinaSifra": 70025,
+    "OpstinaNazivCir": "Алексинац",
+    "OpstinaNazivLat": "Aleksinac",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 70033,
+    "OpstinaNazivCir": "Аранђеловац",
+    "OpstinaNazivLat": "Aranđelovac",
+    "OkrugSifra": 12
+  },
+  {
+    "OpstinaSifra": 70041,
+    "OpstinaNazivCir": "Ариље",
+    "OpstinaNazivLat": "Arilje",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 70050,
+    "OpstinaNazivCir": "Бабушница",
+    "OpstinaNazivLat": "Babušnica",
+    "OkrugSifra": 22
+  },
+  {
+    "OpstinaSifra": 70068,
+    "OpstinaNazivCir": "Бајина Башта",
+    "OpstinaNazivLat": "Bajina Bašta",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 70076,
+    "OpstinaNazivCir": "Баточина",
+    "OpstinaNazivLat": "Batočina",
+    "OkrugSifra": 12
+  },
+  {
+    "OpstinaSifra": 70084,
+    "OpstinaNazivCir": "Бела Паланка",
+    "OpstinaNazivLat": "Bela Palanka",
+    "OkrugSifra": 22
+  },
+  {
+    "OpstinaSifra": 70092,
+    "OpstinaNazivCir": "Београд-Барајево",
+    "OpstinaNazivLat": "Barajevo",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70106,
+    "OpstinaNazivCir": "Београд-Вождовац",
+    "OpstinaNazivLat": "Voždovac",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70114,
+    "OpstinaNazivCir": "Београд-Врачар",
+    "OpstinaNazivLat": "Vračar",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70122,
+    "OpstinaNazivCir": "Београд-Гроцка",
+    "OpstinaNazivLat": "Grocka",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70149,
+    "OpstinaNazivCir": "Београд-Звездара",
+    "OpstinaNazivLat": "Zvezdara",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70157,
+    "OpstinaNazivCir": "Београд-Земун",
+    "OpstinaNazivLat": "Zemun",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70165,
+    "OpstinaNazivCir": "Београд-Лазаревац",
+    "OpstinaNazivLat": "Lazarevac",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70173,
+    "OpstinaNazivCir": "Београд-Младеновац",
+    "OpstinaNazivLat": "Mladenovac",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70181,
+    "OpstinaNazivCir": "Београд-Нови Београд",
+    "OpstinaNazivLat": "Novi Beograd",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70190,
+    "OpstinaNazivCir": "Београд-Обреновац",
+    "OpstinaNazivLat": "Obrenovac",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70203,
+    "OpstinaNazivCir": "Београд-Палилула",
+    "OpstinaNazivLat": "Palilula",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70211,
+    "OpstinaNazivCir": "Београд-Раковица",
+    "OpstinaNazivLat": "Rakovica",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70220,
+    "OpstinaNazivCir": "Београд-Савски Венац",
+    "OpstinaNazivLat": "Savski Venac",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70238,
+    "OpstinaNazivCir": "Београд-Сопот",
+    "OpstinaNazivLat": "Sopot",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70246,
+    "OpstinaNazivCir": "Београд-Стари Град",
+    "OpstinaNazivLat": "Stari Grad",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70254,
+    "OpstinaNazivCir": "Београд-Чукарица",
+    "OpstinaNazivLat": "Čukarica",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 70262,
+    "OpstinaNazivCir": "Блаце",
+    "OpstinaNazivLat": "Blace",
+    "OkrugSifra": 21
+  },
+  {
+    "OpstinaSifra": 70289,
+    "OpstinaNazivCir": "Богатић",
+    "OpstinaNazivLat": "Bogatić",
+    "OkrugSifra": "08"
+  },
+  {
+    "OpstinaSifra": 70297,
+    "OpstinaNazivCir": "Бојник",
+    "OpstinaNazivLat": "Bojnik",
+    "OkrugSifra": 23
+  },
+  {
+    "OpstinaSifra": 70319,
+    "OpstinaNazivCir": "Бољевац",
+    "OpstinaNazivLat": "Boljevac",
+    "OkrugSifra": 15
+  },
+  {
+    "OpstinaSifra": 70327,
+    "OpstinaNazivCir": "Бор",
+    "OpstinaNazivLat": "Bor",
+    "OkrugSifra": 14
+  },
+  {
+    "OpstinaSifra": 70335,
+    "OpstinaNazivCir": "Босилеград",
+    "OpstinaNazivLat": "Bosilegrad",
+    "OkrugSifra": 24
+  },
+  {
+    "OpstinaSifra": 70343,
+    "OpstinaNazivCir": "Брус",
+    "OpstinaNazivLat": "Brus",
+    "OkrugSifra": 19
+  },
+  {
+    "OpstinaSifra": 70351,
+    "OpstinaNazivCir": "Бујановац",
+    "OpstinaNazivLat": "Bujanovac",
+    "OkrugSifra": 24
+  },
+  {
+    "OpstinaSifra": 70360,
+    "OpstinaNazivCir": "Ваљево",
+    "OpstinaNazivLat": "Valjevo",
+    "OkrugSifra": "09"
+  },
+  {
+    "OpstinaSifra": 70378,
+    "OpstinaNazivCir": "Варварин",
+    "OpstinaNazivLat": "Varvarin",
+    "OkrugSifra": 19
+  },
+  {
+    "OpstinaSifra": 70386,
+    "OpstinaNazivCir": "Велика Плана",
+    "OpstinaNazivLat": "Velika Plana",
+    "OkrugSifra": 10
+  },
+  {
+    "OpstinaSifra": 70394,
+    "OpstinaNazivCir": "Велико Градиште",
+    "OpstinaNazivLat": "Veliko Gradište",
+    "OkrugSifra": 11
+  },
+  {
+    "OpstinaSifra": 70408,
+    "OpstinaNazivCir": "Владимирци",
+    "OpstinaNazivLat": "Vladimirci",
+    "OkrugSifra": "08"
+  },
+  {
+    "OpstinaSifra": 70416,
+    "OpstinaNazivCir": "Владичин Хан",
+    "OpstinaNazivLat": "Vladičin Han",
+    "OkrugSifra": 24
+  },
+  {
+    "OpstinaSifra": 70424,
+    "OpstinaNazivCir": "Власотинце",
+    "OpstinaNazivLat": "Vlasotince",
+    "OkrugSifra": 23
+  },
+  {
+    "OpstinaSifra": 70432,
+    "OpstinaNazivCir": "Врање",
+    "OpstinaNazivLat": "Vranje",
+    "OkrugSifra": 24
+  },
+  {
+    "OpstinaSifra": 70459,
+    "OpstinaNazivCir": "Врњачка Бања",
+    "OpstinaNazivLat": "Vrnjačka Banja",
+    "OkrugSifra": 18
+  },
+  {
+    "OpstinaSifra": 70467,
+    "OpstinaNazivCir": "Гаџин хан",
+    "OpstinaNazivLat": "Gadžin Han",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 70475,
+    "OpstinaNazivCir": "Голубац",
+    "OpstinaNazivLat": "Golubac",
+    "OkrugSifra": 11
+  },
+  {
+    "OpstinaSifra": 70483,
+    "OpstinaNazivCir": "Горњи Милановац",
+    "OpstinaNazivLat": "Gornji Milanovac",
+    "OkrugSifra": 17
+  },
+  {
+    "OpstinaSifra": 70491,
+    "OpstinaNazivCir": "Деспотовац",
+    "OpstinaNazivLat": "Despotovac",
+    "OkrugSifra": 13
+  },
+  {
+    "OpstinaSifra": 70505,
+    "OpstinaNazivCir": "Димитровград",
+    "OpstinaNazivLat": "Dimitrovgrad",
+    "OkrugSifra": 22
+  },
+  {
+    "OpstinaSifra": 70513,
+    "OpstinaNazivCir": "Дољевац",
+    "OpstinaNazivLat": "Doljevac",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 70521,
+    "OpstinaNazivCir": "Жабари",
+    "OpstinaNazivLat": "Žabari",
+    "OkrugSifra": 11
+  },
+  {
+    "OpstinaSifra": 70530,
+    "OpstinaNazivCir": "Жагубица",
+    "OpstinaNazivLat": "Žagubica",
+    "OkrugSifra": 11
+  },
+  {
+    "OpstinaSifra": 70548,
+    "OpstinaNazivCir": "Житорађа",
+    "OpstinaNazivLat": "Žitorađa",
+    "OkrugSifra": 21
+  },
+  {
+    "OpstinaSifra": 70556,
+    "OpstinaNazivCir": "Зајечар",
+    "OpstinaNazivLat": "Zaječar",
+    "OkrugSifra": 15
+  },
+  {
+    "OpstinaSifra": 70564,
+    "OpstinaNazivCir": "Ивањица",
+    "OpstinaNazivLat": "Ivanjica",
+    "OkrugSifra": 17
+  },
+  {
+    "OpstinaSifra": 70572,
+    "OpstinaNazivCir": "Кладово",
+    "OpstinaNazivLat": "Kladovo",
+    "OkrugSifra": 14
+  },
+  {
+    "OpstinaSifra": 70599,
+    "OpstinaNazivCir": "Кнић",
+    "OpstinaNazivLat": "Knić",
+    "OkrugSifra": 12
+  },
+  {
+    "OpstinaSifra": 70602,
+    "OpstinaNazivCir": "Књажевац",
+    "OpstinaNazivLat": "Knjaževac",
+    "OkrugSifra": 15
+  },
+  {
+    "OpstinaSifra": 70629,
+    "OpstinaNazivCir": "Косјерић",
+    "OpstinaNazivLat": "Kosjerić",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 70637,
+    "OpstinaNazivCir": "Коцељева",
+    "OpstinaNazivLat": "Koceljeva",
+    "OkrugSifra": "08"
+  },
+  {
+    "OpstinaSifra": 70645,
+    "OpstinaNazivCir": "Крагујевац-град",
+    "OpstinaNazivLat": "Kragujevac",
+    "OkrugSifra": 12
+  },
+  {
+    "OpstinaSifra": 70653,
+    "OpstinaNazivCir": "Краљево",
+    "OpstinaNazivLat": "Kraljevo",
+    "OkrugSifra": 18
+  },
+  {
+    "OpstinaSifra": 70661,
+    "OpstinaNazivCir": "Крупањ",
+    "OpstinaNazivLat": "Krupanj",
+    "OkrugSifra": "08"
+  },
+  {
+    "OpstinaSifra": 70670,
+    "OpstinaNazivCir": "Крушевац",
+    "OpstinaNazivLat": "Kruševac",
+    "OkrugSifra": 19
+  },
+  {
+    "OpstinaSifra": 70688,
+    "OpstinaNazivCir": "Куршумлија",
+    "OpstinaNazivLat": "Kuršumlija",
+    "OkrugSifra": 21
+  },
+  {
+    "OpstinaSifra": 70696,
+    "OpstinaNazivCir": "Кучево",
+    "OpstinaNazivLat": "Kučevo",
+    "OkrugSifra": 11
+  },
+  {
+    "OpstinaSifra": 70700,
+    "OpstinaNazivCir": "Лајковац",
+    "OpstinaNazivLat": "Lajkovac",
+    "OkrugSifra": "09"
+  },
+  {
+    "OpstinaSifra": 70718,
+    "OpstinaNazivCir": "Лебане",
+    "OpstinaNazivLat": "Lebane",
+    "OkrugSifra": 23
+  },
+  {
+    "OpstinaSifra": 70726,
+    "OpstinaNazivCir": "Лесковац",
+    "OpstinaNazivLat": "Leskovac",
+    "OkrugSifra": 23
+  },
+  {
+    "OpstinaSifra": 70734,
+    "OpstinaNazivCir": "Лозница",
+    "OpstinaNazivLat": "Loznica",
+    "OkrugSifra": "08"
+  },
+  {
+    "OpstinaSifra": 70742,
+    "OpstinaNazivCir": "Лучани",
+    "OpstinaNazivLat": "Lučani",
+    "OkrugSifra": 17
+  },
+  {
+    "OpstinaSifra": 70769,
+    "OpstinaNazivCir": "Љиг",
+    "OpstinaNazivLat": "Ljig",
+    "OkrugSifra": "09"
+  },
+  {
+    "OpstinaSifra": 70777,
+    "OpstinaNazivCir": "Љубовија",
+    "OpstinaNazivLat": "Ljubovija",
+    "OkrugSifra": "08"
+  },
+  {
+    "OpstinaSifra": 70785,
+    "OpstinaNazivCir": "Мајданпек",
+    "OpstinaNazivLat": "Majdanpek",
+    "OkrugSifra": 14
+  },
+  {
+    "OpstinaSifra": 70793,
+    "OpstinaNazivCir": "Мали Зворник",
+    "OpstinaNazivLat": "Mali Zvornik",
+    "OkrugSifra": "08"
+  },
+  {
+    "OpstinaSifra": 70807,
+    "OpstinaNazivCir": "Мало Црниће",
+    "OpstinaNazivLat": "Malo Crniće",
+    "OkrugSifra": 11
+  },
+  {
+    "OpstinaSifra": 70815,
+    "OpstinaNazivCir": "Медвеђа",
+    "OpstinaNazivLat": "Medveđa",
+    "OkrugSifra": 23
+  },
+  {
+    "OpstinaSifra": 70823,
+    "OpstinaNazivCir": "Мерошина",
+    "OpstinaNazivLat": "Merošina",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 70831,
+    "OpstinaNazivCir": "Мионица",
+    "OpstinaNazivLat": "Mionica",
+    "OkrugSifra": "09"
+  },
+  {
+    "OpstinaSifra": 70840,
+    "OpstinaNazivCir": "Неготин",
+    "OpstinaNazivLat": "Negotin",
+    "OkrugSifra": 14
+  },
+  {
+    "OpstinaSifra": 70858,
+    "OpstinaNazivCir": "Ниш (град)",
+    "OpstinaNazivLat": "Niš",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 70866,
+    "OpstinaNazivCir": "Нова Варош",
+    "OpstinaNazivLat": "Nova Varoš",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 70874,
+    "OpstinaNazivCir": "Нови Пазар",
+    "OpstinaNazivLat": "Novi Pazar",
+    "OkrugSifra": 18
+  },
+  {
+    "OpstinaSifra": 70882,
+    "OpstinaNazivCir": "Осечина",
+    "OpstinaNazivLat": "Osečina",
+    "OkrugSifra": "09"
+  },
+  {
+    "OpstinaSifra": 70904,
+    "OpstinaNazivCir": "Параћин",
+    "OpstinaNazivLat": "Paraćin",
+    "OkrugSifra": 13
+  },
+  {
+    "OpstinaSifra": 70912,
+    "OpstinaNazivCir": "Петровац",
+    "OpstinaNazivLat": "Petrovac na Mlavi",
+    "OkrugSifra": 11
+  },
+  {
+    "OpstinaSifra": 70939,
+    "OpstinaNazivCir": "Пирот",
+    "OpstinaNazivLat": "Pirot",
+    "OkrugSifra": 22
+  },
+  {
+    "OpstinaSifra": 70947,
+    "OpstinaNazivCir": "Пожаревац",
+    "OpstinaNazivLat": "Požarevac",
+    "OkrugSifra": 11
+  },
+  {
+    "OpstinaSifra": 70955,
+    "OpstinaNazivCir": "Пожега",
+    "OpstinaNazivLat": "Požega",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 70963,
+    "OpstinaNazivCir": "Прешево",
+    "OpstinaNazivLat": "Preševo",
+    "OkrugSifra": 24
+  },
+  {
+    "OpstinaSifra": 70971,
+    "OpstinaNazivCir": "Прибој",
+    "OpstinaNazivLat": "Priboj",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 70980,
+    "OpstinaNazivCir": "Пријепоље",
+    "OpstinaNazivLat": "Prijepolje",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 70998,
+    "OpstinaNazivCir": "Прокупље",
+    "OpstinaNazivLat": "Prokuplje",
+    "OkrugSifra": 21
+  },
+  {
+    "OpstinaSifra": 71005,
+    "OpstinaNazivCir": "Ражањ",
+    "OpstinaNazivLat": "Ražanj",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 71013,
+    "OpstinaNazivCir": "Рача",
+    "OpstinaNazivLat": "Rača",
+    "OkrugSifra": 12
+  },
+  {
+    "OpstinaSifra": 71021,
+    "OpstinaNazivCir": "Рашка",
+    "OpstinaNazivLat": "Raška",
+    "OkrugSifra": 18
+  },
+  {
+    "OpstinaSifra": 71030,
+    "OpstinaNazivCir": "Рековац",
+    "OpstinaNazivLat": "Rekovac",
+    "OkrugSifra": 13
+  },
+  {
+    "OpstinaSifra": 71048,
+    "OpstinaNazivCir": "Јагодина",
+    "OpstinaNazivLat": "Jagodina",
+    "OkrugSifra": 13
+  },
+  {
+    "OpstinaSifra": 71056,
+    "OpstinaNazivCir": "Свилајнац",
+    "OpstinaNazivLat": "Svilajnac",
+    "OkrugSifra": 13
+  },
+  {
+    "OpstinaSifra": 71064,
+    "OpstinaNazivCir": "Сврљиг",
+    "OpstinaNazivLat": "Svrljig",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 71072,
+    "OpstinaNazivCir": "Сјеница",
+    "OpstinaNazivLat": "Sjenica",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 71099,
+    "OpstinaNazivCir": "Смедерево",
+    "OpstinaNazivLat": "Smederevo",
+    "OkrugSifra": 10
+  },
+  {
+    "OpstinaSifra": 71102,
+    "OpstinaNazivCir": "Смедеревска Паланка",
+    "OpstinaNazivLat": "Smederevska Palanka",
+    "OkrugSifra": 10
+  },
+  {
+    "OpstinaSifra": 71129,
+    "OpstinaNazivCir": "Сокобања",
+    "OpstinaNazivLat": "Sokobanja",
+    "OkrugSifra": 15
+  },
+  {
+    "OpstinaSifra": 71137,
+    "OpstinaNazivCir": "Сурдулица",
+    "OpstinaNazivLat": "Surdulica",
+    "OkrugSifra": 24
+  },
+  {
+    "OpstinaSifra": 71145,
+    "OpstinaNazivCir": "Ужице",
+    "OpstinaNazivLat": "Užice",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 71153,
+    "OpstinaNazivCir": "Топола",
+    "OpstinaNazivLat": "Topola",
+    "OkrugSifra": 12
+  },
+  {
+    "OpstinaSifra": 71161,
+    "OpstinaNazivCir": "Трговиште",
+    "OpstinaNazivLat": "Trgovište",
+    "OkrugSifra": 24
+  },
+  {
+    "OpstinaSifra": 71170,
+    "OpstinaNazivCir": "Трстеник",
+    "OpstinaNazivLat": "Trstenik",
+    "OkrugSifra": 19
+  },
+  {
+    "OpstinaSifra": 71188,
+    "OpstinaNazivCir": "Тутин",
+    "OpstinaNazivLat": "Tutin",
+    "OkrugSifra": 18
+  },
+  {
+    "OpstinaSifra": 71196,
+    "OpstinaNazivCir": "Ћићевац",
+    "OpstinaNazivLat": "Ćićevac",
+    "OkrugSifra": 19
+  },
+  {
+    "OpstinaSifra": 71200,
+    "OpstinaNazivCir": "Ћуприја",
+    "OpstinaNazivLat": "Ćuprija",
+    "OkrugSifra": 13
+  },
+  {
+    "OpstinaSifra": 71218,
+    "OpstinaNazivCir": "Уб",
+    "OpstinaNazivLat": "Ub",
+    "OkrugSifra": "09"
+  },
+  {
+    "OpstinaSifra": 71226,
+    "OpstinaNazivCir": "Црна Трава",
+    "OpstinaNazivLat": "Crna Trava",
+    "OkrugSifra": 23
+  },
+  {
+    "OpstinaSifra": 71234,
+    "OpstinaNazivCir": "Чајетина",
+    "OpstinaNazivLat": "Čajetina",
+    "OkrugSifra": 16
+  },
+  {
+    "OpstinaSifra": 71242,
+    "OpstinaNazivCir": "Чачак",
+    "OpstinaNazivLat": "Čačak",
+    "OkrugSifra": 17
+  },
+  {
+    "OpstinaSifra": 71269,
+    "OpstinaNazivCir": "Шабац",
+    "OpstinaNazivLat": "Šabac",
+    "OkrugSifra": "08"
+  },
+  {
+    "OpstinaSifra": 71277,
+    "OpstinaNazivCir": "Лапово",
+    "OpstinaNazivLat": "Lapovo",
+    "OkrugSifra": 12
+  },
+  {
+    "OpstinaSifra": 71285,
+    "OpstinaNazivCir": "Нишка Бања",
+    "OpstinaNazivLat": "Niška Banja",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 71293,
+    "OpstinaNazivCir": "Београд-Сурчин",
+    "OpstinaNazivLat": "Surčin",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 71307,
+    "OpstinaNazivCir": "Ниш - Пантелеј",
+    "OpstinaNazivLat": "Niš - Pantelej",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 71308,
+    "OpstinaNazivCir": "Београд (град)",
+    "OpstinaNazivLat": "Beograd (grad)",
+    "OkrugSifra": "00"
+  },
+  {
+    "OpstinaSifra": 71315,
+    "OpstinaNazivCir": "Ниш - Црвени Крст",
+    "OpstinaNazivLat": "Niš - Crveni Krst",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 71323,
+    "OpstinaNazivCir": "Ниш - Палилула",
+    "OpstinaNazivLat": "Niš - Palilula",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 71331,
+    "OpstinaNazivCir": "Ниш - Медијана",
+    "OpstinaNazivLat": "Niš - Medijana",
+    "OkrugSifra": 20
+  },
+  {
+    "OpstinaSifra": 80012,
+    "OpstinaNazivCir": "Ада",
+    "OpstinaNazivLat": "Ada",
+    "OkrugSifra": "03"
+  },
+  {
+    "OpstinaSifra": 80039,
+    "OpstinaNazivCir": "Алибунар",
+    "OpstinaNazivLat": "Alibunar",
+    "OkrugSifra": "04"
+  },
+  {
+    "OpstinaSifra": 80047,
+    "OpstinaNazivCir": "Апатин",
+    "OpstinaNazivLat": "Apatin",
+    "OkrugSifra": "05"
+  },
+  {
+    "OpstinaSifra": 80055,
+    "OpstinaNazivCir": "Бач",
+    "OpstinaNazivLat": "Bač",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80063,
+    "OpstinaNazivCir": "Бачка Паланка",
+    "OpstinaNazivLat": "Bačka Palanka",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80071,
+    "OpstinaNazivCir": "Бачка Топола",
+    "OpstinaNazivLat": "Bačka Topola",
+    "OkrugSifra": "01"
+  },
+  {
+    "OpstinaSifra": 80080,
+    "OpstinaNazivCir": "Бачки Петровац",
+    "OpstinaNazivLat": "Bački Petrovac",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80098,
+    "OpstinaNazivCir": "Бела Црква",
+    "OpstinaNazivLat": "Bela Crkva",
+    "OkrugSifra": "04"
+  },
+  {
+    "OpstinaSifra": 80101,
+    "OpstinaNazivCir": "Беочин",
+    "OpstinaNazivLat": "Beočin",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80110,
+    "OpstinaNazivCir": "Бечеј",
+    "OpstinaNazivLat": "Bečej",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80128,
+    "OpstinaNazivCir": "Вршац",
+    "OpstinaNazivLat": "Vršac",
+    "OkrugSifra": "04"
+  },
+  {
+    "OpstinaSifra": 80136,
+    "OpstinaNazivCir": "Жабаљ",
+    "OpstinaNazivLat": "Žabalj",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80144,
+    "OpstinaNazivCir": "Житиште",
+    "OpstinaNazivLat": "Žitište",
+    "OkrugSifra": "02"
+  },
+  {
+    "OpstinaSifra": 80152,
+    "OpstinaNazivCir": "Зрењанин",
+    "OpstinaNazivLat": "Zrenjanin",
+    "OkrugSifra": "02"
+  },
+  {
+    "OpstinaSifra": 80179,
+    "OpstinaNazivCir": "Инђија",
+    "OpstinaNazivLat": "Inđija",
+    "OkrugSifra": "07"
+  },
+  {
+    "OpstinaSifra": 80187,
+    "OpstinaNazivCir": "Ириг",
+    "OpstinaNazivLat": "Irig",
+    "OkrugSifra": "07"
+  },
+  {
+    "OpstinaSifra": 80195,
+    "OpstinaNazivCir": "Кањижа",
+    "OpstinaNazivLat": "Kanjiža",
+    "OkrugSifra": "03"
+  },
+  {
+    "OpstinaSifra": 80209,
+    "OpstinaNazivCir": "Кикинда",
+    "OpstinaNazivLat": "Kikinda",
+    "OkrugSifra": "03"
+  },
+  {
+    "OpstinaSifra": 80217,
+    "OpstinaNazivCir": "Ковачица",
+    "OpstinaNazivLat": "Kovačica",
+    "OkrugSifra": "04"
+  },
+  {
+    "OpstinaSifra": 80225,
+    "OpstinaNazivCir": "Ковин",
+    "OpstinaNazivLat": "Kovin",
+    "OkrugSifra": "04"
+  },
+  {
+    "OpstinaSifra": 80233,
+    "OpstinaNazivCir": "Кула",
+    "OpstinaNazivLat": "Kula",
+    "OkrugSifra": "05"
+  },
+  {
+    "OpstinaSifra": 80241,
+    "OpstinaNazivCir": "Мали Иђош",
+    "OpstinaNazivLat": "Mali Iđoš",
+    "OkrugSifra": "01"
+  },
+  {
+    "OpstinaSifra": 80250,
+    "OpstinaNazivCir": "Нова Црња",
+    "OpstinaNazivLat": "Nova Crnja",
+    "OkrugSifra": "02"
+  },
+  {
+    "OpstinaSifra": 80268,
+    "OpstinaNazivCir": "Нови Бечеј",
+    "OpstinaNazivLat": "Novi Bečej",
+    "OkrugSifra": "02"
+  },
+  {
+    "OpstinaSifra": 80276,
+    "OpstinaNazivCir": "Нови Кнежевац",
+    "OpstinaNazivLat": "Novi Kneževac",
+    "OkrugSifra": "03"
+  },
+  {
+    "OpstinaSifra": 80284,
+    "OpstinaNazivCir": "Нови Сад - град",
+    "OpstinaNazivLat": "Novi Sad",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80292,
+    "OpstinaNazivCir": "Опово",
+    "OpstinaNazivLat": "Opovo",
+    "OkrugSifra": "04"
+  },
+  {
+    "OpstinaSifra": 80306,
+    "OpstinaNazivCir": "Оџаци",
+    "OpstinaNazivLat": "Odžaci",
+    "OkrugSifra": "05"
+  },
+  {
+    "OpstinaSifra": 80314,
+    "OpstinaNazivCir": "Панчево",
+    "OpstinaNazivLat": "Pančevo",
+    "OkrugSifra": "04"
+  },
+  {
+    "OpstinaSifra": 80322,
+    "OpstinaNazivCir": "Пећинци",
+    "OpstinaNazivLat": "Pećinci",
+    "OkrugSifra": "07"
+  },
+  {
+    "OpstinaSifra": 80349,
+    "OpstinaNazivCir": "Пландиште",
+    "OpstinaNazivLat": "Plandište",
+    "OkrugSifra": "04"
+  },
+  {
+    "OpstinaSifra": 80357,
+    "OpstinaNazivCir": "Рума",
+    "OpstinaNazivLat": "Ruma",
+    "OkrugSifra": "07"
+  },
+  {
+    "OpstinaSifra": 80365,
+    "OpstinaNazivCir": "Сента",
+    "OpstinaNazivLat": "Senta",
+    "OkrugSifra": "03"
+  },
+  {
+    "OpstinaSifra": 80373,
+    "OpstinaNazivCir": "Сечањ",
+    "OpstinaNazivLat": "Sečanj",
+    "OkrugSifra": "02"
+  },
+  {
+    "OpstinaSifra": 80381,
+    "OpstinaNazivCir": "Сомбор",
+    "OpstinaNazivLat": "Sombor",
+    "OkrugSifra": "05"
+  },
+  {
+    "OpstinaSifra": 80390,
+    "OpstinaNazivCir": "Србобран",
+    "OpstinaNazivLat": "Srbobran",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80403,
+    "OpstinaNazivCir": "Сремска Митровица",
+    "OpstinaNazivLat": "Sremska Mitrovica",
+    "OkrugSifra": "07"
+  },
+  {
+    "OpstinaSifra": 80411,
+    "OpstinaNazivCir": "Сремски Карловци",
+    "OpstinaNazivLat": "Sremski Karlovci",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80420,
+    "OpstinaNazivCir": "Стара Пазова",
+    "OpstinaNazivLat": "Stara Pazova",
+    "OkrugSifra": "07"
+  },
+  {
+    "OpstinaSifra": 80438,
+    "OpstinaNazivCir": "Суботица",
+    "OpstinaNazivLat": "Subotica",
+    "OkrugSifra": "01"
+  },
+  {
+    "OpstinaSifra": 80446,
+    "OpstinaNazivCir": "Темерин",
+    "OpstinaNazivLat": "Temerin",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80454,
+    "OpstinaNazivCir": "Тител",
+    "OpstinaNazivLat": "Titel",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80462,
+    "OpstinaNazivCir": "Врбас",
+    "OpstinaNazivLat": "Vrbas",
+    "OkrugSifra": "06"
+  },
+  {
+    "OpstinaSifra": 80489,
+    "OpstinaNazivCir": "Чока",
+    "OpstinaNazivLat": "Čoka",
+    "OkrugSifra": "03"
+  },
+  {
+    "OpstinaSifra": 80497,
+    "OpstinaNazivCir": "Шид",
+    "OpstinaNazivLat": "Šid",
+    "OkrugSifra": "07"
+  },
+  {
+    "OpstinaSifra": 90018,
+    "OpstinaNazivCir": "Витина",
+    "OpstinaNazivLat": "Vitina",
+    "OkrugSifra": 29
+  },
+  {
+    "OpstinaSifra": 90026,
+    "OpstinaNazivCir": "Вучитрн",
+    "OpstinaNazivLat": "Vučitrn",
+    "OkrugSifra": 28
+  },
+  {
+    "OpstinaSifra": 90034,
+    "OpstinaNazivCir": "Глоговац",
+    "OpstinaNazivLat": "Glogovac",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90042,
+    "OpstinaNazivCir": "Гњилане",
+    "OpstinaNazivLat": "Gnjilane",
+    "OkrugSifra": 29
+  },
+  {
+    "OpstinaSifra": 90069,
+    "OpstinaNazivCir": "Дечани",
+    "OpstinaNazivLat": "Dečani",
+    "OkrugSifra": 26
+  },
+  {
+    "OpstinaSifra": 90085,
+    "OpstinaNazivCir": "Ђаковица",
+    "OpstinaNazivLat": "Đakovica",
+    "OkrugSifra": 26
+  },
+  {
+    "OpstinaSifra": 90093,
+    "OpstinaNazivCir": "Зубин Поток",
+    "OpstinaNazivLat": "Zubin Potok",
+    "OkrugSifra": 28
+  },
+  {
+    "OpstinaSifra": 90107,
+    "OpstinaNazivCir": "Исток",
+    "OpstinaNazivLat": "Istok",
+    "OkrugSifra": 26
+  },
+  {
+    "OpstinaSifra": 90115,
+    "OpstinaNazivCir": "Качаник",
+    "OpstinaNazivLat": "Kačanik",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90123,
+    "OpstinaNazivCir": "Клина",
+    "OpstinaNazivLat": "Klina",
+    "OkrugSifra": 26
+  },
+  {
+    "OpstinaSifra": 90131,
+    "OpstinaNazivCir": "Косово Поље",
+    "OpstinaNazivLat": "Kosovo Polje",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90140,
+    "OpstinaNazivCir": "Косовска Каменица",
+    "OpstinaNazivLat": "Kosovska Kamenica",
+    "OkrugSifra": 29
+  },
+  {
+    "OpstinaSifra": 90158,
+    "OpstinaNazivCir": "Лепосавић",
+    "OpstinaNazivLat": "Leposavić",
+    "OkrugSifra": 28
+  },
+  {
+    "OpstinaSifra": 90166,
+    "OpstinaNazivCir": "Липљан",
+    "OpstinaNazivLat": "Lipljan",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90182,
+    "OpstinaNazivCir": "ново Брдо",
+    "OpstinaNazivLat": "Novo Brdo",
+    "OkrugSifra": 29
+  },
+  {
+    "OpstinaSifra": 90204,
+    "OpstinaNazivCir": "Обилић",
+    "OpstinaNazivLat": "Obilić",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90212,
+    "OpstinaNazivCir": "Ораховац",
+    "OpstinaNazivLat": "Orahovac",
+    "OkrugSifra": 27
+  },
+  {
+    "OpstinaSifra": 90239,
+    "OpstinaNazivCir": "Пећ",
+    "OpstinaNazivLat": "Peć",
+    "OkrugSifra": 26
+  },
+  {
+    "OpstinaSifra": 90247,
+    "OpstinaNazivCir": "Подујево",
+    "OpstinaNazivLat": "Podujevo",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90255,
+    "OpstinaNazivCir": "Призрен",
+    "OpstinaNazivLat": "Prizren",
+    "OkrugSifra": 27
+  },
+  {
+    "OpstinaSifra": 90263,
+    "OpstinaNazivCir": "Приштина - град",
+    "OpstinaNazivLat": "Priština - grad",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90271,
+    "OpstinaNazivCir": "Србица",
+    "OpstinaNazivLat": "Srbica",
+    "OkrugSifra": 28
+  },
+  {
+    "OpstinaSifra": 90280,
+    "OpstinaNazivCir": "Сува Река",
+    "OpstinaNazivLat": "Suva Reka",
+    "OkrugSifra": 27
+  },
+  {
+    "OpstinaSifra": 90298,
+    "OpstinaNazivCir": "Косовска Митровица",
+    "OpstinaNazivLat": "Kosovska Mitrovica",
+    "OkrugSifra": 28
+  },
+  {
+    "OpstinaSifra": 90301,
+    "OpstinaNazivCir": "Урошевац",
+    "OpstinaNazivLat": "Uroševac",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90310,
+    "OpstinaNazivCir": "Штимље",
+    "OpstinaNazivLat": "Štimlje",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90328,
+    "OpstinaNazivCir": "Штрпце",
+    "OpstinaNazivLat": "Štrpce",
+    "OkrugSifra": 25
+  },
+  {
+    "OpstinaSifra": 90336,
+    "OpstinaNazivCir": "Гора",
+    "OpstinaNazivLat": "Gora",
+    "OkrugSifra": 27
+  },
+  {
+    "OpstinaSifra": 90352,
+    "OpstinaNazivCir": "Звечан",
+    "OpstinaNazivLat": "Zvečan",
+    "OkrugSifra": 28
+  }
+]

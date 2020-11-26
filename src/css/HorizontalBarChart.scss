@@ -1,0 +1,46 @@
+@import "./consts.scss";
+
+.HorizontalBarChart {
+  padding: inherit;
+  left: 0;
+
+  .horizontal-bar-wrapper {
+    display: table;
+
+    .horizontal-bar-wrapper-row {
+      display: table-row;
+
+      .horizontal-bar-wrapper-column {
+        display: table-cell;
+        white-space: nowrap;
+        vertical-align: middle;
+
+        .horizontal-bar {
+          background: $dark-orange;
+          height: 1.1rem;
+          font-size: 0.8rem;
+
+          .label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            &-inner {
+              right: 0.25rem;
+              color: $white;
+            }
+            &-outer {
+              left: calc(100% + 0.25rem);
+              color: $black;
+            }
+          }
+
+          &-value {
+            font-size: 0.85rem;
+            line-height: 1rem;
+          }
+        }
+      }
+    }
+  }
+}

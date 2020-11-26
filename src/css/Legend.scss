@@ -1,0 +1,10 @@
+@import "./consts.scss";
+
+.Legend {
+  background-color: rgba($white, 0.5);
+
+  .color-label {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+}

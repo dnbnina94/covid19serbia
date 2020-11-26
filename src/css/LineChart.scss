@@ -1,0 +1,38 @@
+@import "../css/consts.scss";
+
+.LineChart {
+  .line {
+    stroke: $mint;
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    fill: none;
+  }
+
+  .tooltip-circle {
+    fill: red;
+    &-hidden {
+      display: none;
+    }
+  }
+
+  .tooltip-line {
+    fill: none;
+    stroke: $dark-gray;
+    &-hidden {
+      display: none;
+    }
+  }
+
+  .custom-tooltip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.2s;
+    &-hidden {
+      opacity: 0;
+    }
+  }
+}

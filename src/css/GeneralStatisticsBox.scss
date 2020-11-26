@@ -1,0 +1,15 @@
+@import "../css/consts.scss";
+@import "../css/bs-overrides.scss";
+
+.GeneralStatisticsBox {
+  .holder {
+    .statistics-box-icon {
+      fill: $white;
+      width: 2rem;
+      height: 2rem;
+      position: absolute;
+      top: $s2;
+      right: $s2;
+    }
+  }
+}

@@ -1,0 +1,91 @@
+@import "./bs-overrides.scss";
+
+html,
+.row,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+@import "~bootstrap/scss/bootstrap.scss";
+@import "./consts.scss";
+@import "./typography.scss";
+
+body {
+  background-color: $light-gray;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
+.bg {
+  &-white {
+    background-color: $white;
+  }
+  &-light-gray {
+    background-color: $light-gray;
+  }
+  &-blue {
+    background-color: $blue;
+  }
+  &-light-blue {
+    background-color: $light-blue;
+  }
+  &-mint {
+    background-color: $mint;
+  }
+  &-orange {
+    background-color: $orange;
+  }
+  &-purple-blue {
+    background-color: $purple-blue;
+  }
+}
+
+.color {
+  &-white {
+    color: $white;
+  }
+  &-light-gray {
+    color: $light-gray;
+  }
+  &-blue {
+    color: $blue;
+  }
+}
+
+.linear-gradient {
+  &-light-blue {
+    background-image: linear-gradient($light-gray, $light-blue-v2);
+  }
+}
+
+.font {
+  &-regular {
+    font-family: $fontRegular;
+  }
+  &-bold {
+    font-family: $fontBold;
+  }
+  &-headline {
+    font-family: $fontHeadline;
+  }
+}
+
+.border-radius-1 {
+  border-radius: 1rem;
+}
+
+.lh {
+  &-1 {
+    line-height: 1;
+  }
+}

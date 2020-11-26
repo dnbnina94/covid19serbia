@@ -1,0 +1,43 @@
+@import "./consts.scss";
+
+.Map {
+  .map-container {
+    margin: 0 auto;
+    width: 73%;
+  }
+
+  .custom-tooltip {
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.2s;
+    font-size: 0.8rem;
+
+    p {
+      line-height: 0.8rem;
+    }
+
+    &-hidden {
+      opacity: 0;
+    }
+  }
+
+  .map-label {
+    font-size: 0.7rem;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+
+  .map-legend {
+    top: 0;
+    right: 0;
+    height: 25%;
+    width: 2%;
+    font-size: 0.65rem;
+    line-height: 0.65rem;
+
+    &-item {
+      transform: translate(-100%, -50%);
+    }
+  }
+}

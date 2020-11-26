@@ -1,0 +1,21 @@
+.BarChart {
+  .x-label {
+    font-size: 0.6rem;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+
+  .custom-tooltip {
+    pointer-events: none;
+    font-size: 0.75rem;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    transition: 0.2s;
+
+    &-hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}

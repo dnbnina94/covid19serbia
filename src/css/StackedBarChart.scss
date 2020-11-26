@@ -1,0 +1,12 @@
+@import "../css/consts.scss";
+
+.StackedBarChart {
+  .custom-tooltip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.7rem;
+    line-height: 1.1rem;
+    pointer-events: none;
+  }
+}
