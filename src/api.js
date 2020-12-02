@@ -6,8 +6,6 @@ export const apiUrls = {
     COVID_AMBULANCES: 'https://data.gov.rs/api/1/datasets/covid-19-registar-covid-19-ambulanti-na-teritoriji-republike-srbije/resources/5d417939-57a3-4044-8fc2-da484d6dfcb3/'
 }
 
-export const GOOGLE_MAPS_API_KEY = 'AIzaSyBThMaQ5xP3OYFo9hOH1TOuL4vBdYCs-MU';
-
 // const token = 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoiNWZhYWQ0OWQ3ZGUyNzIxNWUyNmI1M2FlIiwidGltZSI6MTYwNTAzMTE1Ny43MDE4MDZ9.rJoZSwentYLcZ6CzCxLBnNN07f-qibOhpXmkKJYu3S0W2Git8cU_DPh8g-YxTOUhWxu-ElVnCmtmGK1Pzzgsew';
 
 export const headers = new Headers();
