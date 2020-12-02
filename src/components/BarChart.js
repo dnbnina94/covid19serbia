@@ -53,11 +53,15 @@ class BarChart extends Component {
             .data(this.props.data)
             .enter()
             .append("rect")
-            .attr("x", d => xScaler(d.key))
-            .attr("y", d => yScaler(d.value))
-            .attr("width", xScaler.bandwidth())
-            .attr("height", d => height - yScaler(d.value) - this.state.paddingBottom)
-            .attr("fill", COLOR_SCHEME[1]);
+            .attr("x", d => xScaler(d.key) + xScaler.bandwidth()/4)
+            .attr("y", d => height - this.state.paddingBottom)
+            .attr("width", xScaler.bandwidth()/2)
+            .attr("height", 0)
+            .attr("fill", COLOR_SCHEME[1])
+            .transition()
+            .duration(1000)
+            .attr("y", d=> yScaler(d.value))
+            .attr("height", d => height - yScaler(d.value) - this.state.paddingBottom);
 
         const self = this;
 
@@ -101,27 +105,18 @@ class BarChart extends Component {
             .attr("x", d => xScaler(d.key) + xScaler.bandwidth()/2)
             .attr("y", d => yScaler(d.value) - 2)
             .attr("class", "x-label")
-            .text(d => d.key);
-
-        // const xAxis = d3.axisBottom(xScaler);
-
-        // chart
-        //     .append("g")
-        //     .attr("transform", "translate(0," + (height - this.state.paddingBottom) + ")")
-        //     .call(xAxis);
-
-        // const yAxis = d3.axisLeft(yScaler)
-            // .ticks(this.state.numOfTicksY, "s");
-
-        // chart
-        //     .append("g")
-        //     .attr("transform", "translate(" + this.state.paddingLeft + ",0)")
-        //     .call(yAxis);
+            .attr("opacity", 0)
+            .text(d => d.key)
+            .transition()
+            .duration(500)
+            .delay(700)
+            .attr("opacity", 1);
 
     }
 
     componentDidUpdate(prevProps) {
-        const redrawChart = prevProps.width !== this.props.width;
+        const redrawChart = prevProps.width !== this.props.width ||
+                            prevProps.data !== this.props.data;
         
         if (redrawChart) {
             this.redrawChart();

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withResizeDetector } from "react-resize-detector";
 import * as d3 from 'd3';
-import _ from 'lodash';
+import _, { indexOf } from 'lodash';
 import '../css/Map.scss';
 
 class Map extends Component {
@@ -48,22 +48,31 @@ class Map extends Component {
 
         const self = this;
 
-        chart.append("g")
+        const rectWrapper = chart.append("g")
             .selectAll("path")
             .data(this.props.geoData)
             .enter()
             .append("path")
             .attr("d", path2)
-            .attr("fill", "gray")
+            .attr("class", "path")
+            .attr("fill", "white")
+
+        rectWrapper
+            .transition()
+            .delay((d,i) => i * 15)
+            .duration(500)
             .attr("fill", f => {
                 try {
                     const value = this.props.data.find(d => d.key.toLowerCase() === f.properties[this.props.geoDataTargetName].toLowerCase());
                     return colorScale(value.count);
                 } catch {
-                    return "gray"
+                    return "#ccc"
                 }
-            })
+            });
+        
+        rectWrapper
             .on("touchmove mousemove", (event,p) => {
+                d3.select(`#text-${self.props.geoData.indexOf(p)}`).attr("class", "map-label");
                 const tooltip = self.tooltipRef.current;
                 let value
                 try {
@@ -77,7 +86,8 @@ class Map extends Component {
                     <span>Broj zaraženih: ${value}</span>
                 `
             })
-            .on("touchend mouseleave", () => {
+            .on("touchend mouseleave", (event,p) => {
+                d3.select(`#text-${self.props.geoData.indexOf(p)}`).attr("class", "map-label map-label-hidden");
                 const tooltip = self.tooltipRef.current;
                 tooltip.classList.add("custom-tooltip-hidden");
             })
@@ -89,10 +99,11 @@ class Map extends Component {
             .data(this.props.geoData)
             .enter()
             .append("text")
-            .attr("class", "map-label")
+            .attr("id", (d,i) => `text-${i}`)
+            .attr("class", "map-label map-label-hidden")
             .attr("transform", d => { return "translate(" + path2.centroid(d)+ ")"; })
-            .attr("y", d => d.properties.dontCenterY ? "-1em" : ".35em" )
-            .text(d => { return d.properties[this.props.geoDataTargetName]; });
+            .attr("y", d => ".35em" )
+            .text(d => { return d.properties[this.props.geoDataTargetName]; })
     }
 
     componentDidUpdate(prevProps) {

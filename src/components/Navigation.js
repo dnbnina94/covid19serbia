@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Cardiogram } from '../img/svg/cardiogram.svg';
 import { ReactComponent as Pin } from '../img/svg/pin.svg';
 import { ReactComponent as BarChart } from '../img/svg/bar-chart.svg';
+import { ReactComponent as Cross } from '../img/svg/cross.svg';
 import '../css/Navigation.scss';
 import hospital from '../img/hospital.png';
 
@@ -22,6 +23,11 @@ class Navigation extends Component {
                     label: "Statistika po regionima",
                     component: Pin,
                     link: '/statistika-po-regionima'
+                },
+                {
+                    label: "COVID-19 Ambulante",
+                    component: Cross,
+                    link: '/ambulante'
                 }
             ]
         };

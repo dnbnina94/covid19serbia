@@ -4,11 +4,13 @@ import {
     FETCHING_DATA, 
     FETCHING_DATA_FAILED,
     REGIONAL_COVID_DATA,
-    DAILY_COVID_DATA
+    DAILY_COVID_DATA,
+    COVID_AMBULANCES
 } from '../../consts';
 import $ from 'jquery';
 const sifarnikOpstina = require('../../sifarnik-opstina.json');
 const sifarnikOkruga = require('../../sifarnik-okruga.json');
+const sifarnikMesta = require('../../sifarnik-mesta.json');
 var csv  = $.csv = require('jquery-csv');
 
 const fetchedData = (data) => {
@@ -30,8 +32,32 @@ const fetchingDataFailed = () => {
     }
 }
 
+const ambulanceDataCorrections = [
+    {
+        targetKey: "district",
+        targetValue: "BABUŠNICA",
+        criteria: (d) => {
+            return d.district === "BABUSNICA"
+        }
+    },
+    {
+        targetKey: "coordinates",
+        targetValue: [22.321380947971456, 43.2180466593174],
+        criteria: (d) => {
+            return d.name === "DOM ZDRAVLJA BELA PALANKA"
+        }
+    },
+    {
+        targetKey: "coordinates",
+        targetValue: [20.876648550775435, 43.64752935901642],
+        criteria: (d) => {
+            return d.name === "DOM ZDRAVLJA VRNJAČKA BANJA"
+        }
+    }
+];
+
 const parseData = (data, url) => {
-    const parsedData = [];
+    let parsedData = [];
 
     switch(url) {
         case DAILY_COVID_DATA: {
@@ -87,6 +113,70 @@ const parseData = (data, url) => {
             });
             break;
         }
+        case COVID_AMBULANCES: {
+            parsedData = data.map(d => {
+                return {
+                    name: d.COVID_ambulanta_pri_zdravstvenoj_ustanovi,
+                    address: d.Adresa,
+                    addressNumber: d.Broj_zgrade,
+                    district: d["Grad/opština"],
+                    phone: d.Kontakt_telefon,
+                    mobile: d.Mobilni_telefon,
+                    hoursWorkdays: `${d.Radni_dan_radno_vreme_od}-${d.Radni_dan_radno_vreme_do}`,
+                    hoursWeekend: `${d.Vikend_radno_vreme_od}-${d.Vikend_radno_vreme_do}`,
+                    coordinates: [+d.Geo_Longitude, +d.Geo_Latitude]
+                }
+            });
+
+            ambulanceDataCorrections.forEach(m => {
+                const pd = parsedData.filter(d => m.criteria(d));
+                pd.forEach(d => {
+                    d[m.targetKey] = m.targetValue;
+                })
+            });
+
+            parsedData = parsedData.map(d => {
+                let desc = d.district.toLowerCase();
+                let opstina = sifarnikOpstina.find(s => {
+                    return s.OpstinaNazivLat.toLowerCase() === desc;
+                });
+                if (!opstina) {
+                    opstina = sifarnikOpstina.find(s => {
+                        return s.OpstinaNazivLat.toLowerCase().includes(desc);
+                    });
+                }
+                if (!opstina) {
+                    let mesto = sifarnikMesta.find(s => {
+                        return s.NazivMestaLatinicni.toLowerCase() === desc;
+                    });
+                    if (!mesto) {
+                        mesto = sifarnikMesta.find(s => {
+                            return s.NazivMestaLatinicni.toLowerCase().includes(desc);
+                        });
+                    }
+                    if (mesto) {
+                        opstina = sifarnikOpstina.find(s => {
+                            return mesto.SifraOpstine === s.OpstinaSifra;
+                        });
+                    }
+                }
+                let okrug = null;
+                if (opstina) {
+                    okrug = sifarnikOkruga.find(s => s.OkrugSifra === opstina.OkrugSifra);
+                    okrug = okrug.OkrugNazivLat.replace(' okrug', '');
+                }
+                return {
+                    ...d,
+                    region: okrug
+                }
+            });
+
+            console.log(parsedData.filter(d => {
+                return d.region === null
+            }));
+
+            break;
+        }
     }
 
     return parsedData;
@@ -107,7 +197,7 @@ export const fetchingDataHandler = (dataType) => {
         })
         .then(response => response.text())
         .then(data => {
-            data = $.csv.toObjects(data);
+            data = $.csv.toObjects(data.replaceAll('"', ''));
             data = parseData(data, dataType);
 
             dispatch(fetchedData({

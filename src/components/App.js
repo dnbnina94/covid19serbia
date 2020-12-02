@@ -4,7 +4,7 @@ import Navigation from './Navigation';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import DailyStatistics from './DailyStatistics';
 import RegionalStatistics from './RegionalStatistics';
-import { REGIONAL_COVID_DATA } from '../consts';
+import CovidAmbulance from './CovidAmbulances';
 
 class App extends Component {
     constructor(props) {
@@ -20,6 +20,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/" exact component={DailyStatistics} />
                         <Route path="/statistika-po-regionima" component={RegionalStatistics} />
+                        <Route path="/ambulante" component={CovidAmbulance} />
                     </Switch>
                 </div>
             </Router>

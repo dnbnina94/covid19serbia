@@ -1,7 +1,8 @@
 import { 
     FETCHED_DATA,
     DAILY_COVID_DATA,
-    REGIONAL_COVID_DATA 
+    REGIONAL_COVID_DATA, 
+    COVID_AMBULANCES
 } from '../../consts';
 
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
 };
 initialState[DAILY_COVID_DATA] = [];
 initialState[REGIONAL_COVID_DATA] = [];
+initialState[COVID_AMBULANCES] = [];
 
 const dataReducer = (state = initialState, action) => {
     switch(action.type) {

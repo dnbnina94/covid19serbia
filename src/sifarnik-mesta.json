@@ -630,6 +630,13 @@
     "SifraOpstine": 70025
   },
   {
+    "IdentifikatorMesta": 90,
+    "SifraMesta": 700991,
+    "NazivMestaCirilicni": "Житковац",
+    "NazivMestaLatinicni": "Selo Žitkovac",
+    "SifraOpstine": 70025
+  },
+  {
     "IdentifikatorMesta": 91,
     "SifraMesta": 701009,
     "NazivMestaCirilicni": "Јаковље",
@@ -16824,7 +16831,7 @@
     "IdentifikatorMesta": 2409,
     "SifraMesta": 725889,
     "NazivMestaCirilicni": "Гуча (варошица)",
-    "NazivMestaLatinicni": "Guča (varošica)",
+    "NazivMestaLatinicni": "Guča",
     "SifraOpstine": 70742
   },
   {
@@ -17238,13 +17245,6 @@
     "SifraMesta": 726524,
     "NazivMestaCirilicni": "Горње Кошље",
     "NazivMestaLatinicni": "Gornje Košlje",
-    "SifraOpstine": 70777
-  },
-  {
-    "IdentifikatorMesta": 2469,
-    "SifraMesta": 726532,
-    "NazivMestaCirilicni": "Грачаница",
-    "NazivMestaLatinicni": "Gračanica",
     "SifraOpstine": 70777
   },
   {
@@ -22313,13 +22313,6 @@
     "SifraMesta": 734535,
     "NazivMestaCirilicni": "Гостун",
     "NazivMestaLatinicni": "Gostun",
-    "SifraOpstine": 70980
-  },
-  {
-    "IdentifikatorMesta": 3196,
-    "SifraMesta": 734543,
-    "NazivMestaCirilicni": "Грачаница",
-    "NazivMestaLatinicni": "Gračanica",
     "SifraOpstine": 70980
   },
   {
@@ -34258,6 +34251,13 @@
     "SifraOpstine": 90042
   },
   {
+    "IdentifikatorMesta": 4903,
+    "SifraMesta": 902063,
+    "NazivMestaCirilicni": "Пасјане",
+    "NazivMestaLatinicni": "Pasjane Gnjilane",
+    "SifraOpstine": 90042
+  },
+  {
     "IdentifikatorMesta": 4904,
     "SifraMesta": 902071,
     "NazivMestaCirilicni": "Пидић",
@@ -34325,13 +34325,6 @@
     "SifraMesta": 902179,
     "NazivMestaCirilicni": "Стублина",
     "NazivMestaLatinicni": "Stublina",
-    "SifraOpstine": 90042
-  },
-  {
-    "IdentifikatorMesta": 4914,
-    "SifraMesta": 902187,
-    "NazivMestaCirilicni": "Угљаре",
-    "NazivMestaLatinicni": "Ugljare",
     "SifraOpstine": 90042
   },
   {
@@ -35455,13 +35448,6 @@
     "SifraOpstine": 90352
   },
   {
-    "IdentifikatorMesta": 5075,
-    "SifraMesta": 914479,
-    "NazivMestaCirilicni": "Житковац",
-    "NazivMestaLatinicni": "Žitkovac",
-    "SifraOpstine": 90352
-  },
-  {
     "IdentifikatorMesta": 5076,
     "SifraMesta": 914509,
     "NazivMestaCirilicni": "Звечан",
@@ -35984,13 +35970,6 @@
     "SifraMesta": 904562,
     "NazivMestaCirilicni": "Тушиће",
     "NazivMestaLatinicni": "Tušiće",
-    "SifraOpstine": 90093
-  },
-  {
-    "IdentifikatorMesta": 5151,
-    "SifraMesta": 904589,
-    "NazivMestaCirilicni": "Угљаре",
-    "NazivMestaLatinicni": "Ugljare",
     "SifraOpstine": 90093
   },
   {

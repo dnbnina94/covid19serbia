@@ -131,7 +131,7 @@ class StackedBarChart extends Component {
     render() {
         return (
             <div className="StackedBarChart bg-white shadow-sm">
-                <p className="font-headline p-2">Histogram</p>
+                <p className="font-bold p-2">Histogram</p>
                 <div className="w-100 position-relative" ref={this.barChartRef}>
                     <div className="custom-tooltip mx-5" ref={this.tooltipRef}>
                         <Legend date={this.state.hoveredDate} flags={this.props.flags} values={this.state.hoveredValues} />

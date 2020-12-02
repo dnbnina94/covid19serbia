@@ -78,7 +78,8 @@ class PieChart extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const redraw = prevProps.width !== this.props.width;
+        const redraw = prevProps.width !== this.props.width ||
+                       prevProps.data !== this.props.data;
         if (redraw) {
             this.redrawChart();
         }
@@ -110,7 +111,7 @@ class PieChart extends Component {
                             flex-column`;
         return (
             <div className={chartClass}>
-                {!this.props.hideTitle && <p className="font-headline p-2">{title}</p>}
+                {!this.props.hideTitle && <p className="font-bold p-2">{title}</p>}
                 <div className="d-flex flex-column justify-content-between mt-1" style={{flex: "1"}}>
                     <div className="w-100 position-relative flex-grow-1 d-flex align-items-center justify-content-between">
                         <div className="d-block w-100" ref={this.pieChartRef}></div>

@@ -1,7 +1,7 @@
 .PieChart {
   .pie-chart-legend {
     .legend-label {
-      line-height: 1.1rem;
+      line-height: 1rem;
       flex: 1;
     }
 
@@ -27,11 +27,11 @@
 
   &-small {
     .custom-tooltip {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     .pie-chart-legend {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
   }
 }

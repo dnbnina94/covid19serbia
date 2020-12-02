@@ -4,7 +4,6 @@ import { REGIONAL_COVID_DATA } from "../consts";
 import { fetchingDataHandler } from "../redux/actions/data";
 import store from "../redux/store";
 import MapWrapper from "./MapWrapper";
-const serbiaGeo = require('../serbia.geojson.json');
 
 class RegionalStatistics extends Component {
     constructor(props) {

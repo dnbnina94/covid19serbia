@@ -50,10 +50,14 @@ class MapWrapper extends Component {
             },
             {
                 bottomVal: 30,
-                upperVal: 45
+                upperVal: 40
             },
             {
-                bottomVal: 45,
+                bottomVal: 40,
+                upperVal: 50
+            },
+            {
+                bottomVal: 50,
                 upperVal: 65
             },
             {
@@ -62,29 +66,61 @@ class MapWrapper extends Component {
             }
         ];
 
-        const regions = serbiaGeo.features.map(f => {
-            return f.properties.name;
-        });
-        // const regions = Array.from(new Set(this.props.data.map(d => d.region)));
-
         const self = this;
-        const regionData = regions.map(r => {
+        const mapFilters = [
+            {
+                targetField: 'region',
+                territories: function() {
+                    return Array.from(new Set(self.props.data.map(d => d.region)))
+                },
+                map: function() {
+                    return serbiaGeo.features
+                }
+            },
+            {
+                targetField: 'district',
+                territories: function(r) {
+                    return Array.from(new Set(self.props.data.filter(d => d.region === r).map(d => d.district)))
+                },
+                map: function(r) {
+                    return serbiaGeoDistricts.features.filter(i => {
+                        return r === i.properties.NAME_1
+                    })
+                }
+            }
+        ];
+
+        this.state = {
+            mapFilters: mapFilters,
+            pieChartFlags: pieChartFlags,
+            ageGroupFlags: ageGroupFlags,
+            selectedFilter: 0,
+            selectedTerritory: null,
+            targetName: "NAME_2"
+        }
+    }
+
+    setData(r) {
+        const self = this;
+        const mapFilter = this.state.mapFilters[this.state.selectedFilter];
+        const territories = mapFilter.territories(r);
+        const regionData = territories.map(r => {
             return {
                 key: r,
                 count: self.props.data.filter(d => {
-                    return d.region.toLowerCase() === r.toLowerCase();
+                    return d[mapFilter.targetField].toLowerCase() === r.toLowerCase();
                 }).reduce((acc, curr) => {
                     return acc + curr.data.length;
                 }, 0),
                 values: self.props.data.filter(d => {
-                    return d.region.toLowerCase() === r.toLowerCase();
+                    return d[mapFilter.targetField].toLowerCase() === r.toLowerCase();
                 }).reduce((acc, curr) => {
                     return acc.concat(curr.data);
                 }, [])
             }
         });
 
-        const pieChartData = pieChartFlags.map(f => {
+        const pieChartData = this.state.pieChartFlags.map(f => {
             let value = regionData.reduce((acc, curr) => {
                 return acc + curr.values.reduce((acc,curr) => {return acc + (curr.sex === f.flag ? 1 : 0)}, 0);
             },0)
@@ -95,7 +131,7 @@ class MapWrapper extends Component {
             }
         });
 
-        const ageData = ageGroupFlags.map(f => {
+        const ageData = this.state.ageGroupFlags.map(f => {
             const value = regionData.reduce((acc, curr) => {
                 return acc + curr.values.reduce((acc, curr) => {return acc + (curr.age >= f.bottomVal && curr.age < f.upperVal ? 1 : 0)}, 0);
             }, 0)
@@ -105,63 +141,55 @@ class MapWrapper extends Component {
             }
         });
 
-        this.state = {
-            map: serbiaGeo.features,
-            targetName: 'name',
+        this.setState({
             regionData: regionData,
             pieChartData: pieChartData,
-            ageData: ageData
-        }
+            ageData: ageData,
+            map: mapFilter.map(r)
+        })
     }
 
     componentDidMount() {
-        
+        this.setData();
+
+        this.setState({
+            dataReady: true
+        })
     }
 
     handleMapChange(p) {
-        const regions = Array.from(new Set(this.props.data.filter(d => d.region === p.properties.name).map(d => d.district)));
-        const self = this;
-        const regionData = regions.map(r => {
+        this.setState((state) => {
+            const nextFilter = (state.selectedFilter + 1) % state.mapFilters.length
             return {
-                key: r,
-                count: self.props.data.filter(d => {
-                    return d.district.toLowerCase() === r.toLowerCase();
-                }).reduce((acc, curr) => {
-                    return acc + curr.data.length;
-                }, 0),
-                values: self.props.data.filter(d => {
-                    return d.district.toLowerCase() === r.toLowerCase();
-                }).reduce((acc, curr) => {
-                    return acc.concat(curr.data);
-                }, [])
+                selectedFilter: nextFilter,
+                selectedTerritory: nextFilter !== 0 ? p.properties.NAME_2 : null
             }
         });
-
-        console.log(regionData)
-
-        this.setState({
-            map: serbiaGeoDistricts.features.filter(i => {
-                    return p.properties.name === i.properties.NAME_1
-            }),
-            regionData: regionData,
-            targetName: 'NAME_2'
-        });
+        this.setData(p.properties.NAME_2);
     }
 
     render() {
+        const selectedTerritory = this.state.selectedTerritory ? 
+            'Okrug: ' + this.state.selectedTerritory : 
+            'Svi okruzi';
+        const barChartTitle = this.state.selectedTerritory ?
+            'Broj obolelih po opštinama' : 
+            'Broj obolelih po okruzima';
         return (
             <div className="MapWrapper row flex-grow-1">
                 <div className="col-md-5">
                     <div className="bg-white shadow-sm position-relative p-2 pb-3 h-100 d-flex flex-column">
-                        <p className="font-headline pb-2">Svi okruzi</p>
+                        <p className="font-bold pb-2 lh-1">{selectedTerritory}</p>
                         <div className="map-container w-100 flex-grow-1">
-                            <Map 
-                                data={this.state.regionData} 
-                                geoData={this.state.map} 
-                                geoDataTargetName={this.state.targetName}
-                                colors={REGION_COLOR_SCHEME}
-                                handleMapChange={this.handleMapChange} 
-                            />
+                            {this.state.dataReady &&
+                                <Map 
+                                    data={this.state.regionData} 
+                                    geoData={this.state.map} 
+                                    geoDataTargetName={this.state.targetName}
+                                    colors={REGION_COLOR_SCHEME}
+                                    handleMapChange={this.handleMapChange} 
+                                />
+                            }
                         </div>
                     </div>
                 </div>
@@ -169,27 +197,34 @@ class MapWrapper extends Component {
                     <div className="grid-layout h-100">
                         <div className="row">
                             <div className="col-md-12 bg-white shadow-sm overflow-auto h-100">
-                                <HorizontalBarChart 
-                                    data={this.state.regionData}
-                                    title="Broj obolelih po okruzima" 
-                                />
+                                {this.state.dataReady &&
+                                    <HorizontalBarChart 
+                                        data={this.state.regionData}
+                                        title={barChartTitle}
+                                    />
+                                }
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12 bg-white shadow-sm">
-                                <p className="font-headline pt-2 lh-1">Broj obolelih prema polu i starosnim grupama</p>
+                                <p className="font-bold py-2 lh-1">Broj obolelih prema polu i starosnim grupama</p>
                                 <div className="row">
-                                    <div className="col-md-5 pt-1 p-0">
-                                        <PieChart 
-                                            small={true}
-                                            hideTitle={true}
-                                            heightRatio={2}
-                                            innerRadius={0.65} 
-                                            data={this.state.pieChartData} 
-                                        />
+                                    <div className="col-md-5 p-0">
+                                        {this.state.dataReady &&
+                                            <PieChart 
+                                                small={true}
+                                                hideTitle={true}
+                                                heightRatio={2}
+                                                innerRadius={0.65} 
+                                                data={this.state.pieChartData} 
+                                            />
+                                        }
                                     </div>
                                     <div className="col-md-7">
-                                        <BarChart data={this.state.ageData} />
+                                        {
+                                            this.state.dataReady &&
+                                            <BarChart data={this.state.ageData} />
+                                        }
                                     </div>
                                 </div>
                             </div>

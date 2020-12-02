@@ -20,6 +20,7 @@ p {
 body {
   background-color: $light-gray;
   height: 100vh;
+  color: $black;
 }
 
 #root {
@@ -48,6 +49,9 @@ body {
   &-purple-blue {
     background-color: $purple-blue;
   }
+  &-red {
+    background-color: $red;
+  }
 }
 
 .color {
@@ -70,13 +74,13 @@ body {
 
 .font {
   &-regular {
-    font-family: $fontRegular;
+    font-family: $archiaMedium;
   }
   &-bold {
-    font-family: $fontBold;
+    font-family: $archiaSemiBold;
   }
   &-headline {
-    font-family: $fontHeadline;
+    font-family: $archiaBold;
   }
 }
 
@@ -86,6 +90,16 @@ body {
 
 .lh {
   &-1 {
-    line-height: 1;
+    line-height: 1em;
   }
+}
+
+.flex {
+  &-1 {
+    flex: 1;
+  }
+}
+
+svg {
+  overflow: visible;
 }

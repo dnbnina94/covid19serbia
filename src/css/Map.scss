@@ -6,6 +6,10 @@
     width: 73%;
   }
 
+  .path {
+    stroke: $white;
+  }
+
   .custom-tooltip {
     bottom: 0;
     left: 0;
@@ -23,9 +27,16 @@
   }
 
   .map-label {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     text-anchor: middle;
     pointer-events: none;
+    opacity: 1;
+    transition: 0.2s;
+
+    &-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 
   .map-legend {
@@ -38,6 +49,66 @@
 
     &-item {
       transform: translate(-100%, -50%);
+    }
+  }
+
+  .pin {
+    pointer-events: none;
+    opacity: 1;
+    animation: bounce-top 0.5s both;
+    fill: $red;
+    &-hidden {
+      pointer-events: none;
+      opacity: 0;
+      fill: $red;
+    }
+  }
+
+  .pin-location {
+    pointer-events: none;
+    transition: 0.2s;
+    fill: $red;
+
+    &-selected {
+      opacity: 1;
+    }
+
+    &-hidden {
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes bounce-top {
+    0% {
+      transform: translateY(-24px);
+      animation-timing-function: ease-in;
+    }
+    40% {
+      transform: translateY(-24px);
+      animation-timing-function: ease-in;
+    }
+    65% {
+      transform: translateY(-12px);
+      animation-timing-function: ease-in;
+    }
+    82% {
+      transform: translateY(-6px);
+      animation-timing-function: ease-in;
+    }
+    93% {
+      transform: translateY(-4px);
+      animation-timing-function: ease-in;
+    }
+    25%,
+    55%,
+    75%,
+    87% {
+      transform: translateY(0px);
+      animation-timing-function: ease-out;
+    }
+    100% {
+      transform: translateY(0px);
+      animation-timing-function: ease-out;
     }
   }
 }

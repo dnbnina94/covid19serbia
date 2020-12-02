@@ -168,7 +168,7 @@ class LineChart extends Component {
     render() {
         return (
             <div className="LineChart bg-white shadow-sm">
-                <p className="font-headline p-2">{formatTitle(this.props.title)}</p>
+                <p className="font-bold p-2">{formatTitle(this.props.title)}</p>
                 <div className="w-100 position-relative" ref={this.lineChartRef}>
                     <div className="custom-tooltip custom-tooltip-hidden px-5" ref={this.tooltipRef}></div>
                 </div>

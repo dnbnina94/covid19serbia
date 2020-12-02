@@ -5,6 +5,7 @@ import '../css/DailyStatistics.scss';
 import {connect} from 'react-redux';
 import store from '../redux/store';
 import { fetchingDataHandler } from '../redux/actions/data';
+import { formatTitle } from '../utilities';
 import { 
     BROJ_LICA_NA_RESPIRATORU, 
     BROJ_POZITIVNIH_LICA, 
@@ -60,22 +61,30 @@ class DailyStatistics extends Component {
             icon: "skull"
         }];
 
-        let statisticBoxes = [];
-        flags.forEach(flag => {
+        const statisticBoxes = flags.map(flag => {
             const statistics = this.props.data.find(item => flag.dataType === item.description);
             if (statistics) {
-                statisticBoxes.push(
-                    React.createElement(GeneralStatisticsBox, {
-                        bg: flag.color, 
-                        value: statistics.data[statistics.data.length-1].value,
-                        prevValue: statistics.data[statistics.data.length-2].value,
-                        icon: flag.icon,
-                        description: flag.desc,
-                        key: flag.dataType
-                    })
+                return (
+                    <div className="col-md-4 px-1"  key={flag.dataType}>
+                        <GeneralStatisticsBox
+                            bg={flag.color} 
+                            value={statistics.data[statistics.data.length-1].value}
+                            prevValue={statistics.data[statistics.data.length-2].value}
+                            icon={flag.icon}
+                            description={formatTitle(flag.desc)}
+                            borderRadius={true}
+                        />
+                    </div>
                 )
             }
-        });
+        })
+        // statisticBoxes = statisticBoxes.map(d => {
+        //     return (
+        //         <div className="col-md-4 px-1">
+        //             {d}
+        //         </div>
+        //     );
+        // })
         
         return (
             <div className="DailyStatistics col-md-9 px-3 py-2">
