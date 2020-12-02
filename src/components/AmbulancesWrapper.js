@@ -2,8 +2,6 @@ import { Component } from "react";
 import Map2 from "./Map2";
 import serbiaGeo from '../serbia.geojson.json';
 import serbiaGeoDistricts from '../sr_a2.geojson.json';
-import GeneralStatisticsBox from "./GeneralStatisticsBox";
-import GoogleMaps from './GoogleMaps';
 import {capitalize} from '../utilities';
 import { ReactComponent as Cross } from '../img/svg/cross.svg';
 import '../css/AmbulancesWrapper.scss';
