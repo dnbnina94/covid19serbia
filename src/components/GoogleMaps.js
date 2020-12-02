@@ -6,7 +6,6 @@ import {
     LoadScript,
     useLoadScript
 } from '@react-google-maps/api';
-import {GOOGLE_MAPS_API_KEY} from '../api';
 
 const mapContainerStyle = {
     width: "100%",
