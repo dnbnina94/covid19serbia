@@ -5,8 +5,9 @@ import { ReactComponent as Cardiogram } from '../img/svg/cardiogram.svg';
 import { ReactComponent as Pin } from '../img/svg/pin.svg';
 import { ReactComponent as BarChart } from '../img/svg/bar-chart.svg';
 import { ReactComponent as Cross } from '../img/svg/cross.svg';
+import { ReactComponent as WorkFromHome } from '../img/svg/workfromhome.svg';
 import '../css/Navigation.scss';
-import hospital from '../img/hospital.png';
+import hospital from '../img/workfromhome.png';
 
 class Navigation extends Component {
     constructor(props) {
@@ -54,8 +55,9 @@ class Navigation extends Component {
                         {navMenuItems}
                     </ul>
                 </div>
-                <div className="linear-gradient-light-blue border-radius-1 color-blue px-2 py-3 text-center">
-                    <img className="w-100" src={hospital} alt="Doctors taking care of a sick patient" />
+                <div className="linear-gradient-light-blue border-radius-1 color-blue p-2 text-center overflow-hidden">
+                    {/* <img className="w-100" src={hospital} alt="Doctors taking care of a sick patient" /> */}
+                    <WorkFromHome className="bottom-img" />
                 </div>
             </div>
         )

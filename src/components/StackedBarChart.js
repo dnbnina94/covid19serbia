@@ -6,6 +6,7 @@ import _ from "lodash";
 import "../css/StackedBarChart.scss";
 import { COLOR_SCHEME } from "../consts";
 import Legend from "./Legend";
+import DatePicker from './DatePicker';
 
 class StackedBarChart extends Component {
     constructor(props) {
@@ -122,7 +123,8 @@ class StackedBarChart extends Component {
     componentDidUpdate(prevProps) {
         const redrawChart = 
             (prevProps.width !== this.props.width) ||
-            (prevProps.flags !== this.props.flags)
+            (prevProps.flags !== this.props.flags) ||
+            (prevProps.data !== this.props.data)
         if (redrawChart) {
             this.redrawChart();
         }
@@ -131,7 +133,16 @@ class StackedBarChart extends Component {
     render() {
         return (
             <div className="StackedBarChart bg-white shadow-sm">
-                <p className="font-bold p-2">Histogram</p>
+                <div className="d-flex p-2 justify-content-between align-items-center">
+                    <p className="font-bold">Histogram</p>
+                    <DatePicker
+                        minDate={this.props.minDate}
+                        maxDate={this.props.maxDate}
+                        startDate={this.props.startDate}
+                        endDate={this.props.endDate}
+                        dateChangeHandler={this.props.dateChangeHandler}
+                    />
+                </div>
                 <div className="w-100 position-relative" ref={this.barChartRef}>
                     <div className="custom-tooltip mx-5" ref={this.tooltipRef}>
                         <Legend date={this.state.hoveredDate} flags={this.props.flags} values={this.state.hoveredValues} />

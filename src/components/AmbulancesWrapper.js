@@ -1,5 +1,6 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import Map2 from "./Map2";
+import GeneralStatisticsBox from './GeneralStatisticsBox';
 import serbiaGeo from '../serbia.geojson.json';
 import serbiaGeoDistricts from '../sr_a2.geojson.json';
 import {capitalize} from '../utilities';
@@ -39,12 +40,15 @@ class AmbulancesWrapper extends Component {
             mapFilters: mapFilters,
             selectedFilter: 0,
             selectedAmbulance: null,
+            selectedTerritory: null,
             dataReady: true,
             points: this.props.data
         }
 
         this.handleAmbulanceChange = this.handleAmbulanceChange.bind(this);
         this.handleMapChange = this.handleMapChange.bind(this);
+
+        this.ambulancesInfoWrapper = React.createRef();
     }
 
     handleAmbulanceChange(ambIndex) {
@@ -57,11 +61,11 @@ class AmbulancesWrapper extends Component {
         const mapFilter = this.state.mapFilters[this.state.selectedFilter];
         const map = mapFilter.map(r);
         const points = mapFilter.data(r);
-        console.log(points);
         this.setState({
             map: map,
             points: points
         });
+        this.ambulancesInfoWrapper.current.scrollTo(0,0);
     }
 
     handleMapChange(p) {
@@ -69,7 +73,7 @@ class AmbulancesWrapper extends Component {
             const nextFilter = (state.selectedFilter + 1) % state.mapFilters.length
             return {
                 selectedFilter: nextFilter,
-                // selectedTerritory: nextFilter !== 0 ? p.properties.NAME_2 : null
+                selectedTerritory: nextFilter !== 0 ? p.properties.NAME_2 : null
             }
         });
         this.setData(p.properties.NAME_2);
@@ -78,9 +82,6 @@ class AmbulancesWrapper extends Component {
     render() {
         const ambulancesInfo = this.state.points.map((d,i) => {
             const selectedAmbulance = this.state.selectedAmbulance === i;
-            const ambulanceWrapperClass = `ambulance-wrapper p-2 ${selectedAmbulance ? 'ambulance-wrapper-selected' : ''}`;
-            const crossClass = `cross position-relative ${selectedAmbulance ? 'cross-selected' : ''}`;
-            const infoClass = `info d-flex pt-1 ${selectedAmbulance ? 'info-selected' : ''}`;
             return (
                 <div className="ambulance-wrapper p-2" key={i} onMouseOver={() => {
                     this.handleAmbulanceChange(i);
@@ -111,10 +112,12 @@ class AmbulancesWrapper extends Component {
             );
         })
         return (
-            <div className="AmbulancesWrapper row flex-grow-1">
+            <div className="AmbulancesWrapper row flex-grow-1 pt-2">
                 <div className="col-md-7">
                     <div className="bg-white shadow-sm position-relative p-2 pb-3 h-100 d-flex flex-column">
-                        <p className="font-bold pb-2 lh-1">Svi okruzi</p>
+                        <p className="font-bold pb-2 lh-1">
+                            {this.state.selectedTerritory === null ? 'Svi okruzi' : `Okrug: ${this.state.selectedTerritory}`}
+                        </p>
                         <div className="map-container flex-grow-1" style={{width: "68%", margin: "auto"}}>
                             {this.state.dataReady &&
                                 <Map2
@@ -130,10 +133,12 @@ class AmbulancesWrapper extends Component {
                 </div>
                 <div className="col-md-5">
                     <div className="h-100 d-flex flex-column">
-                        <div className="p-2 bg-red color-white">
-                            ASDF
-                        </div>
-                        <div className="bg-white shadow-sm position-relative flex-grow-1 overflow-auto">
+                        <GeneralStatisticsBox 
+                            bg="red"
+                            value={this.state.points.length}
+                            description="Broj ambulanti za selektovanu regiju:"
+                        />
+                        <div className="bg-white shadow-sm position-relative flex-grow-1 overflow-auto" ref={this.ambulancesInfoWrapper}>
                             <div className="h-100 w-100 position-absolute">
                                 {ambulancesInfo}
                             </div>

@@ -49,6 +49,18 @@ class GeneralStatisticsBox extends Component {
         clearTimeout(this.state.countTimeout);
     }
 
+    componentDidUpdate(prevProps) {
+        const self = this;
+        if (prevProps.value !== this.props.value) {
+            this.setState({
+                value: 0
+            })
+            process.nextTick(() => {
+                self.updateCounter();
+            }) 
+        }
+    }
+
     render() {
         const classes = `holder h-100 position-relative bg-${this.props.bg} ${this.props.borderRadius ? 'border-radius-1' : ''} p-2`;
         const Icon = svgComponents[this.props.icon];
@@ -60,7 +72,10 @@ class GeneralStatisticsBox extends Component {
         return (
             <div className="GeneralStatisticsBox color-white">
                 <div className={classes}>
-                    <p className="mb-1">{this.props.description}</p>
+                    {
+                        this.props.description &&
+                        <p className="mb-1">{this.props.description}</p>
+                    }
                     <h2 id="asdf" className="font-bold">
                         {/* {this.props.value} */}
                         {Math.trunc(this.state.value)}
@@ -72,7 +87,9 @@ class GeneralStatisticsBox extends Component {
                             <span>{prevDescription}</span>
                         </p>
                     }
-                    <Icon className="statistics-box-icon" />
+                    {Icon &&
+                        <Icon className="statistics-box-icon" />
+                    }
                 </div>
             </div>
         )

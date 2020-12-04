@@ -8,9 +8,13 @@ import {
 const initialState = {
     fetching: false
 };
-initialState[DAILY_COVID_DATA] = [];
-initialState[REGIONAL_COVID_DATA] = [];
-initialState[COVID_AMBULANCES] = [];
+const dataTypes = [DAILY_COVID_DATA, REGIONAL_COVID_DATA, COVID_AMBULANCES];
+dataTypes.forEach(d => {
+    initialState[d] = {
+        data: [],
+        dataInfo: null
+    }
+});
 
 const dataReducer = (state = initialState, action) => {
     switch(action.type) {

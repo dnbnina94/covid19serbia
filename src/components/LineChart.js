@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import { formatTitle } from "../utilities";
 import '../css/LineChart.scss';
 import { withResizeDetector } from 'react-resize-detector';
+import DatePicker from "./DatePicker";
 
 class LineChart extends Component {
     constructor(props) {
@@ -112,8 +113,8 @@ class LineChart extends Component {
             .call(xAxis);
 
         const self = this;
-        const circle = chart.append("circle");
         const dashedLine = chart.append("line");
+        const circle = chart.append("circle");
         setTimeout(() => {
 
             chart.on("touchmove mousemove", function(event) {
@@ -168,7 +169,14 @@ class LineChart extends Component {
     render() {
         return (
             <div className="LineChart bg-white shadow-sm">
-                <p className="font-bold p-2">{formatTitle(this.props.title)}</p>
+                <div className="d-flex p-2 justify-content-between align-items-center">
+                    <p className="font-bold">{formatTitle(this.props.title)}</p>
+                    <DatePicker
+                        minDate={this.props.minDate}
+                        maxDate={this.props.maxDate}
+                        dateChangeHandler={this.props.dateChangeHandler}
+                    />
+                </div>
                 <div className="w-100 position-relative" ref={this.lineChartRef}>
                     <div className="custom-tooltip custom-tooltip-hidden px-5" ref={this.tooltipRef}></div>
                 </div>

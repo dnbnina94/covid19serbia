@@ -176,7 +176,7 @@ class MapWrapper extends Component {
             'Broj obolelih po opštinama' : 
             'Broj obolelih po okruzima';
         return (
-            <div className="MapWrapper row flex-grow-1">
+            <div className="MapWrapper row flex-grow-1 pt-2">
                 <div className="col-md-5">
                     <div className="bg-white shadow-sm position-relative p-2 pb-3 h-100 d-flex flex-column">
                         <p className="font-bold pb-2 lh-1">{selectedTerritory}</p>

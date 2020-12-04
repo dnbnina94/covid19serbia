@@ -20,18 +20,6 @@ const fetchedData = (data) => {
     }
 }
 
-const fetchingData = () => {
-    return {
-        type: FETCHING_DATA
-    }
-}
-
-const fetchingDataFailed = () => {
-    return {
-        type: FETCHING_DATA_FAILED
-    }
-}
-
 const ambulanceDataCorrections = [
     {
         targetKey: "district",
@@ -171,10 +159,6 @@ const parseData = (data, url) => {
                 }
             });
 
-            console.log(parsedData.filter(d => {
-                return d.region === null
-            }));
-
             break;
         }
     }
@@ -183,6 +167,7 @@ const parseData = (data, url) => {
 }
 
 export const fetchingDataHandler = (dataType) => {
+    let dataInfo;
     return function(dispatch) {
         fetch(apiUrls[dataType], {
             method: 'GET',
@@ -190,6 +175,7 @@ export const fetchingDataHandler = (dataType) => {
         })
         .then(response => response.json())
         .then(data => {
+            dataInfo = data;
             return fetch(data.latest, {
                 method: 'GET',
                 headers: headers
@@ -202,7 +188,10 @@ export const fetchingDataHandler = (dataType) => {
 
             dispatch(fetchedData({
                 dataType: dataType,
-                data: data
+                data: {
+                    data: data,
+                    dataInfo: dataInfo
+                }
             }))
         });
     }

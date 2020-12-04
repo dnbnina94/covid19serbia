@@ -68,13 +68,18 @@
     pointer-events: none;
     transition: 0.2s;
     fill: $red;
-
-    &-selected {
-      opacity: 1;
-    }
+    opacity: 1;
 
     &-hidden {
-      opacity: 0.2;
+      fill: $lighter-red;
+    }
+
+    &-selected {
+      fill: $black;
+    }
+
+    &-invisible {
+      opacity: 0;
     }
   }
 

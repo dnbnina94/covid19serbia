@@ -59,8 +59,11 @@ class Map2 extends Component {
             .append("path")
             .attr("d", path2)
             .attr("class", "path")
-            .attr("fill", "#ddd")
-            .attr("stroke", "white");
+            .attr("fill", "white")
+            .attr("stroke", "white")
+            .transition()
+            .duration(500)
+            .attr("fill", "#ddd");
 
         this.chart.selectAll("text")
             .data(this.props.geoData)
@@ -80,7 +83,10 @@ class Map2 extends Component {
             .attr("id", (d,i) => `circle-${i}`)
             .attr("cx", function (d) { return self.projection(d.coordinates)[0]; })
 		    .attr("cy", function (d) { return self.projection(d.coordinates)[1]; })
-		    .attr("r", "0.2rem")
+            .attr("r", "0.2rem")
+            .attr("class", "pin-location pin-location-invisible")
+            .transition()
+            .delay((d,i) => 450 + i * 500/self.props.points.length)
             .attr("class", "pin-location");
 
         this.chart

@@ -19,57 +19,83 @@ class StackedBarChartWrapper extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            flags: [  
-                {
-                    flag: BROJ_POZITIVNIH_LICA,
-                    checked: true
-                },
-                {
-                    flag: BROJ_TESTIRANIH_LICA,
-                    checked: true
-                },
-                {
-                    flag: BROJ_HOSPITALIZOVANIH_LICA,
-                    checked: false
-                },
-                {
-                    flag: BROJ_LICA_NA_RESPIRATORU,
-                    checked: false
-                },
-                {
-                    flag: BROJ_PREMINULIH_LICA,
-                    checked: false
-                },
-                {
-                    flag: UKUPAN_BR_POZITIVNIH_OD_POCETKA,
-                    checked: false
-                },
-                {
-                    flag: UKUPAN_BR_TESTIRANIH_OD_POCETKA,
-                    checked: false
-                },
-                {
-                    flag: UKUPAN_BR_PREMINULIH_OD_POCETKA,
-                    checked: false
-                },
-                {
-                    flag: UKUPAN_BR_IZLECENIH_OD_POCETKA,
-                    checked: false
-                },
-                {
-                    flag: BROJ_PREMINULIH_ZENA,
-                    checked: false
-                },
-                {
-                    flag: BROJ_PREMINULIH_MUSKARACA,
-                    checked: false
+        const self = this;
+
+        let flags = [
+            BROJ_POZITIVNIH_LICA,
+            BROJ_TESTIRANIH_LICA,
+            BROJ_HOSPITALIZOVANIH_LICA,
+            BROJ_LICA_NA_RESPIRATORU,
+            BROJ_PREMINULIH_LICA,
+            UKUPAN_BR_POZITIVNIH_OD_POCETKA,
+            UKUPAN_BR_TESTIRANIH_OD_POCETKA,
+            UKUPAN_BR_PREMINULIH_OD_POCETKA,
+            UKUPAN_BR_IZLECENIH_OD_POCETKA,
+            BROJ_PREMINULIH_ZENA,
+            BROJ_PREMINULIH_MUSKARACA
+        ];
+        const filteredData = this.props.data.filter(item => {
+            return flags.includes(item.description);
+        });
+
+        let dates = this.props.data.reduce((acc, curr) => {
+            return acc.concat(curr.data.map(d => d.date));
+        }, []);
+        dates.sort((a,b) => {
+            const aDate = new Date(a);
+            const bDate = new Date(b);
+            return aDate < bDate ? -1 : 1;
+        });
+
+        dates = Array.from(new Set(dates));
+        const minDate = new Date(dates[0]); 
+        const maxDate = new Date(dates[dates.length-1]);
+
+        let parsedData = [];
+
+        dates.forEach(date => {
+            let newParsedObj = {};
+            newParsedObj.date = date;
+            newParsedObj.values = [];
+            filteredData.forEach(fd => {
+                let val = fd.data.find(d => d.date === date);
+                if (val) {
+                    newParsedObj.values.push({
+                        key: fd.description,
+                        value: val.value
+                    });
                 }
-            ],
+            });
+            newParsedObj.values.sort((a,b) => {
+                const aIndex = flags.indexOf(a.key);
+                const bIndex = flags.indexOf(b.key);
+                return aIndex < bIndex ? -1 : 1;
+            });
+            parsedData.push(newParsedObj);
+        });
+
+        const endDate = new Date(maxDate);
+        let startDate = new Date(endDate.valueOf());
+        startDate.setDate(startDate.getDate() - 60);
+
+        this.state = {
+            flags: flags.map((f,i) => {
+                return {
+                    flag: f,
+                    checked: i === 0 || i === 1
+                }
+            }),
             dataToShow: -60,
+            dates: dates,
+            data: parsedData,
+            minDate: minDate,
+            maxDate: maxDate,
+            startDate: startDate,
+            endDate: endDate
         }
 
         this.onChangeHandler = this.onChangeHandler.bind(this);
+        this.dateChangeHandler = this.dateChangeHandler.bind(this);
     }
 
     onChangeHandler(index) {
@@ -86,46 +112,36 @@ class StackedBarChartWrapper extends Component {
         });
     }
 
+    dateChangeHandler(date1, date2) {
+        this.setState({
+            startDate: date1,
+            endDate: date2
+        })
+    }
+
     render() {
-        
+        const self = this;
+
+        console.log("AYY LMAO", this.state.startDate, this.state.endDate);
+
         const allFlagsLabels = this.state.flags.map(f => f.flag);
         const checkedFlags = this.state.flags.filter(f => f.checked);
         const checkedFlagsLabels = checkedFlags.map(f => f.flag);
         const checkedFlagsValues = this.state.flags.map(f => f.checked);
 
-        let parsedData = [];
-        const filteredData = this.props.data.filter(item => {
-            return checkedFlagsLabels.includes(item.description);
+        const dates = this.state.dates.filter(d => {
+            const date = new Date(d);
+            return date >= self.state.startDate && date <= self.state.endDate;
         });
-        let dates = [];
-        filteredData.forEach(item => {
-            dates = dates.concat(item.data.map(d => d.date));
-        })
-        dates.sort((a,b) => {
-            const aDate = new Date(a);
-            const bDate = new Date(b);
-            return aDate < bDate ? -1 : 1;
-        });
-        dates = Array.from(new Set(dates)).slice(this.state.dataToShow);
-        dates.forEach(date => {
-            let newParsedObj = {};
-            newParsedObj.date = date;
-            newParsedObj.values = [];
-            filteredData.forEach(fd => {
-                let val = fd.data.find(d => d.date === date);
-                if (val) {
-                    newParsedObj.values.push({
-                        key: fd.description,
-                        value: val.value
-                    });
-                }
-            });
-            newParsedObj.values.sort((a,b) => {
-                const aIndex = checkedFlagsLabels.indexOf(a.key);
-                const bIndex = checkedFlagsLabels.indexOf(b.key);
-                return aIndex < bIndex ? -1 : 1;
-            });
-            parsedData.push(newParsedObj);
+        let data = this.state.data.filter(pd => {
+            return dates.includes(pd.date);
+        }).map(pd => {
+            return {
+                ...pd,
+                values: pd.values.filter(v => {
+                    return checkedFlagsLabels.includes(v.key);
+                })
+            }
         });
 
         return (
@@ -143,7 +159,15 @@ class StackedBarChartWrapper extends Component {
                     </div>                 
                 </div>
                 <div className="col-md-8">
-                    <StackedBarChart data={parsedData} flags={this.state.flags} />
+                    <StackedBarChart 
+                        data={data} 
+                        flags={this.state.flags}
+                        minDate={this.state.minDate}
+                        maxDate={this.state.maxDate}
+                        startDate={this.state.startDate}
+                        endDate={this.state.endDate}
+                        dateChangeHandler={this.dateChangeHandler}
+                    />
                 </div>
             </div>
         );

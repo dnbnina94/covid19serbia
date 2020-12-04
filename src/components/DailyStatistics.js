@@ -5,7 +5,7 @@ import '../css/DailyStatistics.scss';
 import {connect} from 'react-redux';
 import store from '../redux/store';
 import { fetchingDataHandler } from '../redux/actions/data';
-import { formatTitle } from '../utilities';
+import { formatDate, formatTime, formatTitle } from '../utilities';
 import { 
     BROJ_LICA_NA_RESPIRATORU, 
     BROJ_POZITIVNIH_LICA, 
@@ -13,7 +13,7 @@ import {
     BR_POZITIVNIH_LICA_SHORT, 
     BR_PREMINULIH_LICA_SHORT, 
     BR_LICA_NA_RESPIRATORU_SHORT,
-    DAILY_COVID_DATA 
+    DAILY_COVID_DATA
 } from '../consts';
 import LineChartWrapper from "./LineChartWrapper";
 import StackedBarChartWrapper from "./StackedBarChartWrapper";
@@ -22,26 +22,11 @@ import PieChartWrapper from "./PieChartWrapper";
 class DailyStatistics extends Component {
     constructor(props) {
         super(props);
-
-        // this.state = {
-        //     counter: 0
-        // }
-
-        // this.changeData = this.changeData.bind(this);
-
+        
         if (this.props.data.length === 0) {
             store.dispatch(fetchingDataHandler(DAILY_COVID_DATA));
         }
     }
-
-    // changeData() {
-    //     this.setState(prevState => {
-    //         return{
-    //              ...prevState,
-    //              counter : prevState.counter+1
-    //         }
-    //     })
-    // }
 
     render() {
         const flags = [{
@@ -60,7 +45,6 @@ class DailyStatistics extends Component {
             color: "orange",
             icon: "skull"
         }];
-
         const statisticBoxes = flags.map(flag => {
             const statistics = this.props.data.find(item => flag.dataType === item.description);
             if (statistics) {
@@ -71,24 +55,26 @@ class DailyStatistics extends Component {
                             value={statistics.data[statistics.data.length-1].value}
                             prevValue={statistics.data[statistics.data.length-2].value}
                             icon={flag.icon}
-                            description={formatTitle(flag.desc)}
+                            description={`${formatTitle(flag.desc)}:`}
                             borderRadius={true}
                         />
                     </div>
                 )
             }
-        })
-        // statisticBoxes = statisticBoxes.map(d => {
-        //     return (
-        //         <div className="col-md-4 px-1">
-        //             {d}
-        //         </div>
-        //     );
-        // })
+        });
+
+        let dateModified = this.props.dataInfo && new Date(this.props.dataInfo.last_modified);
         
         return (
             <div className="DailyStatistics col-md-9 px-3 py-2">
-                <p className="font-headline">Dnevna statistika</p>
+                <div className="row">
+                    <div className="col-md-12 d-flex justify-content-between">
+                        <p className="font-headline">Dnevna statistika</p>
+                        {dateModified &&
+                            <p className="">Ažurirano {formatDate(dateModified)} u {formatTime(dateModified)}</p>
+                        }
+                    </div>
+                </div>
                 {
                     this.props.data.length !== 0 && (
                         <div className="py-2">
@@ -108,7 +94,8 @@ class DailyStatistics extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        data: state.data[DAILY_COVID_DATA]
+        data: state.data[DAILY_COVID_DATA].data,
+        dataInfo: state.data[DAILY_COVID_DATA].dataInfo
     }
 }
 
