@@ -19,7 +19,7 @@ class Map extends Component {
 
     redrawChart() {
         const width = this.props.width,
-              height = this.props.width*this.state.widthHeightRatio;  
+              height = this.props.height;
 
         d3.select(this.chartRef.current).select("svg").remove();
 
@@ -27,7 +27,7 @@ class Map extends Component {
             .scaleSequential()
             .domain([
                 0,
-                d3.max(this.props.data, d => d.count)
+                d3.max(this.props.data, d => d.values.length)
             ])
             .range(this.props.colors);
         
@@ -64,7 +64,7 @@ class Map extends Component {
             .attr("fill", f => {
                 try {
                     const value = this.props.data.find(d => d.key.toLowerCase() === f.properties[this.props.geoDataTargetName].toLowerCase());
-                    return colorScale(value.count);
+                    return colorScale(value.values.length);
                 } catch {
                     return "#ccc"
                 }
@@ -76,7 +76,7 @@ class Map extends Component {
                 const tooltip = self.tooltipRef.current;
                 let value
                 try {
-                    value = self.props.data.find(d => d.key === p.properties[this.props.geoDataTargetName]).count;
+                    value = self.props.data.find(d => d.key === p.properties[this.props.geoDataTargetName]).values.length;
                 } catch {
                     value = "bez podataka"
                 }
@@ -108,10 +108,14 @@ class Map extends Component {
 
     componentDidUpdate(prevProps) {
         const redraw = prevProps.width !== this.props.width ||
-                       prevProps.geoData !== this.props.geoData;
+                       prevProps.height !== this.props.height ||
+                       prevProps.geoData !== this.props.geoData ||
+                       prevProps.data !== this.props.data;
 
         if (redraw) {
-            this.redrawChart();
+            process.nextTick(() => {
+                this.redrawChart();
+            })
         }
     }
 
@@ -119,7 +123,7 @@ class Map extends Component {
         const mapLegendStyle = {
             background: `linear-gradient(${this.props.colors[1]}, ${this.props.colors[0]})`
         }
-        const max = Math.max(...this.props.data.map(d => d.count));
+        const max = Math.max(...this.props.data.map(d => d.values.length));
         let legendData = _.range(0,max,Math.ceil(max/this.state.legendStepSize));
         legendData.push(max);
 
@@ -131,12 +135,12 @@ class Map extends Component {
         })
 
         return (
-            <div className="Map">
+            <div className="Map h-100">
                 <div ref={this.chartRef}></div>
-                <div className="map-legend position-absolute mt-3 mr-2" style={mapLegendStyle}>
+                <div className="map-legend position-absolute" style={mapLegendStyle}>
                     {legendData}
                 </div>
-                <div className="custom-tooltip custom-tooltip-hidden position-absolute ml-2 mb-2" ref={this.tooltipRef}></div>
+                <div className="custom-tooltip custom-tooltip-hidden position-absolute" ref={this.tooltipRef}></div>
             </div>
         )
     }

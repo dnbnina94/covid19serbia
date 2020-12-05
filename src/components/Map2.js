@@ -19,7 +19,7 @@ class Map2 extends Component {
     redrawChart() {
         const self = this;
         const width = this.props.width,
-              height = this.props.width*this.state.widthHeightRatio;  
+              height = this.props.height
 
         d3.select(this.chartRef.current).select("svg").remove();
 
@@ -120,8 +120,9 @@ class Map2 extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const redraw = prevProps.width !== this.props.width
-                       || prevProps.geoData !== this.props.geoData
+        const redraw = prevProps.width !== this.props.width ||
+                       prevProps.height !== this.props.height ||
+                       prevProps.geoData !== this.props.geoData
         const updateSelected = prevProps.selected !== this.props.selected;
 
         if (redraw) {
@@ -134,7 +135,7 @@ class Map2 extends Component {
 
     render() {
         return (
-            <div className="Map">
+            <div className="Map h-100">
                 <div ref={this.chartRef}></div>
             </div>
         );

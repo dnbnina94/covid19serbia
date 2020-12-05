@@ -4,6 +4,7 @@ import '../css/MapWrapper.scss';
 import { REGION_COLOR_SCHEME } from '../consts';
 import PieChart from './PieChart';
 import BarChart from './BarChart';
+import DatePicker from './DatePicker';
 const { Component } = require("react");
 const serbiaGeo = require('../serbia.geojson.json');
 const serbiaGeoDistricts = require('../sr_a2.geojson.json');
@@ -90,37 +91,65 @@ class MapWrapper extends Component {
             }
         ];
 
+        let dates = this.props.data.reduce((acc, curr) => {
+            return acc.concat(curr.data.map(d => d.date));
+        }, []);
+        dates.sort((a,b) => {
+            const aDate = new Date(a);
+            const bDate = new Date(b);
+            return aDate < bDate ? -1 : 1;
+        });
+
+        dates = Array.from(new Set(dates));
+        const minDate = new Date(dates[0]); 
+        const maxDate = new Date(dates[dates.length-1]);
+
         this.state = {
             mapFilters: mapFilters,
             pieChartFlags: pieChartFlags,
             ageGroupFlags: ageGroupFlags,
             selectedFilter: 0,
             selectedTerritory: null,
-            targetName: "NAME_2"
+            targetName: "NAME_2",
+            minDate: minDate,
+            maxDate: maxDate,
+            startDate: new Date(minDate.valueOf()),
+            endDate: new Date(maxDate.valueOf())
         }
+
+        this.dateChangeHandler = this.dateChangeHandler.bind(this);
     }
 
-    setData(r) {
+    setData() {
         const self = this;
         const mapFilter = this.state.mapFilters[this.state.selectedFilter];
-        const territories = mapFilter.territories(r);
-        const regionData = territories.map(r => {
+        const territories = mapFilter.territories(this.state.selectedTerritory);
+        const regionData = territories
+        .map(r => {
             return {
                 key: r,
-                count: self.props.data.filter(d => {
-                    return d[mapFilter.targetField].toLowerCase() === r.toLowerCase();
-                }).reduce((acc, curr) => {
-                    return acc + curr.data.length;
-                }, 0),
                 values: self.props.data.filter(d => {
                     return d[mapFilter.targetField].toLowerCase() === r.toLowerCase();
                 }).reduce((acc, curr) => {
                     return acc.concat(curr.data);
                 }, [])
             }
+        })
+        .map(rd => {
+            return {
+                ...rd,
+                values: rd.values.filter(v => {
+                    const date = new Date(v.date);
+                    return date >= self.state.startDate && date <= self.state.endDate
+                })
+            }
+        })
+        .filter(rd => {
+            return rd.values.length !== 0
         });
 
-        const pieChartData = this.state.pieChartFlags.map(f => {
+        const pieChartData = this.state.pieChartFlags
+        .map(f => {
             let value = regionData.reduce((acc, curr) => {
                 return acc + curr.values.reduce((acc,curr) => {return acc + (curr.sex === f.flag ? 1 : 0)}, 0);
             },0)
@@ -131,7 +160,8 @@ class MapWrapper extends Component {
             }
         });
 
-        const ageData = this.state.ageGroupFlags.map(f => {
+        const ageData = this.state.ageGroupFlags
+        .map(f => {
             const value = regionData.reduce((acc, curr) => {
                 return acc + curr.values.reduce((acc, curr) => {return acc + (curr.age >= f.bottomVal && curr.age < f.upperVal ? 1 : 0)}, 0);
             }, 0)
@@ -141,11 +171,13 @@ class MapWrapper extends Component {
             }
         });
 
-        this.setState({
-            regionData: regionData,
-            pieChartData: pieChartData,
-            ageData: ageData,
-            map: mapFilter.map(r)
+        this.setState((state) => {
+            return {
+                regionData: regionData,
+                pieChartData: pieChartData,
+                ageData: ageData,
+                map: mapFilter.map(state.selectedTerritory)
+            }
         })
     }
 
@@ -158,6 +190,7 @@ class MapWrapper extends Component {
     }
 
     handleMapChange(p) {
+        const self = this;
         this.setState((state) => {
             const nextFilter = (state.selectedFilter + 1) % state.mapFilters.length
             return {
@@ -165,7 +198,20 @@ class MapWrapper extends Component {
                 selectedTerritory: nextFilter !== 0 ? p.properties.NAME_2 : null
             }
         });
-        this.setData(p.properties.NAME_2);
+        process.nextTick(() => {
+            this.setData();
+        })
+    }
+
+    dateChangeHandler(date1, date2) {
+        const self = this;
+        this.setState({
+            startDate: date1,
+            endDate: date2
+        });
+        process.nextTick(() => {
+            this.setData();
+        })
     }
 
     render() {
@@ -178,9 +224,16 @@ class MapWrapper extends Component {
         return (
             <div className="MapWrapper row flex-grow-1 pt-2">
                 <div className="col-md-5">
-                    <div className="bg-white shadow-sm position-relative p-2 pb-3 h-100 d-flex flex-column">
-                        <p className="font-bold pb-2 lh-1">{selectedTerritory}</p>
-                        <div className="map-container w-100 flex-grow-1">
+                    <div className="bg-white shadow-sm p-2 h-100 d-flex flex-column">
+                        <div className="d-flex justify-content-end align-items-center pb-2 position-relative">
+                            <p className="title font-bold lh-1 position-absolute">{selectedTerritory}</p>
+                            <DatePicker
+                                minDate={this.state.minDate}
+                                maxDate={this.state.maxDate}
+                                dateChangeHandler={this.dateChangeHandler}
+                            />
+                        </div>
+                        <div className="map-container w-100 position-relative flex-grow-1">
                             {this.state.dataReady &&
                                 <Map 
                                     data={this.state.regionData} 

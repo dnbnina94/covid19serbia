@@ -122,8 +122,6 @@ class StackedBarChartWrapper extends Component {
     render() {
         const self = this;
 
-        console.log("AYY LMAO", this.state.startDate, this.state.endDate);
-
         const allFlagsLabels = this.state.flags.map(f => f.flag);
         const checkedFlags = this.state.flags.filter(f => f.checked);
         const checkedFlagsLabels = checkedFlags.map(f => f.flag);

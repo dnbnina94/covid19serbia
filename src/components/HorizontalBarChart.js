@@ -9,13 +9,13 @@ class HorizontalBarChart extends Component {
 
     render() {
         this.props.data.sort((a, b) => {
-            return a.count < b.count ? 1 : -1;
+            return a.values.length < b.values.length ? 1 : -1;
         });
-        const max = d3.max(this.props.data, d => d.count)
+        const max = d3.max(this.props.data, d => d.values.length)
         const bars =
             <div className="horizontal-bar-wrapper w-100 mb-1">
                     {this.props.data.map(d => {
-                        const width = 100*d.count/max;
+                        const width = 100*d.values.length/max;
                         return (
                             <div className="horizontal-bar-wrapper-row" key={d.key}>
                                 <div className="horizontal-bar-wrapper-column pr-2">
@@ -29,7 +29,7 @@ class HorizontalBarChart extends Component {
                                     </div>
                                 </div>
                                 <div className="horizontal-bar-wrapper-column pl-2">
-                                    <p className="label">{d.count}</p>
+                                    <p className="label">{d.values.length}</p>
                                 </div>
                             </div>
                         );

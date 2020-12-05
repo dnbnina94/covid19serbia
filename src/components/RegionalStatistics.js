@@ -10,7 +10,9 @@ class RegionalStatistics extends Component {
     constructor(props) {
         super(props);
 
-        store.dispatch(fetchingDataHandler(REGIONAL_COVID_DATA));
+        if (this.props.data.length === 0) {
+            store.dispatch(fetchingDataHandler(REGIONAL_COVID_DATA));
+        }
     }
 
     render() {

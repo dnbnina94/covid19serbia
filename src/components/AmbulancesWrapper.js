@@ -118,7 +118,7 @@ class AmbulancesWrapper extends Component {
                         <p className="font-bold pb-2 lh-1">
                             {this.state.selectedTerritory === null ? 'Svi okruzi' : `Okrug: ${this.state.selectedTerritory}`}
                         </p>
-                        <div className="map-container flex-grow-1" style={{width: "68%", margin: "auto"}}>
+                        <div className="flex-grow-1">
                             {this.state.dataReady &&
                                 <Map2
                                     geoData = {this.state.map}
