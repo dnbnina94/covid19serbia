@@ -1,5 +1,3 @@
-var FormData = require('form-data');
-const fetch = require("node-fetch");
 var request = require('request');
 
 let done = true;
