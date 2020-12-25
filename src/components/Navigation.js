@@ -6,6 +6,8 @@ import { ReactComponent as Pin } from '../img/svg/pin.svg';
 import { ReactComponent as BarChart } from '../img/svg/bar-chart.svg';
 import { ReactComponent as Cross } from '../img/svg/cross.svg';
 import { ReactComponent as WorkFromHome } from '../img/svg/workfromhome.svg';
+import { ReactComponent as Github } from '../img/svg/github.svg';
+import { ReactComponent as Envelope } from '../img/svg/envelope.svg';
 import '../css/Navigation.scss';
 import hospital from '../img/workfromhome.png';
 
@@ -49,7 +51,7 @@ class Navigation extends Component {
                 <div>
                     <div className="bg-light-blue color-blue border-radius-1 p-2 d-flex align-items-center">
                         <Cardiogram className="cardiogram-icon" />
-                        <p className="font-headline pl-2">COVID19 Statistika</p>
+                        <p className="font-headline pl-2">COVID19 Srbija</p>
                     </div>
                     <ul className="navigation-menu p-2 font-bold">
                         {navMenuItems}
@@ -58,6 +60,21 @@ class Navigation extends Component {
                 <div className="linear-gradient-light-blue border-radius-1 color-blue p-2 text-center overflow-hidden">
                     {/* <img className="w-100" src={hospital} alt="Doctors taking care of a sick patient" /> */}
                     <WorkFromHome className="bottom-img" />
+                    <div className="position-relative" style={{zIndex: 1}}>
+                        <div className="info-button px-2 py-1 font-headline">
+                            <Link to="/info" className="custom-link">
+                                Informacije o projektu
+                            </Link>   
+                        </div>
+                        <div className="d-flex justify-content-center pt-1">
+                            <a href="https://github.com/dnbnina94/covid19serbia" target="_blank">
+                                <Github className="bottom-icon github-icon" />
+                            </a>
+                            <a href="mailto:nina.grujic.94@gmail.com" className="ml-1">
+                                <Envelope className="bottom-icon envelope-icon" />
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

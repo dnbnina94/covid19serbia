@@ -1,4 +1,4 @@
-import { apiUrls, headers  } from '../../api';
+import { apiUrls } from '../../api';
 import { 
     FETCHED_DATA, 
     FETCHING_DATA, 
@@ -17,6 +17,12 @@ const fetchedData = (data) => {
     return {
         type: FETCHED_DATA,
         payload: data
+    }
+}
+
+const fetchingData = () => {
+    return {
+        type: FETCHING_DATA
     }
 }
 
@@ -169,16 +175,20 @@ const parseData = (data, url) => {
 export const fetchingDataHandler = (dataType) => {
     let dataInfo;
     return function(dispatch) {
+
+        dispatch(fetchingData());
+
         fetch(apiUrls[dataType], {
             method: 'GET',
-            headers: headers
+            // headers: headers
         })
         .then(response => response.json())
         .then(data => {
-            dataInfo = data;
-            return fetch(data.latest, {
+            const res = data.resources.find(r => r.format === "txt");
+            dataInfo = res;
+            return fetch(res.latest, {
                 method: 'GET',
-                headers: headers
+                // headers: headers
             })
         })
         .then(response => response.text())

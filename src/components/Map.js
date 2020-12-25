@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withResizeDetector } from "react-resize-detector";
 import * as d3 from 'd3';
-import _, { indexOf } from 'lodash';
+import _ from 'lodash';
 import '../css/Map.scss';
 
 class Map extends Component {
@@ -15,13 +15,14 @@ class Map extends Component {
 
         this.chartRef = React.createRef();
         this.tooltipRef = React.createRef();
+        this.mapWrapper = React.createRef();
     }
 
     redrawChart() {
-        const width = this.props.width,
-              height = this.props.height;
-
         d3.select(this.chartRef.current).select("svg").remove();
+
+        const width = this.props.width,
+              height = this.mapWrapper.current.clientHeight;
 
         const colorScale = d3
             .scaleSequential()
@@ -69,29 +70,39 @@ class Map extends Component {
                     return "#ccc"
                 }
             });
+
+        const tooltip = self.tooltipRef.current;
         
         rectWrapper
             .on("touchmove mousemove", (event,p) => {
                 d3.select(`#text-${self.props.geoData.indexOf(p)}`).attr("class", "map-label");
-                const tooltip = self.tooltipRef.current;
-                let value
+                let value, brMus, brZen;
                 try {
-                    value = self.props.data.find(d => d.key === p.properties[this.props.geoDataTargetName]).values.length;
+                    const selectedData = self.props.data.find(d => d.key === p.properties[this.props.geoDataTargetName]);
+                    value = selectedData.values.length;
+                    brMus = selectedData.values.reduce((acc, curr) => {
+                        return curr.sex === "M" ? acc+1 : acc
+                    },0);
+                    brZen = selectedData.values.reduce((acc, curr) => {
+                        return curr.sex === "F" ? acc+1 : acc
+                    },0);
                 } catch {
-                    value = "bez podataka"
+                    value = brMus = brZen = "bez podataka";
                 }
                 tooltip.classList.remove("custom-tooltip-hidden");
                 tooltip.innerHTML = `
-                    <p class='font-headline'>${p.properties[this.props.geoDataTargetName]}:</p>
-                    <span>Broj zaraženih: ${value}</span>
+                    <span class='font-headline'>${p.properties[this.props.geoDataTargetName]}:</span><br/>
+                    <span>Ukupan broj obolelih: ${value}</span><br/>
+                    <span>Broj obolelih žena: ${brZen}</span><br/>
+                    <span>Broj obolelih muškaraca: ${brMus}</span>
                 `
             })
             .on("touchend mouseleave", (event,p) => {
                 d3.select(`#text-${self.props.geoData.indexOf(p)}`).attr("class", "map-label map-label-hidden");
-                const tooltip = self.tooltipRef.current;
                 tooltip.classList.add("custom-tooltip-hidden");
             })
             .on("click", (event, p) => {
+                tooltip.classList.add("custom-tooltip-hidden");
                 self.props.handleMapChange(p);
             });
 
@@ -113,9 +124,9 @@ class Map extends Component {
                        prevProps.data !== this.props.data;
 
         if (redraw) {
-            process.nextTick(() => {
+            // process.nextTick(() => {
                 this.redrawChart();
-            })
+            // });
         }
     }
 
@@ -135,7 +146,7 @@ class Map extends Component {
         })
 
         return (
-            <div className="Map h-100">
+            <div className="Map h-100" ref={this.mapWrapper}>
                 <div ref={this.chartRef}></div>
                 <div className="map-legend position-absolute" style={mapLegendStyle}>
                     {legendData}

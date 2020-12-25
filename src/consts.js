@@ -3,6 +3,9 @@ export const FETCHED_DATA = 'FETCHED_DATA';
 export const FETCHING_DATA = 'FETCHING_DATA';
 export const FETCHING_DATA_FAILED = 'FETCHING_DATA_FAILED';
 
+export const LOADING_START = 'LOADING_START';
+export const LOADING_STOP = 'LOADING_STOP';
+
 // TYPE OF DATA TO FETCH
 export const DAILY_COVID_DATA = 'DAILY_COVID_DATA';
 export const REGIONAL_COVID_DATA = 'REGIONAL_COVID_DATA';
@@ -45,6 +48,6 @@ export const COLOR_SCHEME = [
 ];
 
 export const REGION_COLOR_SCHEME = [
-    "#FDD0A2",
-    "#E6550D"
+    "#C6DBEF",
+    "#3182BD"
 ];

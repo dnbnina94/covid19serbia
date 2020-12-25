@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import '../css/HorizontalBarChart.scss';
 import * as d3 from 'd3';
 
@@ -9,7 +9,7 @@ class HorizontalBarChart extends Component {
 
     render() {
         this.props.data.sort((a, b) => {
-            return a.values.length < b.values.length ? 1 : -1;
+            return a.values.length < b.values.length ? 1 : a.values.length === b.values.length && a.key > b.key ? 1 : -1;
         });
         const max = d3.max(this.props.data, d => d.values.length)
         const bars =
@@ -17,7 +17,7 @@ class HorizontalBarChart extends Component {
                     {this.props.data.map(d => {
                         const width = 100*d.values.length/max;
                         return (
-                            <div className="horizontal-bar-wrapper-row" key={d.key}>
+                            <div className="horizontal-bar-wrapper-row" key={d.key+this.props.startDate+this.props.endDate}>
                                 <div className="horizontal-bar-wrapper-column pr-2">
                                     <p className="label">{d.key}</p>
                                 </div>

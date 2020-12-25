@@ -2,7 +2,8 @@ import {
     FETCHED_DATA,
     DAILY_COVID_DATA,
     REGIONAL_COVID_DATA, 
-    COVID_AMBULANCES
+    COVID_AMBULANCES,
+    FETCHING_DATA
 } from '../../consts';
 
 const initialState = {
@@ -17,9 +18,12 @@ dataTypes.forEach(d => {
 });
 
 const dataReducer = (state = initialState, action) => {
+    const retState = {...state};
     switch(action.type) {
+        case FETCHING_DATA:
+            retState.fetching = true;
+            return retState;
         case FETCHED_DATA:
-            const retState = {...state};
             retState[action.payload.dataType] = action.payload.data;
             retState.fetching = false;
             return retState;

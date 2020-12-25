@@ -9,7 +9,6 @@ import MapWrapper from "./MapWrapper";
 class RegionalStatistics extends Component {
     constructor(props) {
         super(props);
-
         if (this.props.data.length === 0) {
             store.dispatch(fetchingDataHandler(REGIONAL_COVID_DATA));
         }

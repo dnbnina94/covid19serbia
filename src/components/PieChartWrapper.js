@@ -98,7 +98,7 @@ class PieChartWrapper extends Component {
         const pieCharts = this.state.data.map((d,i) => {
             return (
                 <div className="col-md-4" key={i}>
-                    <div className="bg-white shadow-sm h-100">
+                    <div className="bg-white shadow-sm h-100 border-radius-1">
                         <PieChart heightRatio={1.7} innerRadius={0.65} data={d} />
                     </div>
                 </div>

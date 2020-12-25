@@ -14,14 +14,15 @@ class Map2 extends Component {
         }
 
         this.chartRef = React.createRef();
+        this.mapWrapper = React.createRef();
     }
 
     redrawChart() {
+        d3.select(this.chartRef.current).select("svg").remove();
+
         const self = this;
         const width = this.props.width,
-              height = this.props.height
-
-        d3.select(this.chartRef.current).select("svg").remove();
+              height = this.mapWrapper.current.clientHeight;
 
         this.projection = d3
             .geoMercator()
@@ -121,7 +122,7 @@ class Map2 extends Component {
 
     componentDidUpdate(prevProps) {
         const redraw = prevProps.width !== this.props.width ||
-                       prevProps.height !== this.props.height ||
+                    //    prevProps.height !== this.props.height ||
                        prevProps.geoData !== this.props.geoData
         const updateSelected = prevProps.selected !== this.props.selected;
 
@@ -135,7 +136,7 @@ class Map2 extends Component {
 
     render() {
         return (
-            <div className="Map h-100">
+            <div className="Map h-100" ref={this.mapWrapper}>
                 <div ref={this.chartRef}></div>
             </div>
         );

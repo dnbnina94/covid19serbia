@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import Map from './Map';
 import HorizontalBarChart from './HorizontalBarChart';
 import '../css/MapWrapper.scss';
@@ -5,7 +6,7 @@ import { REGION_COLOR_SCHEME } from '../consts';
 import PieChart from './PieChart';
 import BarChart from './BarChart';
 import DatePicker from './DatePicker';
-const { Component } = require("react");
+import { ReactComponent as Download } from '../img/svg/download.svg';
 const serbiaGeo = require('../serbia.geojson.json');
 const serbiaGeoDistricts = require('../sr_a2.geojson.json');
 
@@ -118,6 +119,8 @@ class MapWrapper extends Component {
         }
 
         this.dateChangeHandler = this.dateChangeHandler.bind(this);
+
+        this.barWrapper = React.createRef();
     }
 
     setData() {
@@ -204,7 +207,6 @@ class MapWrapper extends Component {
     }
 
     dateChangeHandler(date1, date2) {
-        const self = this;
         this.setState({
             startDate: date1,
             endDate: date2
@@ -221,21 +223,29 @@ class MapWrapper extends Component {
         const barChartTitle = this.state.selectedTerritory ?
             'Broj obolelih po opštinama' : 
             'Broj obolelih po okruzima';
+
+        this.barWrapper.current && this.barWrapper.current.scrollTo(0,0);
+
         return (
             <div className="MapWrapper row flex-grow-1 pt-2">
                 <div className="col-md-5">
-                    <div className="bg-white shadow-sm p-2 h-100 d-flex flex-column">
-                        <div className="d-flex justify-content-end align-items-center pb-2 position-relative">
-                            <p className="title font-bold lh-1 position-absolute">{selectedTerritory}</p>
-                            <DatePicker
-                                minDate={this.state.minDate}
-                                maxDate={this.state.maxDate}
-                                dateChangeHandler={this.dateChangeHandler}
-                            />
+                    <div className="bg-white shadow-sm h-100 d-flex flex-column border-radius-1">
+                        <div className="d-flex justify-content-between align-items-center p-2 position-relative chart-title">
+                            <div>
+                                <p className="title font-bold">{selectedTerritory}</p>
+                                <DatePicker
+                                    minDate={this.state.minDate}
+                                    maxDate={this.state.maxDate}
+                                    dateChangeHandler={this.dateChangeHandler}
+                                />
+                            </div>
+                            <div ref={this.saveButtonRef}>
+                                <Download className="download-icon" />
+                            </div>
                         </div>
-                        <div className="map-container w-100 position-relative flex-grow-1">
+                        <div className="map-container w-100 flex-grow-1 p-2 position-relative">
                             {this.state.dataReady &&
-                                <Map 
+                                <Map
                                     data={this.state.regionData} 
                                     geoData={this.state.map} 
                                     geoDataTargetName={this.state.targetName}
@@ -249,11 +259,13 @@ class MapWrapper extends Component {
                 <div className="col-md-7">
                     <div className="grid-layout h-100">
                         <div className="row">
-                            <div className="col-md-12 bg-white shadow-sm overflow-auto h-100">
+                            <div className="col-md-12 bg-white shadow-sm overflow-auto h-100" ref={this.barWrapper}>
                                 {this.state.dataReady &&
                                     <HorizontalBarChart 
                                         data={this.state.regionData}
                                         title={barChartTitle}
+                                        startDate={this.state.startDate}
+                                        endDate={this.state.endDate}
                                     />
                                 }
                             </div>

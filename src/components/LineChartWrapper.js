@@ -60,8 +60,8 @@ class LineChartWrapper extends Component {
                     }
                 </div>
                 <div className="col-md-4">
-                    <div className="position-relative overflow-auto h-100">
-                        <div className="bg-white shadow-sm p-2 position-absolute">
+                    <div className="position-relative overflow-auto h-100 bg-white shadow-sm border-radius-1">
+                        <div className="p-2 position-absolute">
                             <Options
                                 options={this.state.data.map(item => item.description)}
                                 current={this.state.currentData}

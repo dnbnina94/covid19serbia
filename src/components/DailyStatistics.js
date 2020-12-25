@@ -66,7 +66,7 @@ class DailyStatistics extends Component {
         let dateModified = this.props.dataInfo && new Date(this.props.dataInfo.last_modified);
         
         return (
-            <div className="DailyStatistics col-md-9 px-3 py-2">
+            <div className="DailyStatistics col-md-9 px-3 py-2 overflow-hidden">
                 <div className="row">
                     <div className="col-md-12 d-flex justify-content-between">
                         <p className="font-headline">Dnevna statistika</p>

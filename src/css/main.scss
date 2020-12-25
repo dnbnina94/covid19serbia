@@ -21,6 +21,7 @@ body {
   background-color: $light-gray;
   height: 100vh;
   color: $black;
+  overflow-x: hidden;
 }
 
 #root {
@@ -102,4 +103,20 @@ body {
 
 svg {
   overflow: visible;
+}
+
+.download-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: $black;
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    fill: $black;
+  }
+}
+
+.chart-title {
+  border-bottom: 1px solid $gray;
 }

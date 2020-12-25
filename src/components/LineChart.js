@@ -1,10 +1,16 @@
 import { Component } from "react";
 import React from 'react'
 import * as d3 from 'd3';
+import _ from "lodash";
 import { formatTitle } from "../utilities";
 import '../css/LineChart.scss';
 import { withResizeDetector } from 'react-resize-detector';
 import DatePicker from "./DatePicker";
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
+import store from '../redux/store';
+import { ReactComponent as Download } from '../img/svg/download.svg';
+import { loadingStart, loadingStop } from "../redux/actions/ui";
 
 class LineChart extends Component {
     constructor(props) {
@@ -22,8 +28,10 @@ class LineChart extends Component {
             heightRatio: 1.7
         };
 
+        this.chartWrapper = React.createRef();
         this.lineChartRef = React.createRef();
         this.tooltipRef = React.createRef();
+        this.saveButtonRef = React.createRef();
     }
 
     length(arg) {
@@ -58,6 +66,8 @@ class LineChart extends Component {
         const chart = d3
             .select(this.lineChartRef.current)
             .append("svg")
+            .style("background-color", "white")
+            .attr("class", "border-radius-1")
             .attr("width", width)
             .attr("height", height)
             .attr("cursor", "pointer");
@@ -86,7 +96,12 @@ class LineChart extends Component {
         chart
             .append("path")
             .datum(this.props.data)
-            .attr("class", "line")
+            // .attr("class", "line")
+            .attr("stroke", "#00d0c2")
+            .attr("stroke-width", "2.5")
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("fill", "none")
             .attr("d", line)
             .attr("stroke-dasharray", `0,${l}`)
             .transition()
@@ -100,7 +115,6 @@ class LineChart extends Component {
         chart
             .append("g")
             .attr("transform", "translate(" + this.state.padding + ",0)")
-            .attr("class", "tick")
             .call(yAxis);
 
         const xAxis = d3.axisBottom(xScaler)
@@ -109,14 +123,25 @@ class LineChart extends Component {
         chart
             .append("g")
             .attr("transform", "translate(0," + (height - this.state.padding) + ")")
-            .attr("class", "tick")
             .call(xAxis);
 
         const self = this;
-        const dashedLine = chart.append("line");
-        const circle = chart.append("circle");
-        setTimeout(() => {
 
+        d3.select(this.saveButtonRef.current).on('click', function(){
+            store.dispatch(loadingStart());
+            domtoimage.toBlob(self.chartWrapper.current, {
+                filter: (node) => node !== self.saveButtonRef.current
+            })
+            .then(function (blob) {
+                store.dispatch(loadingStop());
+                saveAs(blob, formatTitle(self.props.title) + '.png');
+            });
+        });
+
+        const dashedLine = chart.append("line");
+        const circle = chart.append("circle").attr("fill", "none");
+        setTimeout(() => {
+            
             chart.on("touchmove mousemove", function(event) {
                 const {date, value} = self.bisect(d3.pointer(event, this)[0], xScaler);
                 
@@ -160,7 +185,7 @@ class LineChart extends Component {
 
     componentDidUpdate(prevProps) {
         const redraw = prevProps.width !== this.props.width ||
-                       prevProps.data !== this.props.data;
+                       !_.isEqual(prevProps.data, this.props.data);
         if (redraw) {
             this.redrawChart();
         }
@@ -168,16 +193,21 @@ class LineChart extends Component {
 
     render() {
         return (
-            <div className="LineChart bg-white shadow-sm">
-                <div className="d-flex p-2 justify-content-between align-items-center">
-                    <p className="font-bold">{formatTitle(this.props.title)}</p>
-                    <DatePicker
-                        minDate={this.props.minDate}
-                        maxDate={this.props.maxDate}
-                        dateChangeHandler={this.props.dateChangeHandler}
-                    />
+            <div className="LineChart bg-white shadow-sm border-radius-1" ref={this.chartWrapper}>
+                <div className="d-flex p-2 justify-content-between chart-title">
+                    <div>
+                        <p className="font-bold">{formatTitle(this.props.title)}</p>
+                        <DatePicker
+                            minDate={this.props.minDate}
+                            maxDate={this.props.maxDate}
+                            dateChangeHandler={this.props.dateChangeHandler}
+                        />
+                    </div>
+                    <div ref={this.saveButtonRef}>
+                        <Download className="download-icon" />
+                    </div>
                 </div>
-                <div className="w-100 position-relative" ref={this.lineChartRef}>
+                <div className="w-100 position-relative mt-2" ref={this.lineChartRef}>
                     <div className="custom-tooltip custom-tooltip-hidden px-5" ref={this.tooltipRef}></div>
                 </div>
             </div>

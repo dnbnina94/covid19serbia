@@ -1,0 +1,68 @@
+@import "./consts.scss";
+
+.Loader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10001;
+  background: rgba(255, 255, 255, 0.8);
+
+  .loader-inner,
+  .loader-inner:before,
+  .loader-inner:after {
+    background: $blue;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 5em;
+  }
+  .loader-inner {
+    color: $blue;
+    text-indent: -9999em;
+    position: relative;
+    font-size: 0.8rem;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+  .loader-inner:before,
+  .loader-inner:after {
+    position: absolute;
+    top: 0;
+    content: "";
+  }
+  .loader-inner:before {
+    left: -1.5em;
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+  .loader-inner:after {
+    left: 1.5em;
+  }
+  @-webkit-keyframes load1 {
+    0%,
+    80%,
+    100% {
+      box-shadow: 0 0;
+      height: 5em;
+    }
+    40% {
+      box-shadow: 0 -2em;
+      height: 6em;
+    }
+  }
+  @keyframes load1 {
+    0%,
+    80%,
+    100% {
+      box-shadow: 0 0;
+      height: 5em;
+    }
+    40% {
+      box-shadow: 0 -2em;
+      height: 6em;
+    }
+  }
+}

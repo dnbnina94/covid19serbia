@@ -32,7 +32,7 @@ class CovidAmbulance extends Component {
                         this.props.data.length !== 0 &&
                         <AmbulancesWrapper data={this.props.data} />
                     }      
-                    </div> 
+                </div> 
             </div>
         )
     }

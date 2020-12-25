@@ -1,14 +1,31 @@
 import React, { Component } from "react";
 import '../css/DatePicker.scss';
 import DatePicker from "react-datepicker";
+import { ReactComponent as Next } from '../img/svg/next.svg';
 import "react-datepicker/dist/react-datepicker.css";
+import { ReactComponent as Calendar } from '../img/svg/calendar.svg';
 import { formatDate } from "../utilities";
 
-const CustomInput = ({ value, onClick }) => (
-    <button className="custom-input" onClick={onClick}>
-      {formatDate(new Date(value))}
-    </button>
-);
+class CustomInput extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <button className="custom-input d-inline-flex align-items-center" onClick={this.props.onClick}>
+                {formatDate(new Date(this.props.value))}
+                <Next className="arrow-down" />
+            </button>
+        );
+    }
+}
+
+// const CustomInput = ({ value, onClick }) => (
+//     <button className="custom-input" onClick={onClick}>
+//       {formatDate(new Date(value))}
+//     </button>
+// );
 
 class CustomDatePicker extends Component {
     constructor(props) {
@@ -53,7 +70,8 @@ class CustomDatePicker extends Component {
     render() {
         const self = this;
         return (
-            <div className="DatePicker d-flex">
+            <div className="DatePicker d-flex align-items-center">
+                <Calendar className="calendar-icon pr-1" />
                 <DatePicker
                     customInput={<CustomInput />}
                     selected={this.state.startDate}
@@ -61,6 +79,12 @@ class CustomDatePicker extends Component {
                     maxDate={this.subDays(this.state.endDate, 1)}
                     onChange={(date) => this.onChangeHandler(date, 'startDate')}
                     startDate={this.state.startDate}
+                    calendarClassName="custom-calendar"
+                    popperModifiers={{
+                        preventOverflow: {
+                          enabled: true,
+                        },
+                    }}
                 />
                 <span className="px-1">&ndash;</span>
                 <DatePicker
@@ -70,6 +94,12 @@ class CustomDatePicker extends Component {
                     minDate={this.addDays(this.state.startDate, 1)}
                     onChange={(date) => this.onChangeHandler(date, 'endDate')}
                     startDate={this.state.endDate}
+                    calendarClassName="custom-calendar"
+                    popperModifiers={{
+                        preventOverflow: {
+                          enabled: true,
+                        },
+                    }}
                 />
             </div>
         )

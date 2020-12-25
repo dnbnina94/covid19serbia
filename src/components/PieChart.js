@@ -102,7 +102,7 @@ class PieChart extends Component {
         const chartLegendClass = `pie-chart-legend
                                     ${this.props.small ? 'pie-chart-legend-small' : ''} 
                                     px-2 
-                                    pt-${this.props.small ? '2' : '4'} 
+                                    pt-${this.props.small ? '2' : '3'} 
                                     pb-2`;
         const chartClass = `PieChart 
                             ${this.props.small ? 'PieChart-small' : ''}
@@ -111,8 +111,8 @@ class PieChart extends Component {
                             flex-column`;
         return (
             <div className={chartClass}>
-                {!this.props.hideTitle && <p className="font-bold p-2">{title}</p>}
-                <div className="d-flex flex-column justify-content-between mt-1" style={{flex: "1"}}>
+                {!this.props.hideTitle && <p className="font-bold p-2 chart-title">{title}</p>}
+                <div className={`d-flex flex-column justify-content-between ${this.props.small ? 'mt-1' : 'mt-3'}`} style={{flex: "1"}}>
                     <div className="w-100 position-relative flex-grow-1 d-flex align-items-center justify-content-between">
                         <div className="d-block w-100" ref={this.pieChartRef}></div>
                         <div className="custom-tooltip custom-tooltip-hidden position-absolute font-headline" ref={this.tooltip}></div>

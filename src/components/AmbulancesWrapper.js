@@ -92,28 +92,28 @@ class AmbulancesWrapper extends Component {
                         <Cross className="cross" />
                         <p className="font-bold pl-2 flex-1">{capitalize(d.name)}</p>
                     </div>
-                        <div className="info d-flex pt-1">
-                            <div className="filler"></div>
-                            <div className="pl-2 flex-1">
-                                <p>
-                                    {capitalize(d.address)} {d.addressNumber}, {capitalize(d.district)}
-                                </p>
-                                {d.phone && 
-                                    <p>tel: <b>{d.phone}</b></p>
-                                }
-                                {d.mobile &&
-                                    <p>mob: <b>{d.mobile}</b></p>
-                                }
-                                <b>Radno vreme:</b><br/>
-                                <p>radni dani: {d.hoursWorkdays}, vikend: {d.hoursWeekend}</p>
-                            </div>
+                    <div className="info d-flex pt-1">
+                        <div className="filler"></div>
+                        <div className="pl-2 flex-1">
+                            <p>
+                                {capitalize(d.address)} {d.addressNumber}, {capitalize(d.district)}
+                            </p>
+                            {d.phone && 
+                                <p>tel: <b>{d.phone}</b></p>
+                            }
+                            {d.mobile &&
+                                <p>mob: <b>{d.mobile}</b></p>
+                            }
+                            <b>Radno vreme:</b><br/>
+                            <p>radni dani: {d.hoursWorkdays}, vikend: {d.hoursWeekend}</p>
                         </div>
+                    </div>
                 </div>
             );
         })
         return (
             <div className="AmbulancesWrapper row flex-grow-1 pt-2">
-                <div className="col-md-7">
+                <div className="col-md-7 h-100">
                     <div className="bg-white shadow-sm position-relative p-2 pb-3 h-100 d-flex flex-column">
                         <p className="font-bold pb-2 lh-1">
                             {this.state.selectedTerritory === null ? 'Svi okruzi' : `Okrug: ${this.state.selectedTerritory}`}

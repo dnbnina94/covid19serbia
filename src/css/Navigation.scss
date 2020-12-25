@@ -30,7 +30,33 @@
   }
 
   .bottom-img {
-    width: 100%;
+    width: 80%;
     transform: scale(1.3);
+  }
+
+  .info-button {
+    color: $blue;
+    display: inline-flex;
+  }
+
+  .bottom-icon {
+    height: 1.5rem;
+    transition: 0.2s;
+  }
+
+  .github-icon {
+    stroke: gray;
+
+    &:hover {
+      stroke: $black;
+    }
+  }
+
+  .envelope-icon {
+    fill: gray;
+
+    &:hover {
+      fill: $black;
+    }
   }
 }

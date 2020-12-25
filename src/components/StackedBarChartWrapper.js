@@ -145,8 +145,8 @@ class StackedBarChartWrapper extends Component {
         return (
             <div className="StackedBarChartWrapper row mt-4">
                 <div className="col-md-4">
-                    <div className="overflow-auto position-relative h-100">
-                        <div className="bg-white shadow-sm p-2 position-absolute">
+                    <div className="bg-white shadow-sm overflow-auto position-relative h-100 border-radius-1">
+                        <div className="p-2 position-absolute">
                             <Options
                                 options={allFlagsLabels}
                                 current={checkedFlagsValues}
