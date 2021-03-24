@@ -1,12 +1,40 @@
 @import "../css/consts.scss";
 
 .StackedBarChart {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
   .custom-tooltip {
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 0.75rem;
-    line-height: 1.1rem;
+    font-size: 2.2vw;
+    margin-right: 9.5vw;
+    margin-left: 9.5vw;
     pointer-events: none;
+  }
+
+  .x-axis,
+  .y-axis {
+    font-size: 2vw;
+    font-family: $archiaMedium;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .StackedBarChart {
+    border-radius: 1rem;
+
+    .custom-tooltip {
+      font-size: 0.9vw;
+      line-height: 1.3vw;
+      margin-right: 3.3vw;
+      margin-left: 3.3vw;
+    }
+
+    .x-axis,
+    .y-axis {
+      font-size: 0.7vw;
+    }
   }
 }

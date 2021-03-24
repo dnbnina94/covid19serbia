@@ -18,8 +18,8 @@
           &-radio {
             &:after {
               display: inline-block;
-              width: 0.5rem;
-              height: 0.5rem;
+              width: 1.5vw;
+              height: 1.5vw;
               background-color: $white;
               border-radius: 50%;
               top: 50%;
@@ -31,8 +31,8 @@
           &-checkbox {
             &:after {
               display: inline-block;
-              width: 0.8rem;
-              height: 0.8rem;
+              width: 3vw;
+              height: 3vw;
               background-image: url(../img/svg/checkmark.svg);
               border-radius: 50%;
               top: 50%;
@@ -46,12 +46,12 @@
 
     .label {
       flex: 1;
-      font-size: 0.85rem;
+      font-size: 3.5vw;
     }
 
     .checkmark {
-      height: 1.5rem;
-      width: 1.5rem;
+      height: 5vw;
+      width: 5vw;
       background-color: $gray;
       position: relative;
 
@@ -70,6 +70,40 @@
       .checkmark {
         background-color: $dark-gray;
         transition: 0.2s;
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .Options {
+    .custom-input {
+      input {
+        &:checked {
+          ~ .checkmark {
+            &-radio {
+              &:after {
+                width: 0.6vw;
+                height: 0.6vw;
+              }
+            }
+            &-checkbox {
+              &:after {
+                width: 0.95vw;
+                height: 0.95vw;
+              }
+            }
+          }
+        }
+      }
+
+      .label {
+        font-size: 1vw;
+      }
+
+      .checkmark {
+        height: 1.75vw;
+        width: 1.75vw;
       }
     }
   }

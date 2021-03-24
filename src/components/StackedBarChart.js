@@ -6,19 +6,15 @@ import _ from "lodash";
 import "../css/StackedBarChart.scss";
 import { COLOR_SCHEME } from "../consts";
 import Legend from "./Legend";
-import { ReactComponent as Download } from '../img/svg/download.svg';
-import DatePicker from './DatePicker';
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
-import store from "../redux/store";
-import { loadingStart, loadingStop } from "../redux/actions/ui";
+import ChartTitle from "./ChartTitle";
 
 class StackedBarChart extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            padding: 40,
+            padding: 2.93,
+            paddingMobile: 7.93,
             paddingTop: 5,
             numOfTicksX: 5,
             numOfTicksY: 5,
@@ -29,12 +25,13 @@ class StackedBarChart extends Component {
         this.chartWrapper = React.createRef();
         this.barChartRef = React.createRef();
         this.tooltipRef = React.createRef();
-        this.saveButtonRef = React.createRef();
     }
 
     redrawChart() {
 
         const { width } = this.props;
+        const viewWidth = window.innerWidth/100;
+        const padding = viewWidth*(window.innerWidth < 768 ? this.state.paddingMobile : this.state.padding);
         const height = width/this.state.heightRatio;
 
         d3.select(this.barChartRef.current).select("svg").remove();
@@ -51,12 +48,12 @@ class StackedBarChart extends Component {
         const xScaler = d3
             .scaleBand()
             .domain(this.props.data.map(d => d.date))
-            .range([this.state.padding, width - this.state.padding]);
+            .range([padding, width - padding]);
 
         const yScaler = d3
             .scaleLinear()
             .domain([0, d3.max(this.props.data, d => _.sumBy(d.values, d => d.value))])
-            .range([height - this.state.padding, this.state.paddingTop]);
+            .range([height - padding, this.state.paddingTop]);
 
         var colorScaler = d3
             .scaleOrdinal()
@@ -89,13 +86,13 @@ class StackedBarChart extends Component {
                     .append("rect")
                     .attr("fill", colorScaler(v.key))
                     .attr("x", xScaler(d.date))
-                    .attr("y", height - this.state.padding)
+                    .attr("y", height - padding)
                     .attr("width", xScaler.bandwidth())
                     .attr("height", 0)
                     .transition()
                     .duration(this.state.animationDuration)
-                    .attr("y", yScaler(v.y1) - (height - yScaler(v.y2) - this.state.padding))
-                    .attr("height", height - yScaler(v.y1) - this.state.padding);
+                    .attr("y", yScaler(v.y1) - (height - yScaler(v.y2) - padding))
+                    .attr("height", height - yScaler(v.y1) - padding);
             });
             bar
                 .on("touchmove mousemove", () => {
@@ -125,7 +122,7 @@ class StackedBarChart extends Component {
             .attr("x", d => xScaler(d.date))
             .attr("y", 0)
             .attr("width", xScaler.bandwidth())
-            .attr("height", height - this.state.padding)
+            .attr("height", height - padding)
             .attr("fill", "white")
             .attr("opacity", 0)
             .attr("pointer-events", "all")
@@ -156,7 +153,8 @@ class StackedBarChart extends Component {
 
         chart
             .append("g")
-            .attr("transform", "translate(0," + (height - this.state.padding) + ")")
+            .attr("transform", "translate(0," + (height - padding) + ")")
+            .attr("class", "x-axis")
             .call(xAxis);
 
         const yAxis = d3.axisLeft(yScaler)
@@ -164,19 +162,9 @@ class StackedBarChart extends Component {
 
         chart
             .append("g")
-            .attr("transform", "translate(" + this.state.padding + ",0)")
+            .attr("transform", "translate(" + padding + ",0)")
+            .attr("class", "y-axis")
             .call(yAxis);
-
-        d3.select(this.saveButtonRef.current).on('click', function(){
-            store.dispatch(loadingStart());            
-            domtoimage.toBlob(self.chartWrapper.current, {
-                filter: (node) => node !== self.saveButtonRef.current
-            })
-            .then(function (blob) {
-                store.dispatch(loadingStop());
-                saveAs(blob, 'histogram.png');
-            });
-        });
     }
 
     componentDidUpdate(prevProps) {
@@ -192,23 +180,19 @@ class StackedBarChart extends Component {
     render() {
         return (
             <div className="StackedBarChart bg-white shadow-sm border-radius-1" ref={this.chartWrapper}>
-                <div className="d-flex p-2 justify-content-between chart-title">
-                    <div>
-                        <p className="font-bold">Histogram</p>
-                        <DatePicker
-                            minDate={this.props.minDate}
-                            maxDate={this.props.maxDate}
-                            startDate={this.props.startDate}
-                            endDate={this.props.endDate}
-                            dateChangeHandler={this.props.dateChangeHandler}
-                        />
-                    </div>
-                    <div ref={this.saveButtonRef}>
-                        <Download className="download-icon" />
-                    </div>
-                </div>
-                <div className="w-100 position-relative mt-2" ref={this.barChartRef}>
-                    <div className="custom-tooltip mx-5" ref={this.tooltipRef}>
+                <ChartTitle
+                    datePickerAvailable={true}
+                    downloadAvailable={true}
+                    downloadRef={this.chartWrapper}
+                    minDate={this.props.minDate}
+                    maxDate={this.props.maxDate}
+                    startDate={this.props.startDate}
+                    endDate={this.props.endDate}
+                    dateChangeHandler={this.props.dateChangeHandler}
+                    title="Histogram"
+                />
+                <div className="w-100 position-relative mt-5 mt-md-2" ref={this.barChartRef}>
+                    <div className="custom-tooltip" ref={this.tooltipRef}>
                         <Legend date={this.state.hoveredDate} flags={this.props.flags} values={this.state.hoveredValues} />
                     </div>
                 </div>

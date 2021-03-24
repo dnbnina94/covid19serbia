@@ -2,14 +2,38 @@
 @import "../css/bs-overrides.scss";
 
 .GeneralStatisticsBox {
+  .general-box-2-title {
+    line-height: 6vw;
+  }
   .holder {
     .statistics-box-icon {
       fill: $white;
-      width: 2rem;
-      height: 2rem;
+      width: 7vw;
+      height: 7vw;
       position: absolute;
-      top: $s2;
-      right: $s2;
+      top: $s5;
+      right: $s5;
+    }
+
+    &-ambulances {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .GeneralStatisticsBox {
+    .general-box-2-title {
+      line-height: 1.75vw;
+    }
+    .holder {
+      .statistics-box-icon {
+        width: 2.2vw;
+        height: 2.2vw;
+        top: $s2;
+        right: $s2;
+      }
     }
   }
 }

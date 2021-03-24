@@ -1,7 +1,9 @@
+@import "../css/consts.scss";
+
 .PieChart {
   .pie-chart-legend {
     .legend-label {
-      line-height: 1rem;
+      line-height: 6vw;
       flex: 1;
     }
 
@@ -13,7 +15,7 @@
   }
 
   .custom-tooltip {
-    font-size: 1.5rem;
+    font-size: 8vw;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -27,11 +29,59 @@
 
   &-small {
     .custom-tooltip {
-      font-size: 1.1rem;
+      font-size: 7vw;
     }
 
     .pie-chart-legend {
-      font-size: 0.75rem;
+      font-size: 3.5vw;
+
+      .legend-label {
+        line-height: 5vw;
+      }
+
+      .legend-color {
+        width: 3vw;
+        height: 3vw;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .PieChart {
+    .pie-chart-legend {
+      .legend-label {
+        line-height: 1.1vw;
+      }
+    }
+
+    .custom-tooltip {
+      font-size: 1.8vw;
+    }
+
+    &-small {
+      .custom-tooltip {
+        font-size: 1.3vw;
+      }
+
+      .pie-chart-legend {
+        font-size: 0.87vw;
+      }
+    }
+
+    &-small {
+      .custom-tooltip {
+        font-size: 1.3vw;
+      }
+
+      .pie-chart-legend {
+        font-size: 0.87vw;
+        .legend-color {
+          width: 0.7vw;
+          height: 0.7vw;
+        }
+      }
     }
   }
 }

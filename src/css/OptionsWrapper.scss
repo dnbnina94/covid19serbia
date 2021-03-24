@@ -1,0 +1,19 @@
+@import "../css/consts.scss";
+
+.options-wrapper {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.options-wrapper-inner {
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .options-wrapper {
+    overflow: auto !important;
+    height: 100% !important;
+    border-radius: 1rem;
+  }
+  .options-wrapper-inner {
+    position: absolute;
+  }
+}

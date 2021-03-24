@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/HorizontalBarChart.scss';
 import * as d3 from 'd3';
+import ChartTitle from './ChartTitle';
 
 class HorizontalBarChart extends Component {
     constructor(props) {
@@ -9,27 +10,29 @@ class HorizontalBarChart extends Component {
 
     render() {
         this.props.data.sort((a, b) => {
-            return a.values.length < b.values.length ? 1 : a.values.length === b.values.length && a.key > b.key ? 1 : -1;
+            const aVal = this.props.valueExtractor(a);
+            const bVal = this.props.valueExtractor(b);
+            return aVal < bVal ? 1 : aVal === bVal && a.key > b.key ? 1 : -1;
         });
-        const max = d3.max(this.props.data, d => d.values.length)
+        const max = d3.max(this.props.data, d => this.props.valueExtractor(d));     
         const bars =
-            <div className="horizontal-bar-wrapper w-100 mb-1">
+            <div className="horizontal-bar-wrapper w-100 mb-1 px-5 pt-5 pb-4 px-md-2 pt-md-2 pb-md-0">
                     {this.props.data.map(d => {
-                        const width = 100*d.values.length/max;
+                        const width = max ? 100*this.props.valueExtractor(d)/max : 0;
                         return (
                             <div className="horizontal-bar-wrapper-row" key={d.key+this.props.startDate+this.props.endDate}>
-                                <div className="horizontal-bar-wrapper-column pr-2">
+                                <div className="horizontal-bar-wrapper-column pr-4 pr-md-2">
                                     <p className="label">{d.key}</p>
                                 </div>
                                 <div className=" horizontal-bar-wrapper-column w-100">
                                     <div className="">
-                                        <div className="horizontal-bar position-relative" style={{width: `${width}%`}}>
+                                        <div className="horizontal-bar position-relative" style={{width: `${width}%`, backgroundColor: this.props.color}}>
                                             {/* <div className={width < 10 ? 'value value-outer' : 'value value-inner'}>{d.count}</div> */}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="horizontal-bar-wrapper-column pl-2">
-                                    <p className="label">{d.values.length}</p>
+                                <div className="horizontal-bar-wrapper-column pl-4 pl-md-2">
+                                    <p className="label">{this.props.valueExtractor(d)}</p>
                                 </div>
                             </div>
                         );
@@ -37,8 +40,8 @@ class HorizontalBarChart extends Component {
             </div>
 
         return (
-            <div className="HorizontalBarChart position-absolute w-100">
-                <p className="font-bold py-2 lh-1">{this.props.title}</p>
+            <div className="HorizontalBarChart w-100">
+                <ChartTitle title={this.props.title} />
                 {bars}
             </div>
         );

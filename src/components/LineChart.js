@@ -5,19 +5,15 @@ import _ from "lodash";
 import { formatTitle } from "../utilities";
 import '../css/LineChart.scss';
 import { withResizeDetector } from 'react-resize-detector';
-import DatePicker from "./DatePicker";
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
-import store from '../redux/store';
-import { ReactComponent as Download } from '../img/svg/download.svg';
-import { loadingStart, loadingStop } from "../redux/actions/ui";
+import ChartTitle from "./ChartTitle";
 
 class LineChart extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            padding: 40,
+            padding: 2.93,
+            paddingMobile: 7.93,
             paddingTop: 0,
             tooltipCircleR: 5,
             numOfTicksX: 5,
@@ -31,7 +27,6 @@ class LineChart extends Component {
         this.chartWrapper = React.createRef();
         this.lineChartRef = React.createRef();
         this.tooltipRef = React.createRef();
-        this.saveButtonRef = React.createRef();
     }
 
     length(arg) {
@@ -59,6 +54,8 @@ class LineChart extends Component {
     redrawChart() {
 
         const { width } = this.props;
+        const viewWidth = window.innerWidth/100;
+        const padding = viewWidth*(window.innerWidth < 768 ? this.state.paddingMobile : this.state.padding);
         const height = width/this.state.heightRatio;
 
         d3.select(this.lineChartRef.current).select("svg").remove();
@@ -79,12 +76,12 @@ class LineChart extends Component {
                     return new Date(d.date);
                 })
             )
-            .range([this.state.padding, width - this.state.padding]);
+            .range([padding, width - padding]);
         
         const yScaler = d3
             .scaleLinear()
             .domain([0, d3.max(this.props.data, (d) => d.value)])
-            .range([height - this.state.padding, this.state.paddingTop + this.state.tooltipCircleR]);
+            .range([height - padding, this.state.paddingTop + this.state.tooltipCircleR]);
 
         const line = d3.line()
             .defined(d => !isNaN(d.value))
@@ -114,7 +111,8 @@ class LineChart extends Component {
 
         chart
             .append("g")
-            .attr("transform", "translate(" + this.state.padding + ",0)")
+            .attr("transform", "translate(" + padding + ",0)")
+            .attr("class", "y-axis")
             .call(yAxis);
 
         const xAxis = d3.axisBottom(xScaler)
@@ -122,21 +120,11 @@ class LineChart extends Component {
 
         chart
             .append("g")
-            .attr("transform", "translate(0," + (height - this.state.padding) + ")")
+            .attr("transform", "translate(0," + (height - padding) + ")")
+            .attr("class", "x-axis")
             .call(xAxis);
 
         const self = this;
-
-        d3.select(this.saveButtonRef.current).on('click', function(){
-            store.dispatch(loadingStart());
-            domtoimage.toBlob(self.chartWrapper.current, {
-                filter: (node) => node !== self.saveButtonRef.current
-            })
-            .then(function (blob) {
-                store.dispatch(loadingStop());
-                saveAs(blob, formatTitle(self.props.title) + '.png');
-            });
-        });
 
         const dashedLine = chart.append("line");
         const circle = chart.append("circle").attr("fill", "none");
@@ -167,7 +155,7 @@ class LineChart extends Component {
                     .attr("x1", xScaler(date))
                     .attr("x2", xScaler(date))
                     .attr("y1", 0)
-                    .attr("y2", height - self.state.padding);
+                    .attr("y2", padding);
                 
             });
     
@@ -194,21 +182,17 @@ class LineChart extends Component {
     render() {
         return (
             <div className="LineChart bg-white shadow-sm border-radius-1" ref={this.chartWrapper}>
-                <div className="d-flex p-2 justify-content-between chart-title">
-                    <div>
-                        <p className="font-bold">{formatTitle(this.props.title)}</p>
-                        <DatePicker
-                            minDate={this.props.minDate}
-                            maxDate={this.props.maxDate}
-                            dateChangeHandler={this.props.dateChangeHandler}
-                        />
-                    </div>
-                    <div ref={this.saveButtonRef}>
-                        <Download className="download-icon" />
-                    </div>
-                </div>
-                <div className="w-100 position-relative mt-2" ref={this.lineChartRef}>
-                    <div className="custom-tooltip custom-tooltip-hidden px-5" ref={this.tooltipRef}></div>
+                <ChartTitle
+                    datePickerAvailable={true}
+                    downloadAvailable={true}
+                    downloadRef={this.chartWrapper}
+                    minDate={this.props.minDate}
+                    maxDate={this.props.maxDate}
+                    dateChangeHandler={this.props.dateChangeHandler}
+                    title={formatTitle(this.props.title)}
+                />
+                <div className="w-100 position-relative mt-5 mt-md-2" ref={this.lineChartRef}>
+                    <div className="custom-tooltip custom-tooltip-hiddens px-1" ref={this.tooltipRef}></div>
                 </div>
             </div>
         )

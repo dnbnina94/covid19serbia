@@ -14,7 +14,7 @@
         display: table-cell;
         white-space: nowrap;
         vertical-align: middle;
-        padding: 0.1rem 0;
+        padding: 0.55vw 0;
         overflow: hidden;
 
         &:nth-child(1) {
@@ -23,7 +23,7 @@
         }
 
         .label {
-          font-size: 0.8rem;
+          font-size: 3.5vw;
           opacity: 0;
           animation: opacityAnimation 1s 1 forwards;
         }
@@ -31,9 +31,9 @@
         .horizontal-bar {
           background: $dark-orange;
           border-radius: 0.25rem;
-          height: 0.5rem;
-          font-size: 0.8rem;
-          line-height: 0.8rem;
+          height: 1.1vw;
+          font-size: 2.95vw;
+          line-height: 3.95vw;
           animation: 1s widthAnimation forwards;
           animation-iteration-count: 1;
 
@@ -74,6 +74,30 @@
     }
     100% {
       opacity: 1;
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .HorizontalBarChart {
+    position: absolute;
+
+    .horizontal-bar-wrapper {
+      .horizontal-bar-wrapper-row {
+        .horizontal-bar-wrapper-column {
+          padding: 0.1rem 0;
+          .label {
+            font-size: 0.95vw;
+          }
+
+          .horizontal-bar {
+            border-radius: 0.25rem;
+            height: 0.5vw;
+            font-size: 0.95vw;
+            line-height: 0.95vw;
+          }
+        }
+      }
     }
   }
 }

@@ -26,8 +26,17 @@ export const formatDate = (date) => {
 }
 
 export const formatTime = (date) => {
-    const hours = new Intl.DateTimeFormat('en', { hour: 'numeric', hour12: false }).format(date);
-    const minutes = new Intl.DateTimeFormat('en', { minute: 'numeric'}).format(date);
+    let hours = new Intl.DateTimeFormat('en', { hour: '2-digit', hour12: false }).format(date);
+	hours = +hours;
+	if (hours < 10) {
+		hours = '0'+hours;
+	}
+    let minutes = new Intl.DateTimeFormat('en', { minute: '2-digit'}).format(date);
+	minutes = +minutes;
+	if (minutes < 10) {
+		minutes = '0'+minutes;
+	}
+	
     return `${hours}:${minutes}`;
 }
 

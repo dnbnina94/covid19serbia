@@ -1,74 +1,19 @@
 import React, { Component } from "react";
 import Map from './Map';
 import HorizontalBarChart from './HorizontalBarChart';
+import Map3 from "./Map3";
 import '../css/MapWrapper.scss';
-import { REGION_COLOR_SCHEME, COLOR_SCHEME } from '../consts';
-import PieChart from './PieChart';
-import BarChart from './BarChart';
+import { REGION_COLOR_SCHEME, COLOR_SCHEME, REGIONAL_COVID_DATA } from '../consts';
 import ChartTitle from "./ChartTitle";
 const serbiaGeo = require('../serbia.geojson.json');
 const serbiaGeoDistricts = require('../sr_a2.geojson.json');
 
-class MapWrapper extends Component {
+class MapWrapper2 extends Component {
     constructor(props) {
         super(props);
 
-        this.handleMapChange = this.handleMapChange.bind(this);
-        this.showWholeMap = this.showWholeMap.bind(this);
-
-        const pieChartFlags = [
-            {
-                flag: 'F',
-                desc: 'Broj pozitivnih žena',
-                color: "#BCBDDC"
-            },
-            {
-                flag: 'M',
-                desc: 'Broj pozitivnih muškaraca',
-                color: "#756BB1"
-            }
-        ];
-
-        const ageGroupFlags = [
-            {
-                bottomVal: 0,
-                upperVal: 2
-            },
-            {
-                bottomVal: 2,
-                upperVal: 9
-            },
-            {
-                bottomVal: 9,
-                upperVal: 12
-            },
-            {
-                bottomVal: 12,
-                upperVal: 19
-            },
-            {
-                bottomVal: 19,
-                upperVal: 30
-            },
-            {
-                bottomVal: 30,
-                upperVal: 40
-            },
-            {
-                bottomVal: 40,
-                upperVal: 50
-            },
-            {
-                bottomVal: 50,
-                upperVal: 65
-            },
-            {
-                bottomVal: 65,
-                upperVal: Infinity
-            }
-        ];
-
         const self = this;
+
         const mapFilters = [
             {
                 targetField: 'region',
@@ -107,18 +52,17 @@ class MapWrapper extends Component {
 
         this.state = {
             mapFilters: mapFilters,
-            pieChartFlags: pieChartFlags,
-            ageGroupFlags: ageGroupFlags,
             selectedFilter: 0,
             selectedTerritory: null,
             targetName: "NAME_2",
             minDate: minDate,
             maxDate: maxDate,
-            startDate: new Date(minDate.valueOf()),
-            endDate: new Date(maxDate.valueOf()),
+            startDate: new Date(minDate.valueOf())
         }
 
         this.dateChangeHandler = this.dateChangeHandler.bind(this);
+        this.handleMapChange = this.handleMapChange.bind(this);
+        this.showWholeMap = this.showWholeMap.bind(this);
 
         this.barWrapper = React.createRef();
         this.chartWrapper = React.createRef();
@@ -128,7 +72,8 @@ class MapWrapper extends Component {
         const self = this;
         const mapFilter = this.state.mapFilters[this.state.selectedFilter];
         const territories = mapFilter.territories(this.state.selectedTerritory);
-        const regionData = territories
+
+        let regionData = territories
         .map(r => {
             return {
                 key: r,
@@ -138,50 +83,56 @@ class MapWrapper extends Component {
                     return acc.concat(curr.data);
                 }, [])
             }
-        })
-        .map(rd => {
+        });
+        regionData = regionData.map(rd => {
             return {
                 ...rd,
-                values: rd.values.filter(v => {
+                value: rd.values
+                .filter(v => {
                     const date = new Date(v.date);
-                    return date >= self.state.startDate && date <= self.state.endDate
+                    return date.valueOf() == self.state.startDate.valueOf() 
                 })
+                .reduce((acc, curr) => {
+                    return acc + (+curr.value)
+                }, 0)
             }
         })
         .filter(rd => {
             return rd.values.length !== 0
         });
 
-        const pieChartData = this.state.pieChartFlags
-        .map(f => {
-            let value = regionData.reduce((acc, curr) => {
-                return acc + curr.values.reduce((acc,curr) => {return acc + (curr.sex === f.flag ? 1 : 0)}, 0);
-            },0)
-            return {
-                key: f.desc,
-                value: value, 
-                color: f.color
-            }
-        });
-
-        const ageData = this.state.ageGroupFlags
-        .map(f => {
-            const value = regionData.reduce((acc, curr) => {
-                return acc + curr.values.reduce((acc, curr) => {return acc + (curr.age >= f.bottomVal && curr.age < f.upperVal ? 1 : 0)}, 0);
-            }, 0)
-            return {
-                key: `${f.bottomVal}${f.upperVal === Infinity ? '+' : '-'+f.upperVal}`,
-                value: value
-            }
-        });
-
         this.setState((state) => {
             return {
                 regionData: regionData,
-                pieChartData: pieChartData,
-                ageData: ageData,
                 map: mapFilter.map(state.selectedTerritory)
             }
+        });
+    }
+
+    handleMapChange(p) {
+        if (p.properties.NAME_2 === "Grad Beograd") {
+            return;
+        }
+        this.setState((state) => {
+            const nextFilter = (state.selectedFilter + 1) % state.mapFilters.length;
+            if (nextFilter === 1) {
+                process.nextTick(() => {
+                    this.setData();
+                });
+                return {
+                    selectedFilter: nextFilter,
+                    selectedTerritory: nextFilter !== 0 ? p.properties.NAME_2 : null
+                }
+            }
+        });
+    }
+
+    dateChangeHandler(date1, date2) {
+        this.setState({
+            startDate: date1        
+        });
+        process.nextTick(() => {
+            this.setData();
         })
     }
 
@@ -193,44 +144,16 @@ class MapWrapper extends Component {
         });
     }
 
-    handleMapChange(p) {
-        let isDistrict = this.state.selectedFilter === 0 ? true : false;
-        this.setState((state) => {
-            const nextFilter = (state.selectedFilter + 1) % state.mapFilters.length;
-            if (nextFilter === 1) {
-                process.nextTick(() => {
-                    this.setData();
-                })
-                return {
-                    selectedFilter: nextFilter,
-                    selectedTerritory: nextFilter !== 0 ? p.properties.NAME_2 : null
-                }
-            }
-        });
-
-        return isDistrict;
-    }
-
-    dateChangeHandler(date1, date2) {
-        this.setState({
-            startDate: date1,
-            endDate: date2
-        });
-        process.nextTick(() => {
-            this.setData();
-        })
-    }
-
     showWholeMap() {
         this.setState(() => {
             process.nextTick(() => {
                 this.setData();
-            })
+            });
             return {
                 selectedFilter: 0,
                 selectedTerritory: null
             }
-        })
+        });
     }
 
     render() {
@@ -238,25 +161,35 @@ class MapWrapper extends Component {
             'Okrug: ' + this.state.selectedTerritory : 
             'Svi okruzi';
         const barChartTitle = this.state.selectedTerritory ?
-            'Broj obolelih po opštinama' : 
-            'Broj obolelih po okruzima';
-
-        this.barWrapper.current && this.barWrapper.current.scrollTo(0,0);
-
+            'Broj samoizolovanih po opštinama' : 
+            'Broj samoizolovanih po okruzima';
+        
         return (
             <div className="MapWrapper row flex-grow-1 pt-3">
                 <div className="col-md-5">
-                    <div className="bg-white shadow-sm h-100 d-flex flex-column border-radius-1" ref={this.chartWrapper}>
+                    <div className="row">
+                        <div className="col-md-12 p-5 mb-5 d-block d-md-none shadow-sm border-radius-1 bg-dark-blue color-white smaller-font">
+                            <p className="selfisolation-mobile-info">
+                                Prikazani podaci odnose se na broj ljudi u obaveznoj samoizolaciji na terotirji 
+                                Republike Srbije po datumima.
+                            </p>
+                            <p className="selfisolation-mobile-info pt-5">
+                                Izvor: Ministarstvo Unutrašnjih poslova Republike Srbije
+                            </p>
+                        </div>
+                    </div>
+                    <div className="map-wrapper-2 bg-white shadow-sm d-flex flex-column border-radius-1" ref={this.chartWrapper}>
                         <ChartTitle 
                             datePickerAvailable={true}
                             downloadAvailable={true}
                             downloadRef={this.chartWrapper}
                             minDate={this.state.minDate}
                             maxDate={this.state.maxDate}
+                            noDateRange={true}
                             dateChangeHandler={this.dateChangeHandler}
                             title={selectedTerritory}
                         />
-                        <div className="map-container w-100 flex-grow-1 p-5 p-md-2 position-relative">                            
+                        <div className="map-container w-100 flex-grow-1 p-5 p-md-2 position-relative">
                             <div 
                                 onClick={this.showWholeMap} 
                                 className={`map-back-btn map-back-btn-blue ${this.state.selectedFilter === 1 ? 'map-back-btn-visible' : ''}`}
@@ -264,66 +197,50 @@ class MapWrapper extends Component {
                                 Prikaz cele mape
                             </div>
                             {this.state.dataReady &&
-                                <Map
+                                <Map3
                                     data={this.state.regionData} 
                                     geoData={this.state.map} 
-                                    geoDataTargetName={this.state.targetName}
-                                    colors={REGION_COLOR_SCHEME}
+                                    geoDataTargetName={this.state.targetName} 
                                     handleMapChange={this.handleMapChange}
+                                    color={COLOR_SCHEME[1]}
                                     selectedFilter={this.state.selectedFilter}
                                 />
                             }
                         </div>
                     </div>
                 </div>
-                <div className="col-md-7">
-                    <div className="grid-layout h-100">
+                <div className="col-md-7 my-5 my-md-0">
+                    <div className="grid-layout-2 h-100 mb-0">
                         <div className="row">
-                            <div className="horizontal-barchart-wrapper col-md-12 bg-white shadow-sm p-0 border-radius-1 mt-5 mt-md-0" ref={this.barWrapper}>
+                            <div className="col-md-12 d-none d-md-block p-2 shadow-sm border-radius-1 bg-dark-blue color-white smaller-font">
+                                <p>
+                                    Prikazani podaci odnose se na broj ljudi u obaveznoj samoizolaciji na terotirji 
+                                    Republike Srbije po datumima.
+                                </p>
+                                <p className="pt-1">
+                                    Izvor: Ministarstvo Unutrašnjih poslova Republike Srbije
+                                </p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="horizontal-barchart-wrapper col-md-12 bg-white shadow-sm p-0 h-100 border-radius-1" ref={this.barWrapper}>
                                 {this.state.dataReady &&
                                     <HorizontalBarChart 
                                         data={this.state.regionData}
                                         title={barChartTitle}
                                         startDate={this.state.startDate}
-                                        endDate={this.state.endDate}
-                                        valueExtractor={(d) => d.values.length}
+                                        valueExtractor={(d) => d.value}
                                         color={COLOR_SCHEME[0]}
                                     />
                                 }
                             </div>
                         </div>
-                        <div className="row mb-5 mb-md-0 pb-4 pb-md-0">
-                            <div className="col-md-12 h-100 p-0 bg-white shadow-sm border-radius-1 mb-5 mb-md-0">
-                                {
-                                    <ChartTitle
-                                        title="Broj obolelih prema polu i starosnim grupama"
-                                    />
-                                }
-                                <div className="row w-100">
-                                    <div className="col-md-5 p-0">
-                                        {this.state.dataReady &&
-                                            <PieChart 
-                                                small={true}
-                                                hideTitle={true}
-                                                heightRatio={2}
-                                                innerRadius={0.65} 
-                                                data={this.state.pieChartData} 
-                                            />
-                                        }
-                                    </div>
-                                    <div className="col-md-7 px-5 px-md-2 pt-5 pb-2 pb-md-2 pt-md-4">
-                                        {this.state.dataReady &&
-                                            <BarChart data={this.state.ageData} />
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+
                 </div>
             </div>
         );      
     }
 }
 
-export default MapWrapper;
+export default MapWrapper2;

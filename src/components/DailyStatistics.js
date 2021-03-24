@@ -38,25 +38,35 @@ class DailyStatistics extends Component {
             dataType: BROJ_LICA_NA_RESPIRATORU,
             desc: BR_LICA_NA_RESPIRATORU_SHORT,
             color: "purple-blue",
-            icon: "respirator"
+            icon: "coronavirus"
         }, {
             dataType: BROJ_PREMINULIH_LICA,
             desc: BR_PREMINULIH_LICA_SHORT,
             color: "orange",
-            icon: "skull"
+            icon: "coronavirus"
         }];
         const statisticBoxes = flags.map(flag => {
             const statistics = this.props.data.find(item => flag.dataType === item.description);
             if (statistics) {
+                const value = statistics.data[statistics.data.length-1].value;
+                const prevValue = statistics.data[statistics.data.length-2].value;
+                const prevDescription = `${value > prevValue ? 'više' : 'manje'} u odnosu na juče`;
+                const InfoText = props => <span>
+                    <span>za </span>
+                    <b>{Math.abs(value - prevValue)}</b>
+                    <span> {prevDescription}</span>
+                </span>;
+
                 return (
                     <div className="col-md-4 px-1"  key={flag.dataType}>
                         <GeneralStatisticsBox
                             bg={flag.color} 
-                            value={statistics.data[statistics.data.length-1].value}
-                            prevValue={statistics.data[statistics.data.length-2].value}
+                            value={value}
+                            prevValue={prevValue}
                             icon={flag.icon}
                             description={`${formatTitle(flag.desc)}:`}
                             borderRadius={true}
+                            infoText={InfoText}
                         />
                     </div>
                 )
@@ -66,19 +76,19 @@ class DailyStatistics extends Component {
         let dateModified = this.props.dataInfo && new Date(this.props.dataInfo.last_modified);
         
         return (
-            <div className="DailyStatistics col-md-9 px-3 py-2 overflow-hidden">
+            <div className="DailyStatistics col-md-9 p-3 overflow-hidden">
                 <div className="row">
-                    <div className="col-md-12 d-flex justify-content-between">
-                        <p className="font-headline">Dnevna statistika</p>
+                    <div className="col-md-12 mt-4 mb-5 my-md-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                        <p className="main-title font-headline">Dnevna statistika</p>
                         {dateModified &&
-                            <p className="">Ažurirano {formatDate(dateModified)} u {formatTime(dateModified)}</p>
+                            <p className="main-title-info">Ažurirano {formatDate(dateModified)} u {formatTime(dateModified)}</p>
                         }
                     </div>
                 </div>
                 {
                     this.props.data.length !== 0 && (
-                        <div className="py-2">
-                            <div className="statistics-boxes-wrapper row mx-1">
+                        <div className="pt-3">
+                            <div className="statistics-boxes-wrapper row mx-5 mx-md-1">
                                 {statisticBoxes}
                             </div>
                             <LineChartWrapper data={this.props.data} />

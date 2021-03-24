@@ -14,6 +14,7 @@ import {
 } from "../consts";
 import StackedBarChart from "./StackedBarChart";
 import Options from "./Options";
+import '../css/OptionsWrapper.scss';
 
 class StackedBarChartWrapper extends Component {
     constructor(props) {
@@ -144,19 +145,7 @@ class StackedBarChartWrapper extends Component {
 
         return (
             <div className="StackedBarChartWrapper row mt-4">
-                <div className="col-md-4">
-                    <div className="bg-white shadow-sm overflow-auto position-relative h-100 border-radius-1">
-                        <div className="p-2 position-absolute">
-                            <Options
-                                options={allFlagsLabels}
-                                current={checkedFlagsValues}
-                                type="checkbox"
-                                onChangeHandler={this.onChangeHandler}
-                            />
-                        </div>
-                    </div>                 
-                </div>
-                <div className="col-md-8">
+                <div className="col-md-8 order-md-2">
                     <StackedBarChart 
                         data={data} 
                         flags={this.state.flags}
@@ -166,6 +155,18 @@ class StackedBarChartWrapper extends Component {
                         endDate={this.state.endDate}
                         dateChangeHandler={this.dateChangeHandler}
                     />
+                </div>
+                <div className="col-md-4 order-md-1">
+                    <div className="options-wrapper bg-white shadow-sm position-relative border-radius-1 mb-5 mb-md-0">
+                        <div className="options-wrapper-inner p-5 p-md-2">
+                            <Options
+                                options={allFlagsLabels}
+                                current={checkedFlagsValues}
+                                type="checkbox"
+                                onChangeHandler={this.onChangeHandler}
+                            />
+                        </div>
+                    </div>                 
                 </div>
             </div>
         );

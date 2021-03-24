@@ -2,6 +2,7 @@ $white: #ffffff;
 $black: #1d2b36;
 $light-gray: #fafbff;
 $blue: #0067ff;
+$dark-blue: #3182bd;
 $lighter-blue: #6baed6;
 $light-blue: #ecf1ff;
 $light-blue-v2: #cde1ff;
@@ -21,3 +22,11 @@ $fontHeadline: "GothamBold";
 $archiaBold: "ArchiaBold";
 $archiaSemiBold: "ArchiaSemiBold";
 $archiaMedium: "ArchiaMedium";
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);

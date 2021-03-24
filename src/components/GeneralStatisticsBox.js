@@ -62,29 +62,23 @@ class GeneralStatisticsBox extends Component {
     }
 
     render() {
-        const classes = `holder h-100 position-relative bg-${this.props.bg} ${this.props.borderRadius ? 'border-radius-1' : ''} p-2`;
+        const classes = `holder ${this.props.borderRadius ? '' : 'holder-ambulances'} h-100 position-relative bg-${this.props.bg} border-radius-1 p-5 p-md-2`;
         const Icon = svgComponents[this.props.icon];
-        let prevDescription = `
-            ${this.props.value > this.props.prevValue ? 'više' : 'manje'} 
-            u odnosu na juče
-        `;
-
+        const InfoText = this.props.infoText;
         return (
-            <div className="GeneralStatisticsBox color-white">
+            <div className={`GeneralStatisticsBox color-white ${this.props.borderRadius ? 'mb-5' : ''} mb-md-0`}>
                 <div className={classes}>
                     {
                         this.props.description &&
-                        <p className="mb-1">{this.props.description}</p>
+                        <p className={`${this.props.borderRadius ? 'mb-1' : 'mb-2 mb-md-1 general-box-2-title'}`}>{this.props.description}</p>
                     }
-                    <h2 id="asdf" className="font-bold">
+                    <h2 className="font-bold">
                         {/* {this.props.value} */}
                         {Math.trunc(this.state.value)}
                     </h2>
-                    {this.props.prevValue && 
+                    {this.props.infoText && 
                         <p className="mt-1">
-                            <span>za </span>
-                            <b>{Math.abs(this.props.value - this.props.prevValue)}</b>
-                            <span>{prevDescription}</span>
+                            <InfoText />
                         </p>
                     }
                     {Icon &&

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { withResizeDetector } from "react-resize-detector";
+import { COLOR_SCHEME, REGION_COLOR_SCHEME } from "../consts.js";
 import * as d3 from 'd3';
 import _ from 'lodash';
 import '../css/Map.scss';
 
-class Map extends Component {
+class Map3 extends Component {
     constructor(props) {
         super(props);
 
@@ -15,28 +16,23 @@ class Map extends Component {
             canSelect: true
         }
 
-        this.hideTooltip = this.hideTooltip.bind(this);
-
         this.chartRef = React.createRef();
         this.tooltipRef = React.createRef();
         this.mapWrapper = React.createRef();
     }
 
     redrawChart() {
-        this.hideTooltip();
-
         d3.select(this.chartRef.current).select("svg").remove();
 
         const width = this.props.width,
               height = window.innerWidth >= 768 ? this.mapWrapper.current.clientHeight : width*this.state.widthHeightRatio;
 
-        const colorScale = d3
-            .scaleSequential()
+        var linearScaler = d3.scaleLinear()
             .domain([
-                0,
-                d3.max(this.props.data, d => d.values.length)
+                d3.min(this.props.data, d => d.value),
+                d3.max(this.props.data, d => d.value)
             ])
-            .range(this.props.colors);
+            .range([0.2, 2]);
         
         const projection2 = d3
             .geoMercator()
@@ -61,31 +57,38 @@ class Map extends Component {
             .enter()
             .append("path")
             .attr("d", path2)
-            .attr("class", "path")
             .attr("fill", "white")
+            .attr("stroke", COLOR_SCHEME[2]);        
 
-        rectWrapper
+        chart
+            .selectAll("circle")
+            .data(this.props.geoData)
+            .enter()
+            .append("circle")
+            .attr("stroke", COLOR_SCHEME[1])
+            .attr("fill", COLOR_SCHEME[3])
+            .attr("fill-opacity", "0.6")
+            .attr("style", "pointer-events: none")
+            .attr("cx", function (d) {
+                const coords = path2.centroid(d);
+                return coords[0];
+            })
+		    .attr("cy", function (d) {
+                const coords = path2.centroid(d);
+                return coords[1];
+            })
+            .attr("r", 0)
             .transition()
-            .delay((d,i) => i * 15)
             .duration(500)
-            .attr("fill", f => {
-                try {
-                    const value = this.props.data.find(d => d.key.toLowerCase() === f.properties[this.props.geoDataTargetName].toLowerCase());
-                    return colorScale(value.values.length);
-                } catch {
-                    return "#ccc"
-                }
+            .attr("r", function(d) {
+                const selectedData = self.props.data.find(p => p.key.includes(d.properties[self.props.geoDataTargetName]));
+                return ((selectedData !== undefined) ? (selectedData.value !== 0 ? linearScaler(selectedData.value) : 0) : 0) + "rem";
             });
 
         const tooltip = self.tooltipRef.current;
-        
+
         rectWrapper
             .on("touchstart mousemove", (event,p) => {
-                // if (event.type === "touchstart") {
-                //     if (event.cancelable) {
-                //         event.preventDefault();
-                //     }
-                // }
                 if (this.props.selectedFilter === 0 && !this.state.canSelect) {
                     return;
                 }
@@ -96,25 +99,17 @@ class Map extends Component {
                     }
                 });
                 d3.select(`#text-${self.props.geoData.indexOf(p)}`).attr("class", "map-label");
-                let value, brMus, brZen;
+                let value;
                 try {
-                    const selectedData = self.props.data.find(d => d.key === p.properties[this.props.geoDataTargetName]);
-                    value = selectedData.values.length;
-                    brMus = selectedData.values.reduce((acc, curr) => {
-                        return curr.sex === "M" ? acc+1 : acc
-                    },0);
-                    brZen = selectedData.values.reduce((acc, curr) => {
-                        return curr.sex === "F" ? acc+1 : acc
-                    },0);
+                    const selectedData = self.props.data.find(d => d.key.includes(p.properties[this.props.geoDataTargetName]));
+                    value = selectedData.value;
                 } catch {
-                    value = brMus = brZen = "bez podataka";
+                    value = "bez podataka";
                 }
                 tooltip.classList.remove("custom-tooltip-hidden");
                 tooltip.innerHTML = `
                     <span class='font-headline'>${p.properties[this.props.geoDataTargetName]}:</span><br/>
-                    <span>Ukupan broj obolelih: ${value}</span><br/>
-                    <span>Broj obolelih žena: ${brZen}</span><br/>
-                    <span>Broj obolelih muškaraca: ${brMus}</span>
+                    <span>Ukupan broj samoizolovanih: ${value}</span><br/>
                 `
             })
             .on("mouseleave", (event,p) => {
@@ -162,11 +157,6 @@ class Map extends Component {
             .text(d => { return d.properties[this.props.geoDataTargetName]; })
     }
 
-    hideTooltip = () => {
-        const tooltip = this.tooltipRef.current;
-        tooltip.classList.add("custom-tooltip-hidden");
-    }
-
     componentDidUpdate(prevProps) {
         const redraw = prevProps.width !== this.props.width ||
                        prevProps.height !== this.props.height ||
@@ -181,30 +171,13 @@ class Map extends Component {
     }
 
     render() {
-        const mapLegendStyle = {
-            background: `linear-gradient(${this.props.colors[1]}, ${this.props.colors[0]})`
-        }
-        const max = Math.max(...this.props.data.map(d => d.values.length));
-        let legendData = _.range(0,max,Math.ceil(max/this.state.legendStepSize));
-        legendData.push(max);
-
-        legendData = legendData.map((d,i) => {
-            const top = (100/this.state.legendStepSize)*(legendData.length-1-i);
-            return (
-            <div className="map-legend-item position-absolute pr-1" key={i} style={{top: `${top}%`}}>{d}</div>
-            )
-        })
-
         return (
             <div className="Map h-100" ref={this.mapWrapper}>
                 <div ref={this.chartRef}></div>
-                <div className="map-legend position-absolute" style={mapLegendStyle}>
-                    {legendData}
-                </div>
                 <div className="custom-tooltip custom-tooltip-hidden position-absolute p-5 p-md-0" ref={this.tooltipRef}></div>
             </div>
         )
     }
 }
 
-export default withResizeDetector(Map);
+export default withResizeDetector(Map3);

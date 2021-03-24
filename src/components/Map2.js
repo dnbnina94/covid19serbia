@@ -10,7 +10,9 @@ class Map2 extends Component {
 
         this.state = {
             widthHeightRatio: 1.34,
-            legendStepSize: 2
+            legendStepSize: 2,
+            selectedTerritory: null,
+            canSelect: true
         }
 
         this.chartRef = React.createRef();
@@ -22,7 +24,7 @@ class Map2 extends Component {
 
         const self = this;
         const width = this.props.width,
-              height = this.mapWrapper.current.clientHeight;
+              height = window.innerWidth >= 768 ? this.mapWrapper.current.clientHeight : width*this.state.widthHeightRatio;
 
         this.projection = d3
             .geoMercator()
@@ -44,17 +46,50 @@ class Map2 extends Component {
             .data(this.props.geoData)
             .enter()
             .append("g")
-            .on("touchmove mousemove", function(event, d) {
+            .on("touchstart mousemove", function(event, d) {
+                if (self.props.selectedFilter === 0 && !self.state.canSelect) {
+                    return;
+                }
+                d3.select(`#text-${self.props.geoData.indexOf(self.state.selectedTerritory)}`).attr("class", "map-label map-label-hidden");
+                self.setState(() => {
+                    return {
+                        selectedTerritory: d
+                    }
+                });
                 const index = self.props.geoData.indexOf(d);
                 d3.select(`#text-${index}`).attr("class", "map-label").raise();
             })
-            .on("touchend mouseleave", function(event, d) {
+            .on("mouseleave", function(event, d) {
                 const index = self.props.geoData.indexOf(d);
                 d3.select(`#text-${index}`).attr("class", "map-label map-label-hidden");
             })
             .on("click", function(event, d) {
+                event.preventDefault();
                 self.props.handleMapChange(d);
-            });
+            })
+            .on("touchend", (event, p) => {
+                if (!event.cancelable) { 
+                    return;
+                }
+                event.preventDefault();
+                if (self.props.selectedFilter === 0 && !self.state.canSelect) {
+                    return;
+                }
+                self.setState(() => {
+                    return {
+                        canSelect: false
+                    }
+                });
+                setTimeout(() => {
+                    self.props.handleMapChange(p);
+
+                    self.setState(() => {
+                        return {
+                            canSelect: true
+                        }
+                    });
+                }, 500);
+            })
 
         rectWrapper
             .append("path")

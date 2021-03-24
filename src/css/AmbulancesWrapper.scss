@@ -1,8 +1,15 @@
 @import "./consts.scss";
 
 .AmbulancesWrapper {
+  .no-ambulances-info {
+    font-size: 3vw;
+  }
+  .ambulances-wrapper-map-wrapper {
+  }
   .ambulance-wrapper {
+    overflow: auto;
     background-color: $white;
+    // padding: 1.5vw;
     cursor: pointer;
 
     &:hover {
@@ -19,12 +26,12 @@
     }
 
     .filler {
-      width: 1.5rem;
+      width: 4.5vw;
     }
 
     .cross {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 4.5vw;
+      height: 4.5vw;
       fill: $red;
     }
 
@@ -63,6 +70,27 @@
     // }
   }
 
+  .ambulance-title {
+    font-size: 4.1vw;
+  }
+
+  .ambulance-link {
+    color: $black;
+    // font-size: 1rem;
+    font-size: 3vw;
+
+    &:hover {
+      color: $black;
+      text-decoration: none;
+    }
+  }
+
+  .ambulance-info-wrapper-inner {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    overflow: hidden;
+  }
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -82,6 +110,43 @@
     100% {
       opacity: 0;
       transform: translateY(-100%);
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .AmbulancesWrapper {
+    .ambulances-wrapper-map-wrapper {
+      // height: 100% !important;
+    }
+    .ambulance-wrapper {
+      overflow: auto;
+
+      .filler {
+        width: 1.7vw;
+      }
+
+      .cross {
+        width: 1.7vw;
+        height: 1.7vw;
+      }
+    }
+
+    .ambulance-info-wrapper-inner {
+      overflow: auto;
+      border-bottom-right-radius: 0;
+    }
+
+    .ambulance-info-wrapper-inner-inner {
+      position: absolute;
+    }
+
+    .ambulance-link {
+      font-size: 0.95vw;
+    }
+
+    .ambulance-title {
+      font-size: 1.1vw;
     }
   }
 }

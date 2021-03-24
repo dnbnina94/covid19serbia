@@ -71,7 +71,7 @@ class CustomDatePicker extends Component {
         const self = this;
         return (
             <div className="DatePicker d-flex align-items-center">
-                <Calendar className="calendar-icon pr-1" />
+                <Calendar className="calendar-icon pr-3 pr-md-1" />
                 <DatePicker
                     customInput={<CustomInput />}
                     selected={this.state.startDate}
@@ -86,21 +86,26 @@ class CustomDatePicker extends Component {
                         },
                     }}
                 />
-                <span className="px-1">&ndash;</span>
-                <DatePicker
-                    customInput={<CustomInput />}
-                    selected={this.state.endDate}
-                    maxDate={this.props.maxDate}
-                    minDate={this.addDays(this.state.startDate, 1)}
-                    onChange={(date) => this.onChangeHandler(date, 'endDate')}
-                    startDate={this.state.endDate}
-                    calendarClassName="custom-calendar"
-                    popperModifiers={{
-                        preventOverflow: {
-                          enabled: true,
-                        },
-                    }}
-                />
+                {
+                    !this.props.noDateRange &&
+                    <div>
+                        <span className="px-1">&ndash;</span>
+                        <DatePicker
+                            customInput={<CustomInput />}
+                            selected={this.state.endDate}
+                            maxDate={this.props.maxDate}
+                            minDate={this.addDays(this.state.startDate, 1)}
+                            onChange={(date) => this.onChangeHandler(date, 'endDate')}
+                            startDate={this.state.endDate}
+                            calendarClassName="custom-calendar"
+                            popperModifiers={{
+                                preventOverflow: {
+                                enabled: true,
+                                },
+                            }}
+                        />
+                    </div>
+                }
             </div>
         )
     }

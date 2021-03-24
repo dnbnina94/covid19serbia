@@ -1,6 +1,14 @@
 @import "../css/consts.scss";
 
 .MapWrapper {
+  .selfisolation-mobile-info {
+    font-size: 4vw;
+    line-height: 5.5vw;
+  }
+
+  .map-wrapper-2 {
+  }
+
   .map-container {
     margin: 0 auto;
     // width: 65%;
@@ -12,8 +20,61 @@
     row-gap: 1rem;
   }
 
+  .grid-layout-2 {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    // row-gap: 1rem;
+  }
+
   // .title {
   //   left: 0;
   //   width: 50%;
   // }
+}
+
+.map-back-btn {
+  position: absolute;
+  cursor: pointer;
+  color: $white;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.25rem;
+  font-size: 3vw;
+  opacity: 0;
+  transition: 0.2s;
+
+  &-visible {
+    opacity: 1;
+    transition: 0.2s;
+  }
+
+  &-blue {
+    background-color: $dark-blue;
+  }
+
+  &-red {
+    background-color: $red;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .MapWrapper {
+    .selfisolation-mobile-info {
+    }
+
+    .map-wrapper-2 {
+      height: 100%;
+    }
+
+    .horizontal-barchart-wrapper {
+      height: 100%;
+      overflow: auto;
+    }
+
+    .grid-layout-2 {
+      row-gap: 1rem;
+    }
+  }
+  .map-back-btn {
+    font-size: 0.95vw;
+  }
 }

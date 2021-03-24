@@ -5,9 +5,11 @@ import {
     FETCHING_DATA_FAILED,
     REGIONAL_COVID_DATA,
     DAILY_COVID_DATA,
-    COVID_AMBULANCES
+    COVID_AMBULANCES,
+    SELF_ISOLATION
 } from '../../consts';
 import $ from 'jquery';
+import { menuClosed } from "./ui";
 const sifarnikOpstina = require('../../sifarnik-opstina.json');
 const sifarnikOkruga = require('../../sifarnik-okruga.json');
 const sifarnikMesta = require('../../sifarnik-mesta.json');
@@ -167,6 +169,42 @@ const parseData = (data, url) => {
 
             break;
         }
+        case SELF_ISOLATION: {
+            data = data.filter(d => d.IDTeritorije !== "RS");
+            const territories = new Set(data.map(item => item.IDTeritorije));
+
+            territories.forEach(item => {
+                let district = sifarnikOpstina.find(s => s.OpstinaSifra === +item);
+                let region;
+
+                if (district) {
+                    region = sifarnikOkruga.find(s => s.OkrugSifra === district.OkrugSifra);
+                } else {
+                    const territory = data.find(d => d.IDTeritorije === item);
+                    if (territory.NazivTeritorije === "BEOGRAD") {
+                        region = sifarnikOkruga.find(s => s.OkrugNazivLat.toLowerCase().includes(territory.NazivTeritorije.toLowerCase()));
+                    } else {
+                        const city = sifarnikMesta.find(s => s.NazivMestaLatinicni.toLowerCase() === territory.NazivTeritorije.toLowerCase());
+                        district = sifarnikOpstina.find(s => s.OpstinaSifra === city.SifraOpstine);
+                        region = sifarnikOkruga.find(s => s.OkrugSifra === district.OkrugSifra);
+                    }
+                }
+
+                parsedData.push({
+                    description: district ? district.OpstinaNazivLat : region.OkrugNazivLat,
+                    region: region && region.OkrugNazivLat.replace(' okrug', ''),
+                    district: district ? district.OpstinaNazivLat : '',
+                    data: data.filter(d => d.IDTeritorije === item).map(d => {
+                        return {
+                            date: `${d.Godina}-${d.Mesec}-${d.Dan}`,
+                            value: d.Vrednost
+                        }
+                    })
+                });
+            });
+
+            break;
+        }
     }
 
     return parsedData;
@@ -202,7 +240,7 @@ export const fetchingDataHandler = (dataType) => {
                     data: data,
                     dataInfo: dataInfo
                 }
-            }))
+            }));
         });
     }
 }

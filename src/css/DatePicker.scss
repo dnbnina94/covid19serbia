@@ -1,11 +1,11 @@
 @import "./consts.scss";
 
 .DatePicker {
-  font-size: 0.8rem;
+  font-size: 3.5vw;
   // color: $actual-gray;
 
   .calendar-icon {
-    height: 0.8rem;
+    height: 3.5vw;
     fill: $black;
   }
 
@@ -147,6 +147,16 @@
   * {
     :focus {
       outline: none !important;
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .DatePicker {
+    font-size: 0.95vw;
+
+    .calendar-icon {
+      height: 0.95vw;
     }
   }
 }

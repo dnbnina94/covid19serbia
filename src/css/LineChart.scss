@@ -1,6 +1,9 @@
 @import "../css/consts.scss";
 
 .LineChart {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
   .line {
     stroke: $mint;
     stroke-width: 2.5;
@@ -31,8 +34,34 @@
     pointer-events: none;
     opacity: 1;
     transition: opacity 0.2s;
+    margin-left: 9.5vw;
+    margin-right: 9.5vw;
+    font-size: 3.5vw;
     &-hidden {
       opacity: 0;
+    }
+  }
+
+  .x-axis,
+  .y-axis {
+    font-size: 2vw;
+    font-family: $archiaMedium;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .LineChart {
+    border-radius: 1rem;
+
+    .custom-tooltip {
+      margin-left: 3.3vw;
+      margin-right: 3.3vw;
+      font-size: 1.1vw;
+    }
+
+    .x-axis,
+    .y-axis {
+      font-size: 0.7vw;
     }
   }
 }

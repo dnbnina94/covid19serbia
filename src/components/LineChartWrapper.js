@@ -2,6 +2,7 @@ import { Component } from "react";
 import LineChart from '../components/LineChart';
 import { dateToString } from "../utilities";
 import Options from "./Options";
+import '../css/OptionsWrapper.scss';
 
 class LineChartWrapper extends Component {
     constructor(props) {
@@ -60,8 +61,8 @@ class LineChartWrapper extends Component {
                     }
                 </div>
                 <div className="col-md-4">
-                    <div className="position-relative overflow-auto h-100 bg-white shadow-sm border-radius-1">
-                        <div className="p-2 position-absolute">
+                    <div className="border-radius-1 options-wrapper position-relative bg-white shadow-sm mb-5 mb-md-0">
+                        <div className="options-wrapper-inner p-5 p-md-2">
                             <Options
                                 options={this.state.data.map(item => item.description)}
                                 current={this.state.currentData}

@@ -36,7 +36,7 @@ class Legend extends Component {
             }
         })
         return (
-            <div className="Legend p-1">
+            <div className="Legend px-1 py-2 p-md-1">
                 {date}
                 {flags}
             </div>

@@ -5,6 +5,7 @@ import { COLOR_SCHEME } from "../consts";
 import '../css/PieChart.scss';
 import { format } from "d3";
 import { formatTitle } from "../utilities";
+import ChartTitle from "./ChartTitle";
 
 class PieChart extends Component {
     constructor(props) {
@@ -78,6 +79,7 @@ class PieChart extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        // console.log("PIE CHART", this.props.width);
         const redraw = prevProps.width !== this.props.width ||
                        prevProps.data !== this.props.data;
         if (redraw) {
@@ -101,9 +103,12 @@ class PieChart extends Component {
         const title = formatTitle(this.props.data.map(f => f.key).join("_U_ODNOSU_NA_"));
         const chartLegendClass = `pie-chart-legend
                                     ${this.props.small ? 'pie-chart-legend-small' : ''} 
-                                    px-2 
-                                    pt-${this.props.small ? '2' : '3'} 
-                                    pb-2`;
+                                    px-${this.props.small ? '5' : '5'}
+                                    pt-${this.props.small ? '5' : '5'}
+                                    pb-5
+                                    px-md-${this.props.small ? '3' : '2'} 
+                                    pt-md-${this.props.small ? '2' : '3'} 
+                                    pb-md-2`;
         const chartClass = `PieChart 
                             ${this.props.small ? 'PieChart-small' : ''}
                             h-100 
@@ -111,8 +116,8 @@ class PieChart extends Component {
                             flex-column`;
         return (
             <div className={chartClass}>
-                {!this.props.hideTitle && <p className="font-bold p-2 chart-title">{title}</p>}
-                <div className={`d-flex flex-column justify-content-between ${this.props.small ? 'mt-1' : 'mt-3'}`} style={{flex: "1"}}>
+                {!this.props.hideTitle && <ChartTitle title={title} />}
+                <div className={`d-flex flex-column justify-content-between ${this.props.small ? 'mt-5 mt-md-2' : 'mt-5 mt-md-3'}`} style={{flex: "1"}}>
                     <div className="w-100 position-relative flex-grow-1 d-flex align-items-center justify-content-between">
                         <div className="d-block w-100" ref={this.pieChartRef}></div>
                         <div className="custom-tooltip custom-tooltip-hidden position-absolute font-headline" ref={this.tooltip}></div>

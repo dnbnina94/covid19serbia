@@ -45,7 +45,7 @@ class Options extends Component {
                             />
                         }
                         <span className={checkmarkClass} style={checkmarkStyle}></span>
-                        <span className="pl-2 label">{formatTitle(title)}</span>
+                        <span className="pl-4 pl-md-2 label">{formatTitle(title)}</span>
                     </label>
                 </li>
             )

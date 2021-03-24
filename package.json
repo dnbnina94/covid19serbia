@@ -10,6 +10,7 @@
     "bootstrap": "^4.5.3",
     "d3": "^6.2.0",
     "dom-to-image": "^2.6.0",
+    "express": "^4.17.1",
     "file-saver": "^2.0.5",
     "html2canvas": "^1.0.0-rc.7",
     "jquery": "^3.5.1",
@@ -30,7 +31,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

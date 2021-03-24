@@ -1,0 +1,10 @@
+@import "./consts.scss";
+
+.CovidAmbulance {
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .CovidAmbulance {
+    height: 100% !important;
+  }
+}

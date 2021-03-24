@@ -3,13 +3,14 @@ import {
     DAILY_COVID_DATA,
     REGIONAL_COVID_DATA, 
     COVID_AMBULANCES,
-    FETCHING_DATA
+    FETCHING_DATA,
+    SELF_ISOLATION
 } from '../../consts';
 
 const initialState = {
     fetching: false
 };
-const dataTypes = [DAILY_COVID_DATA, REGIONAL_COVID_DATA, COVID_AMBULANCES];
+const dataTypes = [DAILY_COVID_DATA, REGIONAL_COVID_DATA, COVID_AMBULANCES, SELF_ISOLATION];
 dataTypes.forEach(d => {
     initialState[d] = {
         data: [],

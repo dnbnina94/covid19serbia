@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import * as d3 from 'd3';
-import { withResizeDetector } from "react-resize-detector";
+// import {connect} from 'react-redux';
 import { COLOR_SCHEME } from "../consts";
 import '../css/BarChart.scss';
+import { withResizeDetector } from "react-resize-detector";
 
 class BarChart extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class BarChart extends Component {
             paddingLeft: 0,
             paddingRight: 0,
             paddingBottom: 5,
-            paddingTop: 10,
+            paddingTop: 0,
             numOfTicksX: 5,
             numOfTicksY: 1,
             animationDuration: 1000,
@@ -21,19 +22,21 @@ class BarChart extends Component {
 
         this.chartRef = React.createRef();
         this.tooltip = React.createRef();
+        this.barChartWrapper = React.createRef();
     }
 
     redrawChart() {
-
-        const { width } = this.props;
-        const height = width/this.state.heightRatio;
-
+        
         d3.select(this.chartRef.current).select("svg").remove();
+
+        const width  = this.props.width;
+        // const height = width/this.state.heightRatio;
+        const height = window.innerWidth >= 768 ? this.barChartWrapper.current.clientHeight : width/this.state.heightRatio;
 
         const chart = d3
             .select(this.chartRef.current)
             .append("svg")
-            .attr("width", width)
+            .attr("width", "100%")
             .attr("height", height)
             .attr("cursor", "pointer");
 
@@ -45,7 +48,12 @@ class BarChart extends Component {
         const yScaler = d3
             .scaleLinear()
             .domain([0, d3.max(this.props.data, d => d.value)])
-            .range([height - this.state.paddingBottom, this.state.paddingTop]);
+            .range([height - 0, this.state.paddingTop]);
+
+        // this.props.data.map(d => {
+        //     let x = xScaler(d.key) + xScaler.bandwidth()/4;
+        //     console.log(x);
+        // })
 
         chart
             .append("g")
@@ -53,15 +61,18 @@ class BarChart extends Component {
             .data(this.props.data)
             .enter()
             .append("rect")
-            .attr("x", d => xScaler(d.key) + xScaler.bandwidth()/4)
-            .attr("y", d => height - this.state.paddingBottom)
+            .attr("x", d => { 
+                let x = xScaler(d.key) + xScaler.bandwidth()/4;
+                return x;
+            })
+            .attr("y", d => height - 0)
             .attr("width", xScaler.bandwidth()/2)
             .attr("height", 0)
             .attr("fill", COLOR_SCHEME[1])
             .transition()
             .duration(1000)
             .attr("y", d=> yScaler(d.value))
-            .attr("height", d => height - yScaler(d.value) - this.state.paddingBottom);
+            .attr("height", d => height - yScaler(d.value) - 0);
 
         const self = this;
 
@@ -74,7 +85,7 @@ class BarChart extends Component {
             .attr("x", d => xScaler(d.key))
             .attr("y", 0)
             .attr("width", xScaler.bandwidth())
-            .attr("height", height - this.state.paddingBottom)
+            .attr("height", height - 0)
             .attr("fill", "white")
             .attr("opacity", 0)
             .attr("pointer-events", "all")
@@ -85,8 +96,8 @@ class BarChart extends Component {
 
                 self.tooltip.current.classList.remove('custom-tooltip-hidden');
                 self.tooltip.current.innerHTML = `
-                    <p class='lh-1'>Starosna grupa: <b>${d.key}</b></p>
-                    <p>Broj zaraženih: <b>${d.value}</b></p>
+                    <div>Starosna grupa: <b>${d.key}</b></div>
+                    <div>Broj zaraženih: <b>${d.value}</b></div>
                 `
             })
             .on("touchend mouseleave", function (e,d) {
@@ -115,23 +126,39 @@ class BarChart extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const redrawChart = prevProps.width !== this.props.width ||
-                            prevProps.data !== this.props.data;
+        // console.log("BAR CHART", this.props.width);
+        const redraw = prevProps.width !== this.props.width ||
+                       prevProps.height !== this.props.height ||
+                       prevProps.data !== this.props.data;
         
-        if (redrawChart) {
-            this.redrawChart();
+        if (redraw) {
+            // process.nextTick(() => {
+                this.redrawChart();
+            // });
         }
     }
 
     render() {
         return (
-            <div className="BarChart h-100 py-2">
-                <div className="w-100 position-relative h-100" ref={this.chartRef}>
-                    <div className="position-absolute custom-tooltip custom-tooltip-hidden" ref={this.tooltip}>AA</div>
+            <div className="BarChart w-100 h-100 d-flex" ref={this.barChartWrapper}>
+            {
+                <div className="w-100 position-relative h-100">
+                    <div className="d-block w-100 h-100" ref={this.chartRef}>
+                        <div className="position-absolute custom-tooltip custom-tooltip-hidden" ref={this.tooltip}></div>
+                    </div>
                 </div>
+            }
             </div>
         )
     }
 }
 
+// const mapStateToProps = (state) => {
+//     return {
+//         width: state.ui.width,
+//         height: state.ui.height,
+//     }
+// }
+
+// export default connect(mapStateToProps)(BarChart);
 export default withResizeDetector(BarChart);
