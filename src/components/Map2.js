@@ -64,8 +64,10 @@ class Map2 extends Component {
                 d3.select(`#text-${index}`).attr("class", "map-label map-label-hidden");
             })
             .on("click", function(event, d) {
-                event.preventDefault();
-                self.props.handleMapChange(d);
+                if (self.props.selectedFilter !== 1) {
+                    event.preventDefault();
+                    self.props.handleMapChange(d);
+                }
             })
             .on("touchend", (event, p) => {
                 if (!event.cancelable) { 
@@ -75,20 +77,22 @@ class Map2 extends Component {
                 if (self.props.selectedFilter === 0 && !self.state.canSelect) {
                     return;
                 }
-                self.setState(() => {
-                    return {
-                        canSelect: false
-                    }
-                });
-                setTimeout(() => {
-                    self.props.handleMapChange(p);
-
+                if (self.props.selectedFilter !== 1) {
                     self.setState(() => {
                         return {
-                            canSelect: true
+                            canSelect: false
                         }
                     });
-                }, 500);
+                    setTimeout(() => {
+                        self.props.handleMapChange(p);
+    
+                        self.setState(() => {
+                            return {
+                                canSelect: true
+                            }
+                        });
+                    }, 500);
+                }
             })
 
         rectWrapper

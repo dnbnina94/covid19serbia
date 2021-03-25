@@ -12,8 +12,10 @@ class LineChartWrapper extends Component {
             return acc.concat(curr.data.map(d => new Date(d.date)));
         }, []);
 
-        const minDate = dates.reduce(function (a, b) { return a < b ? a : b; }); 
+        const minDate = dates.reduce(function (a, b) { return a < b ? a : b; });
         const maxDate = dates.reduce(function (a, b) { return a > b ? a : b; });
+
+        // console.log(minDate, maxDate);
 
         this.state = {
             currentData: 0,

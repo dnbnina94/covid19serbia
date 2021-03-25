@@ -75,7 +75,7 @@ class RegionalStatistics extends Component {
         let dateModified = this.props.dataInfo && new Date(this.props.dataInfo.last_modified);
 
         return (
-            <div className="RegionalStatistics col-md-9 p-3 h-100">
+            <div className="RegionalStatistics col-md-9 p-3 h-100 main-page">
                 <div className="d-flex flex-column h-100">
                     <div className="row">
                         <div className="col-md-12 mt-4 mb-5 my-md-0 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">

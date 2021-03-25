@@ -34,7 +34,7 @@ class ChartTitle extends Component {
         return (
             <div className="ChartTitle d-flex p-5 p-md-2 justify-content-between chart-title">
                 <div>
-                    <p className="font-bold">{this.props.title}</p>
+                    <p className="font-bold chart-title-headline">{this.props.title}</p>
                     {this.props.datePickerAvailable && <DatePicker
                         minDate={this.props.minDate}
                         maxDate={this.props.maxDate}
@@ -44,9 +44,11 @@ class ChartTitle extends Component {
                         dateChangeHandler={this.props.dateChangeHandler}
                     />}
                 </div>
-                {this.props.downloadAvailable && <div ref={this.saveButtonRef}>
-                    <Download className="download-icon" />
-                </div>}
+                {this.props.downloadAvailable && 
+                    <div className="pl-5 pl-md-2" ref={this.saveButtonRef}>
+                        <Download className="download-icon" />
+                    </div>
+                }
             </div>
         );
     }

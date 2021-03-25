@@ -155,7 +155,7 @@ class LineChart extends Component {
                     .attr("x1", xScaler(date))
                     .attr("x2", xScaler(date))
                     .attr("y1", 0)
-                    .attr("y2", padding);
+                    .attr("y2", height - padding);
                 
             });
     
@@ -182,7 +182,8 @@ class LineChart extends Component {
     render() {
         return (
             <div className="LineChart bg-white shadow-sm border-radius-1" ref={this.chartWrapper}>
-                <ChartTitle
+                {
+                    <ChartTitle
                     datePickerAvailable={true}
                     downloadAvailable={true}
                     downloadRef={this.chartWrapper}
@@ -191,6 +192,7 @@ class LineChart extends Component {
                     dateChangeHandler={this.props.dateChangeHandler}
                     title={formatTitle(this.props.title)}
                 />
+                }
                 <div className="w-100 position-relative mt-5 mt-md-2" ref={this.lineChartRef}>
                     <div className="custom-tooltip custom-tooltip-hiddens px-1" ref={this.tooltipRef}></div>
                 </div>

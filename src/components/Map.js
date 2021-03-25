@@ -123,8 +123,11 @@ class Map extends Component {
             })
             .on("click", (event, p) => {
                 event.preventDefault();
-                (this.props.selectedFilter !== 1) && tooltip.classList.add("custom-tooltip-hidden");
-                self.props.handleMapChange(p);
+                if (this.props.selectedFilter !== 1) {
+                    tooltip.classList.add("custom-tooltip-hidden");
+                    self.props.handleMapChange(p);
+                }
+                // (this.props.selectedFilter !== 1) && tooltip.classList.add("custom-tooltip-hidden");
             })
             .on("touchend", (event,p) => {
                 if (!event.cancelable) { 
@@ -134,21 +137,23 @@ class Map extends Component {
                 if (this.props.selectedFilter === 0 && !this.state.canSelect) {
                     return;
                 }
-                this.setState(() => {
-                    return {
-                        canSelect: false
-                    }
-                });
-                setTimeout(() => {
-                    (this.props.selectedFilter !== 1) && tooltip.classList.add("custom-tooltip-hidden");
-                    self.props.handleMapChange(p);
-
+                if (this.props.selectedFilter !== 1) {
                     this.setState(() => {
                         return {
-                            canSelect: true
+                            canSelect: false
                         }
                     });
-                }, 500);
+                    setTimeout(() => {
+                        tooltip.classList.add("custom-tooltip-hidden");
+                        self.props.handleMapChange(p);
+    
+                        this.setState(() => {
+                            return {
+                                canSelect: true
+                            }
+                        });
+                    }, 500);
+                }
             });
 
         chart.selectAll("text")

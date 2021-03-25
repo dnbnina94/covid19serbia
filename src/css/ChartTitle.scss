@@ -1,2 +1,15 @@
+@import "./consts.scss";
+
 .ChartTitle {
+  .chart-title-headline {
+    line-height: 6vw;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .ChartTitle {
+    .chart-title-headline {
+      line-height: 1.65vw;
+    }
+  }
 }

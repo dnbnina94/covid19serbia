@@ -63,8 +63,16 @@ const parseData = (data, url) => {
                 parsedData.push({
                     description: flag,
                     data: data.filter(item => item.Opis === flag && item.Vrednost).map(item => {
+                        let mesec = +item.Mesec;
+                        if (mesec < 10) {
+                            mesec = '0'+mesec
+                        }
+                        let dan = +item.Dan;
+                        if (dan < 10) {
+                            dan = '0'+dan;
+                        }
                         return {
-                            date: `${item.Godina}-${item.Mesec}-${item.Dan}`,
+                            date: `${item.Godina}-${mesec}-${dan}`,
                             value: +item.Vrednost
                         }
                     })
@@ -99,8 +107,16 @@ const parseData = (data, url) => {
                     district: opstina ? opstina.OpstinaNazivLat : null,
                     data: data.filter(item => item.OPŠTINA === flag).map(item => {
                         const sex = item.POL.toLowerCase();
+                        let mesec = +item.MESEC;
+                        if (mesec < 10) {
+                            mesec = '0'+mesec;
+                        }
+                        let dan = +item.DAN;
+                        if (dan < 10) {
+                            dan = '0'+dan;
+                        }
                         return {
-                            date: `${item.GODINA}-${item.MESEC}-${item.DAN}`,
+                            date: `${item.GODINA}-${mesec}-${dan}`,
                             sex: sex === 'ženski' ? 'F' : sex === 'muški' ? 'M' : 'U',
                             age: item.STAROST
                         }
@@ -195,8 +211,16 @@ const parseData = (data, url) => {
                     region: region && region.OkrugNazivLat.replace(' okrug', ''),
                     district: district ? district.OpstinaNazivLat : '',
                     data: data.filter(d => d.IDTeritorije === item).map(d => {
+                        let mesec = +d.Mesec;
+                        if (mesec < 10) {
+                            mesec = '0'+mesec;
+                        }
+                        let dan = +d.Dan;
+                        if (dan < 10) {
+                            dan = '0'+dan;
+                        }
                         return {
-                            date: `${d.Godina}-${d.Mesec}-${d.Dan}`,
+                            date: `${d.Godina}-${mesec}-${dan}`,
                             value: d.Vrednost
                         }
                     })
@@ -233,6 +257,8 @@ export const fetchingDataHandler = (dataType) => {
         .then(data => {
             data = $.csv.toObjects(data.replaceAll('"', ''));
             data = parseData(data, dataType);
+
+            // console.log(data);
 
             dispatch(fetchedData({
                 dataType: dataType,

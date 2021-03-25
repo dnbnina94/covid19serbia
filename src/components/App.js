@@ -44,7 +44,7 @@ class App extends Component {
                         </div>
                     </div>
                     <Navigation />
-                    <div className="app-filler col-md-3"></div>
+                    <div className="d-none d-md-block col-md-3"></div>
                     <Switch>
                         <Route path="/" exact component={DailyStatistics} />
                         <Route path="/statistika-po-regionima" component={RegionalStatistics} />

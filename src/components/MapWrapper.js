@@ -15,6 +15,7 @@ class MapWrapper extends Component {
 
         this.handleMapChange = this.handleMapChange.bind(this);
         this.showWholeMap = this.showWholeMap.bind(this);
+        this.showWholeMapTouch = this.showWholeMapTouch.bind(this);
 
         const pieChartFlags = [
             {
@@ -194,6 +195,7 @@ class MapWrapper extends Component {
     }
 
     handleMapChange(p) {
+        console.log("AAA")
         let isDistrict = this.state.selectedFilter === 0 ? true : false;
         this.setState((state) => {
             const nextFilter = (state.selectedFilter + 1) % state.mapFilters.length;
@@ -223,14 +225,21 @@ class MapWrapper extends Component {
 
     showWholeMap() {
         this.setState(() => {
-            process.nextTick(() => {
-                this.setData();
-            })
-            return {
-                selectedFilter: 0,
-                selectedTerritory: null
-            }
-        })
+                process.nextTick(() => {
+                    this.setData();
+                })
+                return {
+                    selectedFilter: 0,
+                    selectedTerritory: null
+                }
+        });
+    }
+
+    showWholeMapTouch(event) {
+        if (event.cancelable) {
+            event.preventDefault();
+        }
+        this.showWholeMap();
     }
 
     render() {
@@ -259,6 +268,9 @@ class MapWrapper extends Component {
                         <div className="map-container w-100 flex-grow-1 p-5 p-md-2 position-relative">                            
                             <div 
                                 onClick={this.showWholeMap} 
+                                onTouchEnd={(event) => {
+                                    this.showWholeMapTouch(event);
+                                }}
                                 className={`map-back-btn map-back-btn-blue ${this.state.selectedFilter === 1 ? 'map-back-btn-visible' : ''}`}
                             >
                                 Prikaz cele mape

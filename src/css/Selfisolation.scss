@@ -1,0 +1,11 @@
+@import "./consts.scss";
+
+.Selfisolation {
+  margin-top: 20vw;
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .Selfisolation {
+    margin-top: 0;
+  }
+}

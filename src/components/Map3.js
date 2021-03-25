@@ -16,12 +16,21 @@ class Map3 extends Component {
             canSelect: true
         }
 
+        this.hideTooltip = this.hideTooltip.bind(this);
+
         this.chartRef = React.createRef();
         this.tooltipRef = React.createRef();
         this.mapWrapper = React.createRef();
     }
 
+    hideTooltip = () => {
+        const tooltip = this.tooltipRef.current;
+        tooltip.classList.add("custom-tooltip-hidden");
+    }
+
     redrawChart() {
+        this.hideTooltip();
+
         d3.select(this.chartRef.current).select("svg").remove();
 
         const width = this.props.width,
@@ -118,8 +127,10 @@ class Map3 extends Component {
             })
             .on("click", (event, p) => {
                 event.preventDefault();
-                (this.props.selectedFilter !== 1) && tooltip.classList.add("custom-tooltip-hidden");
-                self.props.handleMapChange(p);
+                if (this.props.selectedFilter !== 1) {
+                    tooltip.classList.add("custom-tooltip-hidden");
+                    self.props.handleMapChange(p);
+                } 
             })
             .on("touchend", (event,p) => {
                 if (!event.cancelable) { 
@@ -129,21 +140,23 @@ class Map3 extends Component {
                 if (this.props.selectedFilter === 0 && !this.state.canSelect) {
                     return;
                 }
-                this.setState(() => {
-                    return {
-                        canSelect: false
-                    }
-                });
-                setTimeout(() => {
-                    (this.props.selectedFilter !== 1) && tooltip.classList.add("custom-tooltip-hidden");
-                    self.props.handleMapChange(p);
-
+                if (this.props.selectedFilter !== 1) {
                     this.setState(() => {
                         return {
-                            canSelect: true
+                            canSelect: false
                         }
                     });
-                }, 500);
+                    setTimeout(() => {
+                        tooltip.classList.add("custom-tooltip-hidden");
+                        self.props.handleMapChange(p);
+    
+                        this.setState(() => {
+                            return {
+                                canSelect: true
+                            }
+                        });
+                    }, 500);
+                }
             });
 
         chart.selectAll("text")
