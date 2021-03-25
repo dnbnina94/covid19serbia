@@ -22,6 +22,10 @@ class SelfIsolation extends Component {
         }
     }
 
+    componentDidMount() {
+        document.title = "COVID19 Srbija - Samoizolacija";
+    }
+
     render() {
         const dateModified = this.props.dataInfo && new Date(this.props.dataInfo.last_modified);
 

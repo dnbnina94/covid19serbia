@@ -71,6 +71,10 @@ class RegionalStatistics extends Component {
         }
     }
 
+    componentDidMount() {
+        document.title = "COVID19 Srbija - Statistika po regionima";
+    }
+
     render() {
         let dateModified = this.props.dataInfo && new Date(this.props.dataInfo.last_modified);
 

@@ -28,6 +28,10 @@ class DailyStatistics extends Component {
         }
     }
 
+    componentDidMount() {
+        document.title = "COVID19 Srbija - Dnevna statistika";
+    }
+
     render() {
         const flags = [{
             dataType: BROJ_POZITIVNIH_LICA,

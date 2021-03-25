@@ -15,6 +15,10 @@ class CovidAmbulance extends Component {
             store.dispatch(fetchingDataHandler(COVID_AMBULANCES));
         }
     }
+    
+    componentDidMount() {
+        document.title = "COVID19 Srbija - COVID-19 Ambulante";
+    }
 
     render() {
         let dateModified = this.props.dataInfo && new Date(this.props.dataInfo.last_modified);

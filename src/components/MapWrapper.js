@@ -305,7 +305,7 @@ class MapWrapper extends Component {
                             </div>
                         </div>
                         <div className="row mb-5 mb-md-0 pb-4 pb-md-0">
-                            <div className="col-md-12 h-100 p-0 bg-white shadow-sm border-radius-1 mb-5 mb-md-0">
+                            <div className="col-md-12 h-100 p-0 bg-white shadow-sm border-radius-1">
                                 {
                                     <ChartTitle
                                         title="Broj obolelih prema polu i starosnim grupama"
@@ -323,7 +323,7 @@ class MapWrapper extends Component {
                                             />
                                         }
                                     </div>
-                                    <div className="col-md-7 px-5 px-md-2 pt-5 pb-2 pb-md-2 pt-md-4">
+                                    <div className="col-md-7 px-5 px-md-2 pt-5 pb-5 pb-md-2 pt-md-4">
                                         {this.state.dataReady &&
                                             <BarChart data={this.state.ageData} />
                                         }

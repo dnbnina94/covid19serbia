@@ -72,16 +72,16 @@ class Navigation extends Component {
                         {navMenuItems}
                     </ul>
                 </div>
-                <div className="linear-gradient-light-blue border-radius-1 color-blue p-5 p-md-2 text-center overflow-hidden">
+                <div className="linear-gradient-light-blue border-radius-1 color-blue px-5 pt-5 pt-md-2 px-md-2 text-center overflow-hidden">
                     {/* <img className="w-100" src={hospital} alt="Doctors taking care of a sick patient" /> */}
                     <WorkFromHome className="bottom-img" />
                     <div className="position-relative" style={{zIndex: 1}}>
                         <div className="info-button px-2 py-3 py-md-1 font-headline">
-                            <Link to="/info" className="custom-link nav-item-label">
+                            <Link to="/info" className="custom-link nav-item-label" onClick={this.closeMenu}>
                                 Informacije o projektu
                             </Link>   
                         </div>
-                        <div className="d-flex justify-content-center pt-1">
+                        <div className="d-flex justify-content-center pt-1 mb-5 mb-md-2">
                             <a href="https://github.com/dnbnina94/covid19serbia" target="_blank">
                                 <Github className="bottom-icon github-icon" />
                             </a>
