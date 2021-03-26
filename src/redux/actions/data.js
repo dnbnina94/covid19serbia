@@ -255,7 +255,15 @@ export const fetchingDataHandler = (dataType) => {
         })
         .then(response => response.text())
         .then(data => {
-            data = $.csv.toObjects(data.replaceAll('"', ''));
+            data = data.split('').map(char => {
+                if (char === '"') {
+                    return '';
+                }
+                return char;
+            }).join('');
+            data = $.csv.toObjects(data);
+            // data = $.csv.toObjects(data.replaceAll('"', ''));
+            console.log(data);
             data = parseData(data, dataType);
 
             // console.log(data);
