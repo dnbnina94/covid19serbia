@@ -263,7 +263,6 @@ export const fetchingDataHandler = (dataType) => {
             }).join('');
             data = $.csv.toObjects(data);
             // data = $.csv.toObjects(data.replaceAll('"', ''));
-            console.log(data);
             data = parseData(data, dataType);
 
             // console.log(data);

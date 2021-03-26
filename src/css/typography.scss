@@ -15,17 +15,17 @@
 
 @font-face {
   font-family: $archiaBold;
-  src: url(../fonts/archia-bold-webfont.woff2);
+  src: url(../fonts/archia-bold-webfont.woff2) format("woff2");
 }
 
 @font-face {
   font-family: $archiaSemiBold;
-  src: url(../fonts/archia-semibold-webfont.woff2);
+  src: url(../fonts/archia-semibold-webfont.woff2) format("woff2");
 }
 
 @font-face {
   font-family: $archiaMedium;
-  src: url(../fonts/archia-medium-webfont.woff2);
+  src: url(../fonts/archia-medium-webfont.woff2) format("woff2");
 }
 
 body {

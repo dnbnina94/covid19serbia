@@ -14,6 +14,13 @@ import Info from './Info';
 import SelfIsolation from './SelfIsolation';
 import { ReactComponent as Cardiogram } from '../img/svg/cardiogram.svg';
 
+import empty from '../img/empty.png';
+import {
+   ERROR_404_MAIN,
+   ERROR_404_SUB
+} from "../consts";
+import ErrorComponent from './ErrorComponent';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -51,6 +58,11 @@ class App extends Component {
                         <Route path="/ambulante" component={CovidAmbulance} />
                         <Route path="/samoizolacija" component={SelfIsolation} />
                         <Route path="/info" component={Info} />
+                        <Route path="" component={() => 
+                            <div className="col-md-9 p-3 overflow-hidden main-page">
+                                <ErrorComponent img={empty} mainText={ERROR_404_MAIN} subText={ERROR_404_SUB} />
+                            </div>
+                        }/>
                     </Switch>
                 </div>
             </Router>

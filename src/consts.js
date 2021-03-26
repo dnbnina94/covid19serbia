@@ -56,3 +56,8 @@ export const REGION_COLOR_SCHEME = [
     "#C6DBEF",
     "#3182BD"
 ];
+
+export const IE_TEXT_MAIN = "Internet Explorer ne može prikazati ovu web stranicu";
+export const IE_SUB_TEXT = "Za bolje korisiničko iskustvo koristite neki drugi internet pretraživač.";
+export const ERROR_404_MAIN = "Greška 404";
+export const ERROR_404_SUB = "Izgleda da stranica koju tražite ne postoji.";

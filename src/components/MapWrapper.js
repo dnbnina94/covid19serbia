@@ -195,7 +195,6 @@ class MapWrapper extends Component {
     }
 
     handleMapChange(p) {
-        console.log("AAA")
         let isDistrict = this.state.selectedFilter === 0 ? true : false;
         this.setState((state) => {
             const nextFilter = (state.selectedFilter + 1) % state.mapFilters.length;

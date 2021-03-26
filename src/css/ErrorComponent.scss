@@ -1,0 +1,37 @@
+@import "./consts.scss";
+
+.ErrorComponent {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .error-component-img {
+    width: 70vw;
+  }
+
+  .error-component-main-title {
+    font-size: 5vw;
+  }
+
+  .error-component-sub-title {
+    font-size: 4vw;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .ErrorComponent {
+    .error-component-img {
+      width: 30vw;
+    }
+
+    .error-component-main-title {
+      font-size: 1.4vw;
+    }
+
+    .error-component-sub-title {
+      font-size: 1.1vw;
+    }
+  }
+}
