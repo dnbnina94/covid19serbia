@@ -254,6 +254,16 @@ class MapWrapper extends Component {
         return (
             <div className="MapWrapper row flex-grow-1 pt-3">
                 <div className="col-md-5">
+                    <div className="row">
+                        <div className="col-md-12 p-5 mb-5 d-block d-md-none shadow-sm border-radius-1 bg-dark-blue color-white smaller-font">
+                            <p className="data-info">
+                                Prikazani podaci odnose se na pol, starost, okrug i opštinu prebivališta osoba zaraženih COVID19 virusom.
+                            </p>
+                            <p className="data-info pt-5">
+                                Klikom na neki od okruga, moguće je videti statistiku za opštine koje pripadaju tom okrugu.
+                            </p>
+                        </div>
+                    </div>
                     <div className="bg-white shadow-sm h-100 d-flex flex-column border-radius-1" ref={this.chartWrapper}>
                         <ChartTitle 
                             datePickerAvailable={true}
@@ -289,6 +299,16 @@ class MapWrapper extends Component {
                 </div>
                 <div className="col-md-7">
                     <div className="grid-layout h-100">
+                        <div className="row">
+                            <div className="col-md-12 d-none d-md-block p-2 shadow-sm border-radius-1 bg-dark-blue color-white smaller-font">
+                                <p className="data-info">
+                                    Prikazani podaci odnose se na pol, starost, okrug i opštinu prebivališta osoba zaraženih COVID19 virusom.
+                                </p>
+                                <p className="data-info pt-1">
+                                    Klikom na neki od okruga, moguće je videti statistiku za opštine koje pripadaju tom okrugu.
+                                </p>
+                            </div>
+                        </div>
                         <div className="row">
                             <div className="horizontal-barchart-wrapper col-md-12 bg-white shadow-sm p-0 border-radius-1 mt-5 mt-md-0" ref={this.barWrapper}>
                                 {this.state.dataReady &&

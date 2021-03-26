@@ -70,7 +70,7 @@ class GeneralStatisticsBox extends Component {
                 <div className={classes}>
                     {
                         this.props.description &&
-                        <p className={`${this.props.borderRadius ? 'mb-1' : 'mb-2 mb-md-1 general-box-2-title'}`}>{this.props.description}</p>
+                        <p className={`${this.props.borderRadius ? 'mb-1' : 'mb-5 mb-md-1 general-box-2-title'}`}>{this.props.description}</p>
                     }
                     <h2 className="font-bold">
                         {/* {this.props.value} */}

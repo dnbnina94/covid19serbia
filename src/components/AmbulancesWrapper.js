@@ -166,6 +166,12 @@ class AmbulancesWrapper extends Component {
                             bg="red"
                             value={this.state.points.length}
                             description="Broj ambulanti za selektovanu regiju:"
+                            infoText={(props) => (
+                                <p className="data-info-small mt-5 mt-md-0">
+                                    Klikom na neki od okruga, moguće je videti statistiku za opštine koje pripadaju tom okrugu. 
+                                    Klikom na neku od ambulanti ispod, moguće je videti lokaciju ambulante preko Google Maps aplikacije. 
+                                </p>
+                            )}
                         />
                         <div className="ambulance-info-wrapper-inner position-relative flex-grow-1 pb-2 pb-md-0" ref={this.ambulancesInfoWrapper}>
                             <div className="ambulance-info-wrapper-inner-inner h-100 w-100">

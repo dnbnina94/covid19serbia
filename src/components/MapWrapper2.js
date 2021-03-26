@@ -213,12 +213,12 @@ class MapWrapper2 extends Component {
                     <div className="grid-layout-2 h-100 mb-0">
                         <div className="row">
                             <div className="col-md-12 d-none d-md-block p-2 shadow-sm border-radius-1 bg-dark-blue color-white smaller-font">
-                                <p>
+                                <p className="data-info">
                                     Prikazani podaci odnose se na broj ljudi u obaveznoj samoizolaciji na terotirji 
                                     Republike Srbije po datumima.
                                 </p>
-                                <p className="pt-1">
-                                    Izvor: Ministarstvo Unutrašnjih poslova Republike Srbije
+                                <p className="data-info pt-1">
+                                    Klikom na neki od okruga, moguće je videti statistiku za opštine koje pripadaju tom okrugu.
                                 </p>
                             </div>
                         </div>
