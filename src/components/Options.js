@@ -25,7 +25,7 @@ class Options extends Component {
                 checkmarkStyle.backgroundColor = this.props.current[index] ? COLOR_SCHEME[index] : '';
             }
             return (
-                <li className={`list-group-item border-0 px-0 pt-0 ${index === this.props.options.length-1 ? 'pb-0' : 'pb-2'}`} key={title + this.props.type}>
+                <li className={`list-group-item border-0 px-0 pt-0 ${index === this.props.options.length-1 ? 'pb-0' : 'pb-2 pb-md-1'}`} key={title + this.props.type}>
                     <label className="custom-input">
                         {this.props.type === "radio" && 
                             <input 

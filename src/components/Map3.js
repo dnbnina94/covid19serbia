@@ -34,8 +34,10 @@ class Map3 extends Component {
         d3.select(this.chartRef.current).select("svg").remove();
 
         const width = this.props.width,
+              vw = width/348.065,
               height = window.innerWidth >= 768 ? this.mapWrapper.current.clientHeight : width*this.state.widthHeightRatio;
 
+              console.log(width);
         var linearScaler = d3.scaleLinear()
             .domain([
                 d3.min(this.props.data, d => d.value),
@@ -91,7 +93,7 @@ class Map3 extends Component {
             .duration(500)
             .attr("r", function(d) {
                 const selectedData = self.props.data.find(p => p.key.includes(d.properties[self.props.geoDataTargetName]));
-                return ((selectedData !== undefined) ? (selectedData.value !== 0 ? linearScaler(selectedData.value) : 0) : 0) + "rem";
+                return ((selectedData !== undefined) ? (selectedData.value !== 0 ? linearScaler(selectedData.value)*vw : 0) : 0) + "rem";
             });
 
         const tooltip = self.tooltipRef.current;

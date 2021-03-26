@@ -18,7 +18,7 @@ p {
 @import "./typography.scss";
 
 body {
-  background-color: $light-gray;
+  background-color: darken($light-gray, 1);
   height: 100vh;
   color: $black;
   overflow-x: hidden;

@@ -26,6 +26,9 @@ class Map2 extends Component {
         const width = this.props.width,
               height = window.innerWidth >= 768 ? this.mapWrapper.current.clientHeight : width*this.state.widthHeightRatio;
 
+        let vw = width/348.065;
+        vw = window.innerWidth >= 768 ? vw : vw*1.8;
+
         this.projection = d3
             .geoMercator()
             .fitSize([width, height], {type:"FeatureCollection", features: this.props.geoData});
@@ -123,7 +126,7 @@ class Map2 extends Component {
             .attr("id", (d,i) => `circle-${i}`)
             .attr("cx", function (d) { return self.projection(d.coordinates)[0]; })
 		    .attr("cy", function (d) { return self.projection(d.coordinates)[1]; })
-            .attr("r", "0.2rem")
+            .attr("r", vw*2)
             .attr("class", "pin-location pin-location-invisible")
             .transition()
             .delay((d,i) => 450 + i * 500/self.props.points.length)

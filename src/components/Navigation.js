@@ -81,7 +81,7 @@ class Navigation extends Component {
                                 Informacije o projektu
                             </Link>   
                         </div>
-                        <div className="d-flex justify-content-center pt-1 mb-5 mb-md-2">
+                        <div className="d-flex justify-content-center pt-1 pt-md-0 mb-5 mb-md-2">
                             <a href="https://github.com/dnbnina94/covid19serbia" target="_blank">
                                 <Github className="bottom-icon github-icon" />
                             </a>
