@@ -33,6 +33,14 @@
     .custom-link {
       color: $black;
 
+      &-active {
+        color: $blue;
+
+        .navigation-menu-icon {
+          fill: $blue !important;
+        }
+      }
+
       &:hover {
         text-decoration: none;
       }
@@ -67,7 +75,8 @@
     }
   }
 
-  .envelope-icon {
+  .envelope-icon,
+  .db-icon {
     fill: gray;
 
     &:hover {

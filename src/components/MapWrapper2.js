@@ -5,6 +5,7 @@ import Map3 from "./Map3";
 import '../css/MapWrapper.scss';
 import { REGION_COLOR_SCHEME, COLOR_SCHEME, REGIONAL_COVID_DATA } from '../consts';
 import ChartTitle from "./ChartTitle";
+import { formatDate2 } from "../utilities";
 const serbiaGeo = require('../serbia.geojson.json');
 const serbiaGeoDistricts = require('../sr_a2.geojson.json');
 
@@ -84,13 +85,15 @@ class MapWrapper2 extends Component {
                 }, [])
             }
         });
+        const startDate = formatDate2(self.state.startDate);
         regionData = regionData.map(rd => {
             return {
                 ...rd,
                 value: rd.values
                 .filter(v => {
-                    const date = new Date(v.date);
-                    return date.valueOf() == self.state.startDate.valueOf() 
+                    // const date = new Date(v.date);
+                    // return date.valueOf() == self.state.startDate.valueOf() 
+                    return v.date === startDate
                 })
                 .reduce((acc, curr) => {
                     return acc + (+curr.value)
@@ -169,11 +172,11 @@ class MapWrapper2 extends Component {
                 <div className="col-md-5">
                     <div className="row">
                         <div className="col-md-12 p-5 mb-5 d-block d-md-none shadow-sm border-radius-1 bg-dark-blue color-white smaller-font">
-                            <p className="selfisolation-mobile-info">
+                            <p className="data-info">
                                 Prikazani podaci odnose se na broj ljudi u obaveznoj samoizolaciji na terotirji 
                                 Republike Srbije po datumima.
                             </p>
-                            <p className="selfisolation-mobile-info pt-5">
+                            <p className="data-info pt-5">
                                 Izvor: Ministarstvo Unutrašnjih poslova Republike Srbije
                             </p>
                         </div>

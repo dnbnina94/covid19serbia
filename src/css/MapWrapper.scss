@@ -1,11 +1,6 @@
 @import "../css/consts.scss";
 
 .MapWrapper {
-  .selfisolation-mobile-info {
-    font-size: 4vw;
-    line-height: 5.5vw;
-  }
-
   .map-wrapper-2 {
   }
 
@@ -56,6 +51,11 @@
   }
 }
 
+.data-info {
+  font-size: 4vw;
+  line-height: 5.5vw;
+}
+
 .data-info-small {
   font-size: 4vw;
   line-height: 4.8vw;
@@ -63,9 +63,6 @@
 
 @media (min-width: map-get($grid-breakpoints, "md")) {
   .MapWrapper {
-    .selfisolation-mobile-info {
-    }
-
     .map-wrapper-2 {
       height: 100%;
     }
@@ -84,6 +81,7 @@
   }
   .data-info {
     font-size: 1vw;
+    line-height: 1.5vw;
   }
   .data-info-small {
     line-height: 1.25vw;

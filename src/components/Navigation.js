@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import {connect} from 'react-redux';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ReactComponent as Cardiogram } from '../img/svg/cardiogram.svg';
 import { ReactComponent as Pin } from '../img/svg/pin.svg';
 import { ReactComponent as BarChart } from '../img/svg/bar-chart.svg';
@@ -10,6 +10,7 @@ import { ReactComponent as StayHome } from '../img/svg/isolation.svg';
 import { ReactComponent as WorkFromHome } from '../img/svg/doctor-nav.svg';
 import { ReactComponent as Github } from '../img/svg/github.svg';
 import { ReactComponent as Envelope } from '../img/svg/envelope.svg';
+import { ReactComponent as Databse } from '../img/svg/server.svg';
 import store from "../redux/store";
 import { menuClosed } from "../redux/actions/ui";
 import '../css/Navigation.scss';
@@ -54,10 +55,10 @@ class Navigation extends Component {
     render() {
         const navMenuItems = this.state.navMenuItems.map(item => {
             return <li className="px-1 py-3 p-md-1 d-flex align-items-center" key={item.label}>
-                    <Link to={item.link} className="custom-link d-flex align-items-center" onClick={this.closeMenu}>
+                    <NavLink exact={true} activeClassName='custom-link-active' to={item.link} className="custom-link d-flex align-items-center" onClick={this.closeMenu}>
                         {React.createElement(item.component, {className: "navigation-menu-icon mr-2 mr-md-0"})}
                         <span className="pl-5 pl-md-2 nav-item-label">{item.label}</span>
-                    </Link>                    
+                    </NavLink>                    
                    </li>;
         });
 
@@ -77,15 +78,18 @@ class Navigation extends Component {
                     <WorkFromHome className="bottom-img" />
                     <div className="position-relative" style={{zIndex: 1}}>
                         <div className="info-button px-2 py-3 py-md-1 font-headline">
-                            <Link to="/info" className="custom-link nav-item-label" onClick={this.closeMenu}>
+                            <NavLink to="/info" className="custom-link nav-item-label" onClick={this.closeMenu}>
                                 Informacije o projektu
-                            </Link>   
+                            </NavLink>   
                         </div>
                         <div className="d-flex justify-content-center pt-1 pt-md-0 mb-5 mb-md-2">
                             <a href="https://github.com/dnbnina94/covid19serbia" target="_blank">
                                 <Github className="bottom-icon github-icon" />
                             </a>
-                            <a href="mailto:nina.grujic.94@gmail.com" className="ml-3 ml-md-1">
+                            <a href="https://data.gov.rs/sr/search/?q=covid19" target="blank" className="mx-5 mx-md-2">
+                                <Databse className="bottom-icon db-icon" />
+                            </a>
+                            <a href="mailto:nina.grujic.94@gmail.com">
                                 <Envelope className="bottom-icon envelope-icon" />
                             </a>
                         </div>

@@ -54,6 +54,16 @@ class Info extends Component {
                             </li>
                         </ul>
                     </p>
+                    <p>
+                        Projekat je realizovan upotrebom ReactJS biblioteke (za kreiranje korisničkog interfejsa) i d3.js 
+                        biblioteke (za interaktivnu vizualizaciju statističkih podataka). Projekat je rađen po uzoru na&nbsp;
+                        <a href="https://www.covid19india.org/" target="_blank">www.covid19india.org</a>. Sve slike i ikonice korišćene u okviru projekta 
+                        preuzete su sa <a href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a> i <a href="https://2.flexiple.com/scale/all-illustrations" target="_blank">www.2.flexiple.com</a>.
+                    </p>
+                    <br/>
+                    <p>
+                        U planu je vizualizacija statističkih podataka vezanih za vakcinaciju stanovništva Republike Srbije.
+                    </p>
                 </div>
         </div>
             </div>

@@ -37,7 +37,7 @@ class Map3 extends Component {
               vw = width/348.065,
               height = window.innerWidth >= 768 ? this.mapWrapper.current.clientHeight : width*this.state.widthHeightRatio;
 
-              console.log(width);
+            //   console.log(width);
         var linearScaler = d3.scaleLinear()
             .domain([
                 d3.min(this.props.data, d => d.value),

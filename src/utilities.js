@@ -25,6 +25,13 @@ export const formatDate = (date) => {
     return `${day}.${month}.${year}.`;
 }
 
+export const formatDate2 = (date) => {
+	const year = date.getFullYear();
+	const month = date.getMonth() + 1;
+	let day = date.getDate();
+	return `${year}-${month < 10 ? '0'+month : month}-${day < 10 ? '0'+day : day}`;
+}
+
 export const formatTime = (date) => {
     let hours = new Intl.DateTimeFormat('en', { hour: '2-digit', hour12: false }).format(date);
 	hours = +hours;
