@@ -54,12 +54,12 @@ class DailyStatistics extends Component {
             if (statistics) {
                 const value = statistics.data[statistics.data.length-1].value;
                 const prevValue = statistics.data[statistics.data.length-2].value;
-                const prevDescription = `${value > prevValue ? 'više' : 'manje'} u odnosu na juče`;
-                const InfoText = props => <span>
+                const prevDescription = `${value > prevValue ? 'više' : 'manje'} u odnosu na prethodnu statistku`;
+                const InfoText = props => <p className="small-info pt-2 pt-md-0">
                     <span>za </span>
                     <b>{Math.abs(value - prevValue)}</b>
                     <span> {prevDescription}</span>
-                </span>;
+                </p>;
 
                 return (
                     <div className="col-md-4 px-1"  key={flag.dataType}>

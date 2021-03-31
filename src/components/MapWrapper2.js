@@ -181,7 +181,7 @@ class MapWrapper2 extends Component {
                             </p>
                         </div>
                     </div>
-                    <div className="map-wrapper-2 bg-white shadow-sm d-flex flex-column border-radius-1" ref={this.chartWrapper}>
+                    <div className="map-wrapper-2 bg-white shadow-sm d-flex flex-column border-radius-1 mt-4 mt-md-0" ref={this.chartWrapper}>
                         <ChartTitle 
                             datePickerAvailable={true}
                             downloadAvailable={true}
@@ -225,7 +225,7 @@ class MapWrapper2 extends Component {
                                 </p>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row mt-4 mt-md-0">
                             <div className="horizontal-barchart-wrapper col-md-12 bg-white shadow-sm p-0 h-100 border-radius-1" ref={this.barWrapper}>
                                 {this.state.dataReady &&
                                     <HorizontalBarChart 

@@ -133,7 +133,7 @@ class AmbulancesWrapper extends Component {
         })
         return (
             <div className="AmbulancesWrapper row flex-grow-1 pt-3 mb-5 mb-md-0">
-                <div className="ambulances-wrapper-map-wrapper col-md-7">
+                <div className="ambulances-wrapper-map-wrapper col-md-7 mb-4 mb-md-0">
                     <div className="bg-white shadow-sm position-relative border-radius-1 h-100 d-flex flex-column" ref={this.chartWrapper}>
                         <ChartTitle
                             downloadAvailable={true}

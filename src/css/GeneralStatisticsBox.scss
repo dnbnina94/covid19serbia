@@ -2,6 +2,9 @@
 @import "../css/bs-overrides.scss";
 
 .GeneralStatisticsBox {
+  .small-info {
+    line-height: 5vw;
+  }
   .general-box-2-title {
     line-height: 6vw;
   }
@@ -24,6 +27,9 @@
 
 @media (min-width: map-get($grid-breakpoints, "md")) {
   .GeneralStatisticsBox {
+    .small-info {
+      line-height: 1.5vw;
+    }
     .general-box-2-title {
       line-height: 1.75vw;
     }
